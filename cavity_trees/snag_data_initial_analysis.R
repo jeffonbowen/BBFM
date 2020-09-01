@@ -10,11 +10,12 @@ library(MuMIn)                #model selection
 library(effects)              #for extracting effects terms. Use effects or Alleffects
 library(emmeans)              #Estimate marginal means
 library(gridExtra)
+library(here)
 
 
 ### Some Analysis ---
-
-snag_dat <- read_xlsx("SnagData_2020-08-03.xlsx", sheet = "Snag_Dat_Unified")
+snag_dat <- read_xlsx(here("cavity_trees", "SnagData_2020-08-03.xlsx"), 
+                      sheet = "Snag_Dat_Unified")
 
 snag_dat$Structural_Stage <- as_factor(snag_dat$Structural_Stage)
 
@@ -27,6 +28,7 @@ hist(snag_dat$SN50_Total)
 g_box <- ggplot(snag_dat) + 
   geom_boxplot(aes(Structural_Stage, SN11_Total))
 g_box
+
 snag_dat <- snag_dat %>% 
   filter(SN11_Total < 20)
 
