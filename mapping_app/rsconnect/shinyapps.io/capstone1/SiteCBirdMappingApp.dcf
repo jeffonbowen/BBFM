@@ -1,0 +1,13 @@
+name: SiteCBirdMappingApp
+title: SiteCBirdMappingApp
+username:
+account: capstone1
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2373181
+bundleId: 3236129
+url: https://capstone1.shinyapps.io/SiteCBirdMappingApp/
+when: 1591458632.53975
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: app-backup.R|app-backup2.R|app-test.R|app-v1.R

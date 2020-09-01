@@ -1,0 +1,325 @@
+Phylo_Sort,Order,IsSongbird,Species Code,English Name
+81,Charadriiformes,,B-AGPL,American Golden-Plover
+177,Passeriformes,Y,B-ALFL,Alder Flycatcher
+83,Charadriiformes,,B-AMAV,American Avocet
+54,Pelecaniformes,,B-AMBI,American Bittern
+75,Gruiformes,,B-AMCO,American Coot
+198,Passeriformes,Y,B-AMCR,American Crow
+249,Passeriformes,Y,B-AMDI,American Dipper
+262,Passeriformes,Y,B-AMGO,American Goldfinch
+174,Falconiformes,,B-AMKE,American Kestrel
+250,Passeriformes,Y,B-AMPI,American Pipit
+282,Passeriformes,Y,B-AMRE,American Redstart
+248,Passeriformes,Y,B-AMRO,American Robin
+14,Anseriformes,,B-AMWI,American Wigeon
+149,Apodiformes,Y,B-ANHU,Anna's Hummingbird
+117,Charadriiformes,,B-ANMU,Ancient Murrelet
+109,Charadriiformes,,B-ARTE,Arctic Tern
+315,Passeriformes,Y,B-ATSP,American Tree Sparrow
+159,Piciformes,,B-ATTW,American Three-toed Woodpecker
+50,Pelecaniformes,,B-AWPE,American White Pelican
+73,Accipitriformes,,B-BAEA,Bald Eagle
+28,Anseriformes,,B-BAGO,Barrow's Goldeneye
+292,Passeriformes,Y,B-BAOR,Baltimore Oriole
+86,Charadriiformes,,B-BASA,Baird's Sandpiper
+216,Passeriformes,Y,B-BASW,Barn Swallow
+269,Passeriformes,Y,B-BAWW,Black-and-white Warbler
+276,Passeriformes,Y,B-BAYW,Bay-breasted Warbler
+206,Passeriformes,Y,B-BBMA,Black-billed Magpie
+158,Piciformes,,B-BBWO,Black-backed Woodpecker
+209,Passeriformes,Y,B-BCCH,Black-capped Chickadee
+147,Apodiformes,Y,B-BCHU,Black-chinned Hummingbird
+56,Pelecaniformes,,B-BCNH,Black-crowned Night-heron
+140,Strigiformes,,B-BDOW,Barred Owl
+152,Coraciiformes,Y,B-BEKI,Belted Kingfisher
+232,Passeriformes,Y,B-BEWR,Bewick's Wren
+293,Passeriformes,Y,B-BHCO,Brown-headed Cowbird
+323,Passeriformes,Y,B-BHGR,Black-headed Grosbeak
+196,Passeriformes,Y,B-BHVI,Blue-headed Vireo
+283,Passeriformes,Y,B-BKPW,Blackpoll Warbler
+219,Passeriformes,Y,B-BKSW,Bank Swallow
+201,Passeriformes,Y,B-BLJA,Blue Jay
+107,Charadriiformes,,B-BLKI,Black-legged Kittiwake
+82,Charadriiformes,,B-BLOY,Black Oystercatcher
+146,Apodiformes,Y,B-BLSW,Black Swift
+99,Charadriiformes,,B-BLTE,Black Tern
+124,Strigiformes,,B-BNOW,Barn Owl
+288,Passeriformes,Y,B-BOBO,Bobolink
+211,Passeriformes,Y,B-BOCH,Boreal Chickadee
+100,Charadriiformes,,B-BOGU,Bonaparte's Gull
+127,Strigiformes,,B-BOOW,Boreal Owl
+208,Passeriformes,Y,B-BOWA,Bohemian Waxwing
+290,Passeriformes,Y,B-BRBL,Brewer's Blackbird
+60,Suliformes,,B-BRCO,Brandt's Cormorant
+236,Passeriformes,Y,B-BRCR,Brown Creeper
+311,Passeriformes,Y,B-BRSP,Brewer's Sparrow
+312,Passeriformes,Y,B-BRSP-BR,Brewer's Sparrow, breweri subspecies
+279,Passeriformes,Y,B-BTGW,Black-throated Gray Warbler
+286,Passeriformes,Y,B-BTNW,Black-throated Green Warbler
+121,Columbiformes,Y,B-BTPI,Band-tailed Pigeon
+26,Anseriformes,,B-BUFF,Bufflehead
+291,Passeriformes,Y,B-BUOR,Bullock's Oriole
+130,Strigiformes,,B-BUOW,Burrowing Owl
+223,Passeriformes,Y,B-BUSH,Bushtit
+69,Accipitriformes,,B-BWHA,Broad-winged Hawk
+18,Anseriformes,,B-BWTE,Blue-winged Teal
+116,Charadriiformes,,B-CAAU,Cassin's Auklet
+253,Passeriformes,Y,B-CAFI,Cassin's Finch
+25,Anseriformes,,B-CAGO,Canada Goose
+103,Charadriiformes,,B-CAGU,California Gull
+150,Apodiformes,Y,B-CAHU,Calliope Hummingbird
+24,Anseriformes,,B-CANV,Canvasback
+101,Charadriiformes,,B-CATE,Caspian Tern
+191,Passeriformes,Y,B-CAVI,Cassin's Vireo
+263,Passeriformes,Y,B-CAWA,Canada Warbler
+226,Passeriformes,Y,B-CAWR,Canyon Wren
+212,Passeriformes,Y,B-CBCH,Chestnut-backed Chickadee
+313,Passeriformes,Y,B-CCSP,Clay-colored Sparrow
+207,Passeriformes,Y,B-CEWA,Cedar Waxwing
+314,Passeriformes,Y,B-CHSP,Chipping Sparrow
+17,Anseriformes,,B-CITE,Cinnamon Teal
+44,Podicipediformes,,B-CLGR,Clark's Grebe
+204,Passeriformes,Y,B-CLNU,Clark's Nutcracker
+217,Passeriformes,Y,B-CLSW,Cliff Swallow
+284,Passeriformes,Y,B-CMWA,Cape May Warbler
+183,Passeriformes,Y,B-COFL,Cordilleran Flycatcher
+27,Anseriformes,,B-COGO,Common Goldeneye
+294,Passeriformes,Y,B-COGR,Common Grackle
+63,Accipitriformes,,B-COHA,Cooper's Hawk
+38,Gaviiformes,,B-COLO,Common Loon
+35,Anseriformes,,B-COME,Common Merganser
+118,Charadriiformes,,B-COMU,Common Murre
+142,Caprimulgiformes,,B-CONI,Common Nighthawk
+143,Caprimulgiformes,,B-COPO,Common Poorwill
+200,Passeriformes,Y,B-CORA,Common Raven
+251,Passeriformes,Y,B-CORE,Common Redpoll
+270,Passeriformes,Y,B-COWA,Connecticut Warbler
+267,Passeriformes,Y,B-COYE,Common Yellowthroat
+57,Suliformes,,B-DCCO,Double-crested Cormorant
+302,Passeriformes,Y,B-DEJU,Dark-eyed Junco
+160,Piciformes,,B-DOWO,Downy Woodpecker
+182,Passeriformes,Y,B-DUFL,Dusky Flycatcher
+4,Galliformes,,B-DUGR,Dusky Grouse
+48,Podicipediformes,,B-EAGR,Eared Grebe
+188,Passeriformes,Y,B-EAKI,Eastern Kingbird
+186,Passeriformes,Y,B-EAPH,Eastern Phoebe
+252,Passeriformes,Y,B-EVGR,Evening Grosbeak
+70,Accipitriformes,,B-FEHA,Ferruginous Hawk
+137,Strigiformes,,B-FLOW,Flammulated Owl
+307,Passeriformes,Y,B-FOSP,Fox Sparrow
+108,Charadriiformes,,B-FOTE,Forster's Tern
+42,Procellariiformes,,B-FTSP,Fork-tailed Storm-petrel
+20,Anseriformes,,B-GADW,Gadwall
+51,Pelecaniformes,,B-GBHE,Great Blue Heron
+52,Pelecaniformes,,B-GBHE-FA,Great Blue Heron, fannini subspecies
+53,Pelecaniformes,,B-GBHE-HE,Great Blue Heron, herodias subspecies
+225,Passeriformes,Y,B-GCKI,Golden-crowned Kinglet
+256,Passeriformes,Y,B-GCRF,Gray-crowned Rosy Finch
+317,Passeriformes,Y,B-GCSP,Golden-crowned Sparrow
+241,Passeriformes,Y,B-GCTH,Gray-cheeked Thrush
+138,Strigiformes,,B-GGOW,Great Gray Owl
+131,Strigiformes,,B-GHOW,Great Horned Owl
+67,Accipitriformes,,B-GOEA,Golden Eagle
+237,Passeriformes,Y,B-GRCA,Gray Catbird
+185,Passeriformes,Y,B-GRFL,Gray Flycatcher
+55,Pelecaniformes,,B-GRHE,Green Heron
+205,Passeriformes,Y,B-GRJA,Gray Jay
+300,Passeriformes,Y,B-GRSP,Grasshopper Sparrow
+96,Charadriiformes,,B-GRYE,Greater Yellowlegs
+2,Galliformes,,B-GSGR,Greater Sage-Grouse
+106,Charadriiformes,,B-GWGU,Glaucous-winged Gull
+16,Anseriformes,,B-GWTE,Green-winged Teal
+173,Falconiformes,,B-GYRF,Gyrfalcon
+31,Anseriformes,,B-HADU,Harlequin Duck
+180,Passeriformes,Y,B-HAFL,Hammond's Flycatcher
+161,Piciformes,,B-HAWO,Hairy Woodpecker
+162,Piciformes,,B-HAWO-PI,Hairy Woodpecker, picoideus subspecies
+102,Charadriiformes,,B-HEGU,Herring Gull
+240,Passeriformes,Y,B-HETH,Hermit Thrush
+254,Passeriformes,Y,B-HOFI,House Finch
+46,Podicipediformes,,B-HOGR,Horned Grebe
+213,Passeriformes,Y,B-HOLA,Horned Lark
+214,Passeriformes,Y,B-HOLA-ME,Horned Lark, merrilli subspecies
+215,Passeriformes,Y,B-HOLA-ST,Horned Lark, strigata subspecies
+32,Anseriformes,,B-HOME,Hooded Merganser
+115,Charadriiformes,,B-HOPU,Horned Puffin
+233,Passeriformes,Y,B-HOWR,House Wren
+90,Charadriiformes,,B-HUGO,Hudsonian Godwit
+193,Passeriformes,Y,B-HUVI,Hutton's Vireo
+80,Charadriiformes,,B-KILL,Killdeer
+301,Passeriformes,Y,B-LASP,Lark Sparrow
+91,Charadriiformes,,B-LBCU,Long-billed Curlew
+298,Passeriformes,Y,B-LCSP,Le Conte's Sparrow
+181,Passeriformes,Y,B-LEFL,Least Flycatcher
+129,Strigiformes,,B-LEOW,Long-eared Owl
+87,Charadriiformes,,B-LESA,Least Sandpiper
+21,Anseriformes,,B-LESC,Lesser Scaup
+155,Piciformes,,B-LEWO,Lewis's Woodpecker
+156,Piciformes,,B-LEWO-01,Lewis's Woodpecker (Georgia Depression population)
+94,Charadriiformes,,B-LEYE,Lesser Yellowlegs
+304,Passeriformes,Y,B-LISP,Lincoln's Sparrow
+43,Procellariiformes,,B-LSPE,Leach's Storm-petrel
+29,Anseriformes,,B-LTDU,Long-tailed Duck
+321,Passeriformes,Y,B-LZBU,Lazuli Bunting
+266,Passeriformes,Y,B-MACW,MacGillivray's Warbler
+19,Anseriformes,,B-MALL,Mallard
+111,Charadriiformes,,B-MAMU,Marbled Murrelet
+227,Passeriformes,Y,B-MAWR,Marsh Wren
+104,Charadriiformes,,B-MEGU,Mew Gull
+168,Falconiformes,,B-MERL,Merlin
+278,Passeriformes,Y,B-MGNW,Magnolia Warbler
+245,Passeriformes,Y,B-MOBL,Mountain Bluebird
+210,Passeriformes,Y,B-MOCH,Mountain Chickadee
+122,Columbiformes,Y,B-MODO,Mourning Dove
+265,Passeriformes,Y,B-MOWA,Mourning Warbler
+273,Passeriformes,Y,B-NAWA,Nashville Warbler
+299,Passeriformes,Y,B-NESP,Nelson's Sparrow
+141,Strigiformes,,B-NHOW,Northern Hawk Owl
+199,Passeriformes,Y,B-NOCR,Northwestern Crow
+153,Piciformes,,B-NOFL,Northern Flicker
+41,Procellariiformes,,B-NOFU,Northern Fulmar
+64,Accipitriformes,,B-NOGO,Northern Goshawk
+65,Accipitriformes,,B-NOGO-LA,Northern Goshawk, laingi subspecies
+72,Accipitriformes,,B-NOHA,Northern Harrier
+13,Anseriformes,,B-NOPI,Northern Pintail
+190,Passeriformes,Y,B-NOSH,Northern Shrike
+15,Anseriformes,,B-NOSL,Northern Shoveler
+274,Passeriformes,Y,B-NOWA,Northern Waterthrush
+132,Strigiformes,,B-NPOW,Northern Pygmy-Owl
+133,Strigiformes,,B-NPOW-SW,Northern Pygmy-Owl, swarthi subspecies
+220,Passeriformes,Y,B-NRWS,Northern Rough-winged Swallow
+125,Strigiformes,,B-NSWO,Northern Saw-whet Owl
+126,Strigiformes,,B-NSWO-BR,Northern Saw-whet Owl, brooksi subspecies
+271,Passeriformes,Y,B-OCWA,Orange-crowned Warbler
+175,Passeriformes,Y,B-OSFL,Olive-sided Flycatcher
+62,Accipitriformes,,B-OSPR,Osprey
+275,Passeriformes,Y,B-OVEN,Ovenbird
+110,Charadriiformes,,B-PAAU,Parakeet Auklet
+98,Charadriiformes,,B-PAJA,Parasitic Jaeger
+39,Gaviiformes,,B-PALO,Pacific Loon
+120,Columbiformes,Y,B-PAPI,Passenger Pigeon
+280,Passeriformes,Y,B-PAWA,Palm Warbler
+235,Passeriformes,Y,B-PAWR,Pacific Wren
+49,Podicipediformes,,B-PBGR,Pied-billed Grebe
+58,Suliformes,,B-PECO,Pelagic Cormorant
+59,Suliformes,,B-PECO-PE,Pelagic Cormorant, pelagicus subspecies
+170,Falconiformes,,B-PEFA,Peregrine Falcon
+171,Falconiformes,,B-PEFA-AN,Peregrine Falcon, anatum subspecies
+172,Falconiformes,,B-PEFA-PE,Peregrine Falcon, pealei subspecies
+195,Passeriformes,Y,B-PHVI,Philadelphia Vireo
+259,Passeriformes,Y,B-PIGR,Pine Grosbeak
+260,Passeriformes,Y,B-PIGR-CA,Pine Grosbeak, carlottae subspecies
+112,Charadriiformes,,B-PIGU,Pigeon Guillemot
+261,Passeriformes,Y,B-PISI,Pine Siskin
+154,Piciformes,,B-PIWO,Pileated Woodpecker
+169,Falconiformes,,B-PRFA,Prairie Falcon
+178,Passeriformes,Y,B-PSFL,Pacific-slope Flycatcher
+255,Passeriformes,Y,B-PUFI,Purple Finch
+218,Passeriformes,Y,B-PUMA,Purple Martin
+231,Passeriformes,Y,B-PYNU,Pygmy Nuthatch
+322,Passeriformes,Y,B-RBGR,Rose-breasted Grosbeak
+105,Charadriiformes,,B-RBGU,Ring-billed Gull
+36,Anseriformes,,B-RBME,Red-breasted Merganser
+229,Passeriformes,Y,B-RBNU,Red-breasted Nuthatch
+164,Piciformes,,B-RBSA,Red-breasted Sapsucker
+224,Passeriformes,Y,B-RCKI,Ruby-crowned Kinglet
+257,Passeriformes,Y,B-RECR,Red Crossbill
+22,Anseriformes,,B-REDH,Redhead
+194,Passeriformes,Y,B-REVI,Red-eyed Vireo
+113,Charadriiformes,,B-RHAU,Rhinoceros Auklet
+23,Anseriformes,,B-RNDU,Ring-necked Duck
+47,Podicipediformes,,B-RNGR,Red-necked Grebe
+92,Charadriiformes,,B-RNPL,Red-necked Phalarope
+163,Piciformes,,B-RNSA,Red-naped Sapsucker
+9,Galliformes,,B-ROPT,Rock Ptarmigan
+228,Passeriformes,Y,B-ROWR,Rock Wren
+68,Accipitriformes,,B-RTHA,Red-tailed Hawk
+148,Apodiformes,Y,B-RTHU,Ruby-throated Hummingbird
+40,Gaviiformes,,B-RTLO,Red-throated Loon
+289,Passeriformes,Y,B-RUBL,Rusty Blackbird
+37,Anseriformes,,B-RUDU,Ruddy Duck
+1,Galliformes,,B-RUGR,Ruffed Grouse
+151,Apodiformes,Y,B-RUHU,Rufous Hummingbird
+287,Passeriformes,Y,B-RWBL,Red-winged Blackbird
+78,Gruiformes,,B-SACR,Sandhill Crane
+187,Passeriformes,Y,B-SAPH,Say's Phoebe
+238,Passeriformes,Y,B-SATH,Sage Thrasher
+306,Passeriformes,Y,B-SAVS,Savannah Sparrow
+89,Charadriiformes,,B-SBDO,Short-billed Dowitcher
+128,Strigiformes,,B-SEOW,Short-eared Owl
+79,Charadriiformes,,B-SEPL,Semipalmated Plover
+319,Passeriformes,Y,B-SMLO,Smith's Longspur
+320,Passeriformes,Y,B-SNBU,Snow Bunting
+3,Galliformes,,B-SOGR,Sooty Grouse
+76,Gruiformes,,B-SORA,Sora
+97,Charadriiformes,,B-SOSA,Solitary Sandpiper
+305,Passeriformes,Y,B-SOSP,Song Sparrow
+5,Galliformes,,B-SPGR,Spruce Grouse
+139,Strigiformes,,B-SPOW,Spotted Owl
+84,Charadriiformes,,B-SPSA,Spotted Sandpiper
+308,Passeriformes,Y,B-SPTO,Spotted Towhee
+66,Accipitriformes,,B-SSHA,Sharp-shinned Hawk
+10,Galliformes,,B-STGR,Sharp-tailed Grouse
+11,Galliformes,,B-STGR-CO,Sharp-tailed Grouse, columbianus subspecies
+202,Passeriformes,Y,B-STJA,Steller's Jay
+203,Passeriformes,Y,B-STJA-CA,Steller's Jay, carlottae subspecies
+34,Anseriformes,,B-SUSC,Surf Scoter
+71,Accipitriformes,,B-SWHA,Swainson's Hawk
+303,Passeriformes,Y,B-SWSP,Swamp Sparrow
+242,Passeriformes,Y,B-SWTH,Swainson's Thrush
+119,Charadriiformes,,B-TBMU,Thick-billed Murre
+272,Passeriformes,Y,B-TEWA,Tennessee Warbler
+244,Passeriformes,Y,B-TOSO,Townsend's Solitaire
+285,Passeriformes,Y,B-TOWA,Townsend's Warbler
+221,Passeriformes,Y,B-TRSW,Tree Swallow
+30,Anseriformes,,B-TRUS,Trumpeter Swan
+114,Charadriiformes,,B-TUPU,Tufted Puffin
+61,Accipitriformes,,B-TUVU,Turkey Vulture
+85,Charadriiformes,,B-UPSA,Upland Sandpiper
+145,Apodiformes,Y,B-VASW,Vaux's Swift
+243,Passeriformes,Y,B-VATH,Varied Thrush
+239,Passeriformes,Y,B-VEER,Veery
+309,Passeriformes,Y,B-VESP,Vesper Sparrow
+310,Passeriformes,Y,B-VESP-AF,Vesper Sparrow, affinis subspecies
+222,Passeriformes,Y,B-VGSW,Violet-green Swallow
+77,Gruiformes,,B-VIRA,Virginia Rail
+95,Charadriiformes,,B-WATA,Wandering Tattler
+192,Passeriformes,Y,B-WAVI,Warbling Vireo
+230,Passeriformes,Y,B-WBNU,White-breasted Nuthatch
+318,Passeriformes,Y,B-WCSP,White-crowned Sparrow
+246,Passeriformes,Y,B-WEBL,Western Bluebird
+247,Passeriformes,Y,B-WEBL-01,Western Bluebird (Georgia Depression population)
+45,Podicipediformes,,B-WEGR,Western Grebe
+189,Passeriformes,Y,B-WEKI,Western Kingbird
+295,Passeriformes,Y,B-WEME,Western Meadowlark
+296,Passeriformes,Y,B-WEME-01,Western Meadowlark (Georgia Depression population)
+324,Passeriformes,Y,B-WETA,Western Tanager
+157,Piciformes,,B-WHWO,White-headed Woodpecker
+184,Passeriformes,Y,B-WIFL,Willow Flycatcher
+93,Charadriiformes,,B-WIPH,Wilson's Phalarope
+6,Galliformes,,B-WIPT,Willow Ptarmigan
+165,Piciformes,,B-WISA,Williamson's Sapsucker
+166,Piciformes,,B-WISA-TH,Williamson's Sapsucker, thyroideus subspecies
+88,Charadriiformes,,B-WISN,Wilson's Snipe
+264,Passeriformes,Y,B-WIWA,Wilson's Warbler
+234,Passeriformes,Y,B-WIWR,Winter Wren
+12,Anseriformes,,B-WODU,Wood Duck
+197,Passeriformes,Y,B-WSJA,Western Scrub-Jay
+134,Strigiformes,,B-WSOW,Western Screech-Owl
+135,Strigiformes,,B-WSOW-KE,Western Screech-Owl, kennicottii subspecies
+136,Strigiformes,,B-WSOW-MA,Western Screech-Owl, macfarlanei subspecies
+7,Galliformes,,B-WTPT,White-tailed Ptarmigan
+8,Galliformes,,B-WTPT-SA,White-tailed Ptarmigan, saxatilis subspecies
+316,Passeriformes,Y,B-WTSP,White-throated Sparrow
+144,Apodiformes,Y,B-WTSW,White-throated Swift
+258,Passeriformes,Y,B-WWCR,White-winged Crossbill
+176,Passeriformes,Y,B-WWPE,Western Wood-Pewee
+33,Anseriformes,,B-WWSC,White-winged Scoter
+268,Passeriformes,Y,B-YBCH,Yellow-breasted Chat
+123,Cuculiformes,,B-YBCU,Yellow-billed Cuckoo
+179,Passeriformes,Y,B-YBFL,Yellow-bellied Flycatcher
+167,Piciformes,,B-YBSA,Yellow-bellied Sapsucker
+74,Gruiformes,,B-YERA,Yellow Rail
+281,Passeriformes,Y,B-YEWA,Yellow Warbler
+297,Passeriformes,Y,B-YHBL,Yellow-headed Blackbird
+277,Passeriformes,Y,B-YRWA,Yellow-rumped Warbler
