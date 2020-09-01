@@ -1,0 +1,21 @@
+Habitat Code,HC Sort,Habitat Class
+CSH,1,Coniferous-shrub
+CYF,2,Coniferous-young forest
+CMF,3,Coniferous-mature forest
+DSH,4,Deciduous-shrub
+DYF,5,Deciduous-young forest
+DMF,6,Deciduous-mature forest
+RSH,7,Riparian-mixed shrub
+RYF,8,Riparian-mixed young forest
+RMF,9,Riparian-mixed mature forest
+FBS,10,Fen/bog-shrub
+FBT,11,Fen/bog-treed
+WGR,12,Wetland-graminoid
+WSH,13,Wetland-shrub
+WRI,14,Wetland-riparian
+DSG,15,Dry slope grasslands
+DSS,16,Dry slope shrublands
+CUL,17,Cultivated
+NVE,18,Non-vegetated
+ANT,19,Anthropogenic
+WAT,20,Water

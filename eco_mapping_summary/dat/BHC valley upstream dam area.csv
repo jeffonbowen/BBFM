@@ -1,0 +1,21 @@
+Sort,BHC20,Total,Habitat Class,Proportion
+1,CSH,245.30130075302,Coniferous-shrub,0.763%
+2,CYF,3655.9230808657,Coniferous-young forest,11.367%
+3,CMF,3584.59985244103,Coniferous-mature forest,11.145%
+4,DSH,1060.43685434959,Deciduous-shrub,3.297%
+5,DYF,8598.92264775459,Deciduous-young forest,26.735%
+6,DMF,1819.65052600985,Deciduous-mature forest,5.658%
+7,RSH,600.78977383465,Riparian-mixed shrub,1.868%
+8,RYF,311.17660320316,Riparian-mixed young forest,0.967%
+9,RMF,252.8566249936,Riparian-mixed mature forest,0.786%
+10,FBS,29.522900551470002,Fen/bog-shrub,0.092%
+11,FBT,36.62729654582,Fen/bog-treed,0.114%
+12,WGR,72.17089991197001,Wetland-graminoid,0.224%
+13,WSH,58.8576143996,Wetland-shrub,0.183%
+14,WRI,394.25084025892,Wetland-riparian,1.226%
+15,DSG,1575.92721053887,Dry slope grasslands,4.900%
+16,DSS,966.7538369271,Dry slope shrublands,3.006%
+17,CUL,3781.02018115722,Cultivated,11.756%
+18,NVE,1519.92605366477,Non-vegetated,4.726%
+19,ANT,358.62246211989003,Anthropogenic,1.115%
+20,WAT,3239.8369264407897,Water,10.073%
