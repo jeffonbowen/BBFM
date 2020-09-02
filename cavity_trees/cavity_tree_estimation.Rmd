@@ -1,0 +1,403 @@
+---
+title: "Tree Cavity Estimation"
+author: SEES JV (Tetra Tech/EcoLogic)
+date: 2020-09-02
+output: 
+  html_notebook:
+    toc: TRUE
+    toc_float: TRUE
+---
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+# Introduction
+As part of the offset accounting framework, the VWTC asked for an estimate of the loss of suitable nest cavities in natural stands. There is no project data that would allow for a direct estimation of the number of nest cavities in various stand types that could then be extrapolated to the entire footprint. A search of scientific literature was conducted and there does not appear to be data on nest cavity densities from a similar bioclimatic region that could be applied to the project area. (**JASON**: I did a brief search - we should make sure).     
+
+Snag data was collected at select locations as part of the Breeding Bird Follow-up Monitoring program. The number of snags can be related to forest stand types to determine snag density and then extrapolated to the entire project footprint using the ecosystem mapping data. The number of cavities could be estimated if an assumption is made on the typical number of nest cavities per snag. 
+
+This document first describes the estimation of the number of snags per hectare for various stand types and then extrapolates to the entire Site C footprint.  
+
+**NOTE: The R code can be hidden using the pull-down menu in the top right.**  
+
+# Snag Density Estimation
+## Snag Data
+Two types of snag data were collected.
+
+**SN50**  
+Approximate total number of dead standing trees >15cm dbh within 50m of plot centre. 
+Trees not identified to species.
+Collected at all survey locations since 2017 (459 locations to date).
+
+**SN11**  
+Species by decay class in SIVI plot, >15cm dbh. 
+The "11" in SN11 refers to 11.3m radius = ~400m2, the area of a SIVI plot. 
+This was only collected in 2018 and 2019 at woodpecker survey stations (318 locations), so there are fewer locations than SN50.  
+
+The SN11 data will be better for this exercise: the snag counts are more accurate and for the same plot area that the ecosystem unit was identified.   
+
+There are more notes about the data in the first tab of the "snag_data.xlsx" workbook.  
+
+## Setup and Data Prep
+All data is in "snag_data.xlsx".  
+```{r message=FALSE, warning=FALSE}
+# Required Packages
+library(here)
+library(tidyverse)
+library(readxl)
+library(vcd)
+library(MASS)
+library(visreg)
+library(MuMIn) 
+library(effects)
+library(DHARMa)
+library(emmeans)
+library(broom)
+library(ggpubr)
+```
+```{r}
+# Read and Prepare Data
+snag_dat <- 
+  read_xlsx(here("cavity_trees", "dat", "snag_data.xlsx"), 
+                      sheet = "SN11_long") %>% 
+  mutate(Structural_Stage = case_when(
+    Structural_Stage == "2" ~ "Herb",
+    Structural_Stage == "3" ~ "Shrub",
+    Structural_Stage == "4" ~ "P-S",
+    Structural_Stage == "5" ~ "Young",
+    Structural_Stage == "6" ~ "Mature",
+    Structural_Stage == "7" ~ "Old")
+    ) %>% 
+  mutate(Structural_Stage = factor(Structural_Stage, 
+                                   levels = c("Herb", "Shrub", "P-S", "Young", "Mature", "Old")),
+         Stand_Composition = factor(Stand_Composition),
+         SMR = factor(SMR, levels = c("dry", "mesic", "moist", "wet"))
+         )
+```
+
+## Basic Summary
+### Number of Samples
+Note:  
+SMR = Soil Moisture Regime  
+P-S = Pole/Sapling
+```{r message=FALSE, paged.print=TRUE}
+snag_dat %>% 
+  group_by(Structural_Stage, SMR) %>% 
+  summarize(n = n_distinct(HabDat_ID)) %>% 
+  pivot_wider(names_from = "SMR", values_from = "n")
+
+snag_dat %>% 
+  group_by(SMR) %>% 
+  summarize(n = n_distinct(HabDat_ID))
+
+snag_dat %>% 
+  group_by(Stand_Composition) %>% 
+  summarize(n = n_distinct(HabDat_ID))
+
+
+```
+### Descriptive Stats
+```{r message=FALSE}
+snag_dat %>% 
+  filter(Structural_Stage != "Herb") %>% 
+  group_by(HabDat_ID, Structural_Stage, Stand_Composition) %>% 
+  summarize(total_count = sum(Count)) %>% 
+  ggplot() + 
+  geom_boxplot(aes(x = Structural_Stage, y = total_count, colour = Stand_Composition)) +
+  labs(subtitle = "Total Number of Snags by Structural Stage and Stand Composition",
+       y = "Total number of snags per plot")
+```
+
+```{r message=FALSE}
+snag_dat %>% 
+  filter(Structural_Stage != "Herb") %>% 
+  group_by(HabDat_ID, Structural_Stage, SMR) %>% 
+  summarize(total_count = sum(Count)) %>% 
+  ggplot() + 
+  geom_boxplot(aes(x = Structural_Stage, y = total_count, colour = SMR)) +
+  labs(subtitle = "Total Number of Snags by Structural Stage and SMR",
+       y = "Total number of snags per plot")
+```
+
+**Note:** The snag data also includes decay class and tree species. These two attributes add another layer of complexity and have been left out for now. Its unclear how best to incorporate them at this point.   
+
+## Model to Estimate Snag Density  
+Two models: one for total number of snags (both conifers and deciduous) and a second just for deciduous, in case that becomes the focus. 
+
+### Total Number of Snags  
+```{r message=FALSE, warning=FALSE, paged.print=TRUE}
+snag_total <- snag_dat %>% 
+  filter(Structural_Stage != "Herb") %>% 
+  droplevels() %>% 
+  group_by(HabDat_ID, SMR, Stand_Composition, Structural_Stage) %>% 
+  summarize(count_total = sum(Count))
+```
+Data fits negative binomial distribution:
+```{r message=FALSE, warning=FALSE}
+hist(snag_total$count_total)  
+
+fit_nbinom <- goodfit(snag_total$count_total, type = "nbinomial")
+rootogram(fit_nbinom)
+```
+
+Fit GLM with negative binomial distribution.
+Fitting all possible variations of the three explanatory variables. 
+Table shows ranking by AICc. 
+```{r}
+model_nb_full <- glm.nb(count_total ~ Structural_Stage + SMR + Stand_Composition, 
+                        data = snag_total,
+                        na.action = "na.fail")
+dredge(model_nb_full)
+```
+Best model has SMR and Structural Stage. Though not very different from model with all three variables.
+It appears that stand composition has little influence on total number of snags.   
+
+Models with interactions were attempted but could not be fit. There are not enough samples in the various combinations of variables to model interactions.   
+
+**Best Model: Structural Stage and SMR**  
+Model summary, analysis of residuals and quick look at effects. 
+```{r paged.print=TRUE}
+model_nb <- glm.nb(count_total ~ Structural_Stage + SMR, 
+                        data = snag_total)
+summary(model_nb)
+
+# Simulate residuals to check model fit. 
+simulationOutput <- simulateResiduals(fittedModel = model_nb, plot = T)
+
+# Quick check
+ae <- allEffects(model_nb)
+plot(ae)
+```
+
+**Predict means**
+```{r}
+means_total_snags <- emmeans(model_nb, specs = c( "SMR", "Structural_Stage"), type = "response")
+means_total_snags <- tidy(summary(means_total_snags)) %>%  
+  arrange(SMR) %>% 
+  mutate(SMR = factor(SMR, levels = c("dry", "mesic", "moist", "wet")),
+         Structural_Stage = factor(Structural_Stage, levels = c("Shrub", "P-S", "Young", "Mature", "Old"))
+         ) %>% 
+  rename(total_snags = response)
+means_total_snags
+```
+Some of the predicted combinations of SMR and Structural Stage do not exist, either in the snag data or as mapped ecosystems in the footprint (n = 3). So that we don't waste time on trying to interpret patterns for these cases that  have not been measured AND are not in the footprint, they have been removed and do not show up in the plots. 
+```{r}
+means_total_snags <- means_total_snags %>% 
+  mutate(removal_flag = case_when(
+    SMR == "wet" & Structural_Stage %in% c("Mature", "Old") ~ "not mapped in footprint",
+    SMR == "dry" & Structural_Stage == "Mature" ~ "not mapped in footprint",
+    TRUE ~ "keep")
+    ) %>% 
+  filter(removal_flag == "keep")
+write_csv(means_total_snags, here("cavity_trees", "out", "total_snags_estimates.csv"))
+means_total_snags
+```
+```{r plot}
+total_snags_plot <- means_total_snags %>% 
+  ggplot(aes(x = Structural_Stage, y = total_snags, fill = SMR))+
+  geom_bar(stat = "identity", width = 0.5, position = position_dodge())+
+  labs(subtitle = "Estimated Number of Snags")+
+  xlab(label = "Structural Stage") +
+  ylab(label = "Snag Density (# / 400m2) with 95% CI")+
+  geom_errorbar(aes(ymin = asymp.LCL, ymax = asymp.UCL), 
+                width = 0.05,
+                position = position_dodge(.5)
+                ) +
+  theme_bw() +
+  theme(axis.title=element_text(size=10))
+total_snags_plot
+```
+
+### Number of Deciduous Snags
+The above analysis all over again. Will not show all of the detail. 
+
+```{r}
+# Using the summary data instead on this round.
+snag_dat_sum <- 
+  read_xlsx(here("cavity_trees", "dat", "snag_data.xlsx"), 
+                      sheet = "SN11_summary") %>% 
+  mutate(Structural_Stage = case_when(
+    Structural_Stage == "2" ~ "Herb",
+    Structural_Stage == "3" ~ "Shrub",
+    Structural_Stage == "4" ~ "P-S",
+    Structural_Stage == "5" ~ "Young",
+    Structural_Stage == "6" ~ "Mature",
+    Structural_Stage == "7" ~ "Old")
+    ) %>% 
+  mutate(Structural_Stage = factor(Structural_Stage, 
+                                   levels = c("Herb", "Shrub", "P-S", "Young", "Mature", "Old")),
+         Stand_Composition = factor(Stand_Composition),
+         SMR = factor(SMR, levels = c("dry", "mesic", "moist", "wet"))
+         )
+
+```
+
+```{r message=FALSE, warning=FALSE, paged.print=TRUE}
+snag_decid <- snag_dat_sum %>% 
+  dplyr::select(HabDat_ID:BHC, Conif_Tot:Snags_Total) %>% 
+  filter(Structural_Stage != "Herb") %>% 
+  droplevels() %>% 
+  group_by(HabDat_ID, SMR, Stand_Composition, Structural_Stage) %>% 
+  summarize(count_total = sum(Decid_Tot))
+
+hist(snag_decid$count_total)
+```
+
+```{r message=FALSE, warning=FALSE}
+model_nb_full <- glm.nb(count_total ~ Structural_Stage + SMR + Stand_Composition, 
+                        data = snag_decid,
+                        na.action = "na.fail")
+dredge(model_nb_full)
+```
+Best model is the full model with SMR, Stand Composition and Structural Stage. 
+
+Models with interactions were attempted but could not be fit. There are not enough samples in the various combinations of variables to model interactions.  
+
+Model summary, analysis of residuals and quick look at effects. 
+```{r paged.print=TRUE}
+model_nb <- glm.nb(count_total ~ Structural_Stage + Stand_Composition + SMR, 
+                        data = snag_decid)
+summary(model_nb)
+
+# Simulate residuals to check model fit. 
+simulationOutput <- simulateResiduals(fittedModel = model_nb, plot = T)
+
+# Quick check
+ae <- allEffects(model_nb)
+plot(ae)
+```
+
+**Predict means**
+```{r}
+means_total_decid <- emmeans(model_nb, specs = c( "SMR", "Structural_Stage", "Stand_Composition"), type = "response")
+means_total_decid <- tidy(summary(means_total_decid)) %>%  
+  arrange(SMR) %>% 
+  mutate(SMR = factor(SMR, levels = c("dry", "mesic", "moist", "wet")),
+         Structural_Stage = factor(Structural_Stage, levels = c("Shrub", "P-S", "Young", "Mature", "Old"))
+         ) %>% 
+  rename(total_snags = response)
+means_total_decid
+```
+
+```{r}
+means_total_decid <- means_total_decid %>% 
+  mutate(removal_flag = case_when(
+    SMR == "wet" & Structural_Stage %in% c("Mature", "Old") ~ "not mapped in footprint",
+    SMR == "dry" & Structural_Stage == "Mature" ~ "not mapped in footprint",
+    TRUE ~ "keep")
+    ) %>% 
+  filter(removal_flag == "keep")
+write_csv(means_total_decid, here("cavity_trees", "out", "decid_snags_estimates.csv"))
+means_total_decid
+```
+
+Hard to visualize effect of three variables in two-dimensional plot. The plot is shown twice, one for deciduous stands and the second for coniferous stands. 
+```{r}
+decid_snags_plot1 <- means_total_decid %>%
+  filter(Stand_Composition == "decid") %>% 
+  ggplot(aes(x = Structural_Stage, y = total_snags, fill = SMR))+
+  geom_bar(stat = "identity", width = 0.5, position = position_dodge())+
+  labs(subtitle = "Deciduous Snags in Deciduous Stands")+
+  coord_cartesian(ylim=c(0,5)) +
+  xlab(label = "Structural Stage") +
+  ylab(label = "Decid Snag Density (# / 400m2) with 95% CI")+
+  geom_errorbar(aes(ymin = asymp.LCL, ymax = asymp.UCL), 
+                width = 0.05,
+                position = position_dodge(.5)
+                ) +
+  theme_bw() +
+  theme(axis.title=element_text(size=10))
+
+decid_snags_plot2 <- means_total_decid %>%
+  filter(Stand_Composition == "conif") %>% 
+  ggplot(aes(x = Structural_Stage, y = total_snags, fill = SMR))+
+  geom_bar(stat = "identity", width = 0.5, position = position_dodge())+
+  labs(subtitle = "Deciduous Snags in Coniferous Stands")+
+  coord_cartesian(ylim=c(0,5)) +
+  xlab(label = "Structural Stage") +
+  ylab(label = "Decid Snag Density (# / 400m2) with 95% CI")+
+  geom_errorbar(aes(ymin = asymp.LCL, ymax = asymp.UCL), 
+                width = 0.05,
+                position = position_dodge(.5)
+                ) +
+  theme_bw() +
+  theme(axis.title=element_text(size=10))
+
+# Make 1 plot of both
+pdf(NULL)
+decid_snags_plot_both <- 
+  ggarrange(decid_snags_plot1, decid_snags_plot2,
+            legend = "bottom",
+            common.legend = TRUE)
+x = dev.off()
+decid_snags_plot_both
+```
+## Estimation for Entire Footprint
+First bring in the footprint ecosystem summary calculations, summarize by SMR, Stand Composition and Structural Stage. 
+```{r message=FALSE}
+footprint_eco <- 
+  read_xlsx(here("cavity_trees", "dat", "snag_data.xlsx"), 
+                      sheet = "Footprint_CEM_EU") %>% 
+  rename(Structural_Stage = `Structural Stage`)
+
+footprint_eco_sum <- footprint_eco %>% 
+  filter(Structural_Stage > 2 & `BEC Variant` == "BWBSmw1") %>% 
+  filter(SMR != "NA") %>% 
+  mutate(Structural_Stage = case_when(
+    Structural_Stage == "3" ~ "Shrub",
+    Structural_Stage == "4" ~ "P-S",
+    Structural_Stage == "5" ~ "Young",
+    Structural_Stage == "6" ~ "Mature",
+    Structural_Stage == "7" ~ "Old")
+    ) %>% 
+  group_by(SMR, Structural_Stage, Stand_Composition) %>% 
+  summarize(Area_Total = sum(`Total (ha)`))
+```
+Total area of potential cavity nest habitat (shrub and forest) is: 
+```{r}
+sum(footprint_eco_sum$Area_Total)
+```
+Estimated total number of snags in the footprint:
+```{r message=FALSE, warning=FALSE}
+snag_total_detail <- footprint_eco_sum %>% 
+  group_by(SMR, Structural_Stage) %>% 
+  summarize(Area_Total = sum(Area_Total)) %>% 
+  left_join(means_total_snags) %>% 
+  mutate(snags_per_ha = total_snags / 400 * 10000,
+         footprint_snags = Area_Total * snags_per_ha) %>% 
+  dplyr::select(SMR, Structural_Stage, snags_per_ha, Area_Total, footprint_snags)
+snag_total_detail
+```
+**Total estimated number of snags lost to footprint:**
+```{r}
+sum(snag_total_detail$footprint_snags, na.rm = TRUE)
+```
+Confidence interval can estimated as well.     
+
+**For discussion:** Note that this if for the entire footprint. The cavity nesting program plan refers to the reservoir. Is there a reason to do this calculation excluding transmission line?   
+
+**Quick cross check:** The overall mean number of snags is ~50 / ha. If there are 8,000 ha of habitat that could have snags, then that would suggest 400,000 snags. The total estimate is higher than that. That is likely accounted for by the greater relative are of mesic sites in the footprint that also tend to have the highest snag density. So the estimate is not out of line.  
+
+Same approach as above for deciduous snags. Code and detail not shown.   
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+snag_total_detail <- footprint_eco_sum %>% 
+  group_by(SMR, Stand_Composition, Structural_Stage) %>% 
+  summarize(Area_Total = sum(Area_Total)) %>% 
+  left_join(means_total_decid) %>% 
+  mutate(snags_per_ha = total_snags / 400 * 10000,
+         footprint_snags = Area_Total * snags_per_ha) %>% 
+  dplyr::select(SMR, Structural_Stage, snags_per_ha, Area_Total, footprint_snags)
+snag_total_detail
+```
+**Estimated total number of deciduous snags in the footprint:**
+```{r}
+sum(snag_total_detail$footprint_snags, na.rm = TRUE)
+```
+  
+  
+# Cavity Estimation
+Is there anything in the literature that we can use to assume the number of cavities per snag?
+
+Could conservatively estimate an average of 1 per snag? 
+
+
+
