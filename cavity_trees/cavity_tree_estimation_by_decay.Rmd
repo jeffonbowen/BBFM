@@ -1,0 +1,135 @@
+---
+title: "Tree Cavity Estimation by Decay Class"
+author: Jeff Matheson
+date: 2020-09-03
+output: 
+  html_notebook:
+    toc: TRUE
+    toc_float: TRUE
+---
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+# Introduction
+This is a supplementary analysis to the Tree Cavity Estimation. The purpose is to further explore the snag data. 
+
+**NOTE: The R code can be hidden using the pull-down menu in the top right.**  
+
+# Snag Decay Class Estimation
+Estimated number of snags by decay class by structural stage. Will leave out the SMR and stand composition as there likely won't be enough samples to fit a model. 
+
+## Setup and Data Prep
+All data is in "snag_data.xlsx".  
+```{r message=FALSE, warning=FALSE}
+# Packages and Options
+library(here)
+library(tidyverse)
+library(readxl)
+library(vcd)
+library(MASS)
+library(visreg)
+library(MuMIn) 
+library(effects)
+library(DHARMa)
+library(emmeans)
+library(broom)
+library(broomExtra)
+library(ggpubr)
+
+options(scipen = 999)    # Force not to use scientific notation for numberss.
+```
+
+```{r}
+# Read and Prepare Data
+snag_dat <- 
+  read_xlsx(here("cavity_trees", "dat", "snag_data.xlsx"), 
+                      sheet = "SN11_long") %>% 
+  mutate(Structural_Stage = case_when(
+    Structural_Stage == "2" ~ "Herb",
+    Structural_Stage == "3" ~ "Shrub",
+    Structural_Stage == "4" ~ "P-S",
+    Structural_Stage == "5" ~ "Young",
+    Structural_Stage == "6" ~ "Mature",
+    Structural_Stage == "7" ~ "Old")
+    ) %>% 
+  mutate(Structural_Stage = factor(Structural_Stage, 
+                                   levels = c("Herb", "Shrub", "P-S", "Young", "Mature", "Old")),
+         Stand_Composition = factor(Stand_Composition),
+         SMR = factor(SMR, levels = c("dry", "mesic", "moist", "wet")),
+         Decay_Class = factor(Decay_Class, 
+                              levels = c("Class2", "Class3", "Class4", "Class5", "Class6", "Class7", "Class8"))
+         )
+```
+
+## Fit Model 
+Summarize data by Structral Stage and Decay Class:
+```{r message=FALSE, warning=FALSE, paged.print=TRUE}
+snag_total <- snag_dat %>% 
+  filter(Structural_Stage != "Herb") %>% 
+  droplevels() %>% 
+  group_by(HabDat_ID, Structural_Stage, Decay_Class) %>% 
+  summarize(count_total = sum(Count))
+```
+Data fits negative binomial distribution:
+```{r message=FALSE, warning=FALSE}
+hist(snag_total$count_total)  
+
+fit_nbinom <- goodfit(snag_total$count_total, type = "nbinomial")
+rootogram(fit_nbinom)
+```
+Fit GLM with negative binomial distribution.  
+Only fitting model with oe variable.  
+
+Model fitting mechanics is different with grouped data. Will use the tidyverse way. {broomExtra} package also has some important tools.
+See:  
+[R for Data Science](https://r4ds.had.co.nz/many-models.html)  
+[Broom and Tidy](https://cran.r-project.org/web/packages/broom/vignettes/broom_and_dplyr.html)   
+
+```{r paged.print=TRUE}
+# Nest the data
+decay_nest <- snag_total %>% 
+  nest(data = c(HabDat_ID, Structural_Stage, count_total))
+
+# Create a function with the model that will be applied across all nested subsets.
+decay_model <- function(df) {
+  glm.nb(count_total ~ Structural_Stage, data = df)
+}
+# Use purrr::map to iterate
+model_out <- map(decay_nest$data, decay_model)
+
+# Below is an alternate approach that adds the models to the decay df. 
+# The broom package is then used to nicely show model parameters of interest.
+decay_nest <- decay_nest %>% 
+  mutate(model = map(decay_nest$data, decay_model),
+         tidied = map(model, tidy),
+         glanced = map(model, glance),
+         augmented = map(model, augment)
+         ) 
+
+# use unnest(tidied) to unest whatever variables are of interes
+
+```
+The next step is to figure out how to add model predictions.
+```{r}
+# Try it for one model
+m_test <- model_out[[3]]
+p <- tidy(summary(emmeans(m_test, specs = "Structural_Stage", type = "response")))
+p
+pred <- (predict(m_test, type = "response", se.fit = TRUE, newdata = newdat))
+
+ref_grid(m_test)
+# Can't seem to get emmeans version to work. 
+decay_nest_means <- decay_nest %>% 
+  map(model, emmeans(specs = "Structural_Stage", type = "response"))
+
+# Try using predict. Make prediction frame first. 
+
+newdat = tibble(Structural_Stage = c("Shrub", "P-S", "Young", "Mature", "Old"))
+
+decay_nest_means <- decay_nest %>% 
+  map(model, predict(specs = "Structural_Stage", type = "response"))
+
+
+```
+
+***In progress***

@@ -54,6 +54,7 @@ library(emmeans)
 library(broom)
 library(ggpubr)
 ```
+
 ```{r}
 # Read and Prepare Data
 snag_dat <- 
@@ -92,10 +93,9 @@ snag_dat %>%
 snag_dat %>% 
   group_by(Stand_Composition) %>% 
   summarize(n = n_distinct(HabDat_ID))
-
-
 ```
 ### Descriptive Stats
+Boxplot shows (from inside out): median, first and third quartiles, minimum and maximum and outliers.
 ```{r message=FALSE}
 snag_dat %>% 
   filter(Structural_Stage != "Herb") %>% 
@@ -106,7 +106,6 @@ snag_dat %>%
   labs(subtitle = "Total Number of Snags by Structural Stage and Stand Composition",
        y = "Total number of snags per plot")
 ```
-
 ```{r message=FALSE}
 snag_dat %>% 
   filter(Structural_Stage != "Herb") %>% 
@@ -168,7 +167,7 @@ ae <- allEffects(model_nb)
 plot(ae)
 ```
 
-**Predict means**
+**Predict Snag Density Means**
 ```{r}
 means_total_snags <- emmeans(model_nb, specs = c( "SMR", "Structural_Stage"), type = "response")
 means_total_snags <- tidy(summary(means_total_snags)) %>%  
@@ -191,7 +190,7 @@ means_total_snags <- means_total_snags %>%
 write_csv(means_total_snags, here("cavity_trees", "out", "total_snags_estimates.csv"))
 means_total_snags
 ```
-```{r plot}
+```{r}
 total_snags_plot <- means_total_snags %>% 
   ggplot(aes(x = Structural_Stage, y = total_snags, fill = SMR))+
   geom_bar(stat = "identity", width = 0.5, position = position_dodge())+
@@ -206,6 +205,7 @@ total_snags_plot <- means_total_snags %>%
   theme(axis.title=element_text(size=10))
 total_snags_plot
 ```
+Interesting that the highest density is in young forest. Might logically think that older stands would have more dying trees. However this pattern could be explained by overall tree density:  younger stands tend to have more stems than older stands. If we were estimating proportion of snags of all tree stems (living and dead), the pattern might be different. Might also expect that older stands have snags that are a larger diameter. This might have implications for cavity-nesters.  
 
 ### Number of Deciduous Snags
 The above analysis all over again. Will not show all of the detail. 
@@ -266,7 +266,7 @@ ae <- allEffects(model_nb)
 plot(ae)
 ```
 
-**Predict means**
+**Predict Deciduous Snag Density Means**
 ```{r}
 means_total_decid <- emmeans(model_nb, specs = c( "SMR", "Structural_Stage", "Stand_Composition"), type = "response")
 means_total_decid <- tidy(summary(means_total_decid)) %>%  
