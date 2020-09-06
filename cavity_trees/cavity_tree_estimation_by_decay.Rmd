@@ -1,7 +1,7 @@
 ---
 title: "Tree Cavity Estimation by Decay Class"
 author: Jeff Matheson
-date: 2020-09-03
+date: 2020-09-05
 output: 
   html_notebook:
     toc: TRUE
@@ -96,40 +96,46 @@ decay_model <- function(df) {
 }
 # Use purrr::map to iterate
 model_out <- map(decay_nest$data, decay_model)
+```
 
-# Below is an alternate approach that adds the models to the decay df. 
-# The broom package is then used to nicely show model parameters of interest.
+Below is an approach that adds the models to the decay df. This is the tidy way of using list dataframes.   
+
+The broom package is then used to nicely show model parameters of interest.  
+
+Marignal means and confidence intervals added using emmeans. Note use of of ~ (lambda) to define an anonymous function for emmeans for use in map.  
+
+Use 'unnest' to unest whatever variables are of interest.
+
+```{r}
 decay_nest <- decay_nest %>% 
   mutate(model = map(decay_nest$data, decay_model),
          tidied = map(model, tidy),
          glanced = map(model, glance),
-         augmented = map(model, augment)
-         ) 
-
-# use unnest(tidied) to unest whatever variables are of interes
-
+         augmented = map(model, augment),
+         means = map(model, 
+                     ~as.data.frame(emmeans(.x, "Structural_Stage",
+                                            type = "response")))
+         ) %>% 
+  unnest(means)
 ```
-The next step is to figure out how to add model predictions.
+
+# Visualize
 ```{r}
-# Try it for one model
-m_test <- model_out[[3]]
-p <- tidy(summary(emmeans(m_test, specs = "Structural_Stage", type = "response")))
-p
-pred <- (predict(m_test, type = "response", se.fit = TRUE, newdata = newdat))
-
-ref_grid(m_test)
-# Can't seem to get emmeans version to work. 
-decay_nest_means <- decay_nest %>% 
-  map(model, emmeans(specs = "Structural_Stage", type = "response"))
-
-# Try using predict. Make prediction frame first. 
-
-newdat = tibble(Structural_Stage = c("Shrub", "P-S", "Young", "Mature", "Old"))
-
-decay_nest_means <- decay_nest %>% 
-  map(model, predict(specs = "Structural_Stage", type = "response"))
-
+decay_nest %>%
+  mutate(asymp.LCL = na_if(asymp.LCL, Inf),
+         asymp.UCL = na_if(asymp.UCL, Inf)) %>% 
+  ggplot(aes(x = Decay_Class, y = response, fill = Structural_Stage)) +
+  geom_bar(stat = "identity", width = 0.5, position = position_dodge())+
+  labs(subtitle = "Estimated Number of Snags")+
+  coord_cartesian(ylim=c(0,2)) +
+  xlab(label = "Decay Class") +
+  ylab(label = "Snag Density (# / 400m2) with 95% CI")+
+  geom_errorbar(aes(ymin = asymp.LCL, ymax = asymp.UCL), 
+                width = 0.05,
+                position = position_dodge(.5)
+                ) +
+  theme_bw()
 
 ```
 
-***In progress***
+
