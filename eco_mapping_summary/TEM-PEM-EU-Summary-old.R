@@ -4,7 +4,7 @@
 # across all deciles.
 
 # An ecosystem unit is the combination of site series/map code, seral 
-# association and strucutural stage, though could also include modifiers 
+# association and structural stage, though could also include modifiers 
 # and other attributes.
 
 # Step 1. Import and organize ----
