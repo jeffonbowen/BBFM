@@ -1,413 +1,399 @@
-PAZ,BEC Variant,Map Code,Ecosystem,Seral Association,Structural Stage,Total (ha),Proportion,Percent of Total
-Dam,BWBSmw1,AM,AM:ap,ap,3,60.31274817119796,0.058,5.800000000000001
-Dam,BWBSmw1,AM,AM:ap,ap,4,535.1868497340514,0.516,51.6
-Dam,BWBSmw1,AM,AM:ap,ap,5,418.0328062011424,0.403,40.300000000000004
-Dam,BWBSmw1,AM,AM:ap,ap,6,22.747734178813108,0.022,2.1999999999999997
-Dam,BWBSmw1,AM,AM,NA,3,61.98196929828923,0.666,66.60000000000001
-Dam,BWBSmw1,AM,AM,NA,5,10.27896723002597,0.11,11
-Dam,BWBSmw1,AM,AM,NA,6,20.846874426108133,0.224,22.400000000000002
-Dam,BWBSmw1,AS,AS,NA,3,26.704743468569056,1,100
-Dam,BWBSmw1,BL,BL:al,al,5,37.104735032242694,1,100
-Dam,BWBSmw1,BL,BL,NA,4,2.876043949555914,1,100
-Dam,BWBSmw1,BT,BT,NA,4,6.511552789234368,1,100
-Dam,BWBSmw1,CB,CB,NA,1,39.18330536895833,1,100
-Dam,BWBSmw1,CF,CF,NA,2,120.76090183637098,1,100
-Dam,BWBSmw1,ES,ES,NA,1,1.205759175181904,1,100
-Dam,BWBSmw1,Fm02,Fm02,NA,3,41.19169312200768,0.497,49.7
-Dam,BWBSmw1,Fm02,Fm02,NA,4,10.412435630376521,0.126,12.6
-Dam,BWBSmw1,Fm02,Fm02,NA,5,16.753281947317905,0.202,20.200000000000003
-Dam,BWBSmw1,Fm02,Fm02,NA,6,14.539384438970991,0.175,17.5
-Dam,BWBSmw1,GB,GB,NA,1,19.81109957696462,1,100
-Dam,BWBSmw1,LL,LL:ak,ak,3,3.0378007892497956,1,100
-Dam,BWBSmw1,MI,MI,NA,1,25.062619461059104,1,100
-Dam,BWBSmw1,OW,OW,NA,NA,1.5990634774253027,1,100
-Dam,BWBSmw1,RI,RI,NA,NA,193.77671686753285,1,100
-Dam,BWBSmw1,RN,RN,NA,NA,11.364869986507362,1,100
-Dam,BWBSmw1,RW,RW,NA,NA,1.4162989545783131,1,100
-Dam,BWBSmw1,RZ,RZ,NA,NA,0.5863096784620303,1,100
-Dam,BWBSmw1,SC,SC:ab,ab,4,4.788115498507151,0.939,93.89999999999999
-Dam,BWBSmw1,SC,SC:ab,ab,5,0.3115790452043639,0.061,6.1
-Dam,BWBSmw1,SC,SC:ep,ep,4,3.192076999004767,0.529,52.900000000000006
-Dam,BWBSmw1,SC,SC:ep,ep,5,2.8401702121731103,0.471,47.099999999999994
-Dam,BWBSmw1,SC,SC,NA,6,3.619102664095763,1,100
-Dam,BWBSmw1,SE,SE,NA,2,31.539000651224086,0.79,79
-Dam,BWBSmw1,SE,SE,NA,3,8.37263078070037,0.21,21
-Dam,BWBSmw1,SH,SH:ac,ac,4,1.5529520388155924,0.093,9.3
-Dam,BWBSmw1,SH,SH:ac,ac,6,15.165156119208739,0.907,90.7
-Dam,BWBSmw1,SH,SH,NA,4,6.517697379835588,0.204,20.4
-Dam,BWBSmw1,SH,SH,NA,6,25.470040231664832,0.796,79.60000000000001
-Dam,BWBSmw1,SO,SO,NA,3,6.521322504432941,0.293,29.299999999999997
-Dam,BWBSmw1,SO,SO,NA,5,5.821177468806625,0.261,26.1
-Dam,BWBSmw1,SO,SO,NA,6,9.918531426207899,0.446,44.6
-Dam,BWBSmw1,SW,SW:as,as,4,42.31039903782062,0.345,34.5
-Dam,BWBSmw1,SW,SW:as,as,5,80.45669589057401,0.655,65.5
-Dam,BWBSmw1,SW,SW,NA,4,1.6035733295744456,0.104,10.4
-Dam,BWBSmw1,SW,SW,NA,6,13.750094405253313,0.896,89.60000000000001
-Dam,BWBSmw1,TS,TS,NA,3,9.870473394696857,0.766,76.6
-Dam,BWBSmw1,TS,TS,NA,4,3.018350461791308,0.234,23.400000000000002
-Dam,BWBSmw1,UR,UR,NA,NA,0.3886925043679348,1,100
-Dam,BWBSmw1,WH,WH,NA,2,3.0792558781976864,0.854,85.39999999999999
-Dam,BWBSmw1,WH,WH,NA,3,0.5264901156879198,0.146,14.6
-Dam,BWBSmw1,WS,WS,NA,2,1.6211119779829357,0.518,51.800000000000004
-Dam,BWBSmw1,WS,WS,NA,3,1.5076022270178286,0.482,48.199999999999996
-Dam,BWBSmw1,WW,WW,NA,2,40.02428131149048,0.832,83.2
-Dam,BWBSmw1,WW,WW,NA,3,8.087545214382018,0.168,16.8
-Dam,BWBSmw1,NA,NA,NA,NA,0,NaN,NaN
-Erosion Impact Area,BWBSmw1,AM,AM:ap,ap,3,22.495326680764915,0.083,8.3
-Erosion Impact Area,BWBSmw1,AM,AM:ap,ap,4,54.19696220458456,0.2,20
-Erosion Impact Area,BWBSmw1,AM,AM:ap,ap,5,157.61444836010716,0.583,58.3
-Erosion Impact Area,BWBSmw1,AM,AM:ap,ap,6,36.26822528324821,0.134,13.4
-Erosion Impact Area,BWBSmw1,AM,AM,NA,3,0.11568543614083401,0.001,0.1
-Erosion Impact Area,BWBSmw1,AM,AM,NA,4,14.553236842889088,0.111,11.1
-Erosion Impact Area,BWBSmw1,AM,AM,NA,5,48.4407083123911,0.371,37.1
-Erosion Impact Area,BWBSmw1,AM,AM,NA,6,67.6058751040428,0.517,51.7
-Erosion Impact Area,BWBSmw1,AS,AS,NA,3,31.75339225812303,0.943,94.3
-Erosion Impact Area,BWBSmw1,AS,AS,NA,4,1.9350448343457862,0.057,5.7
-Erosion Impact Area,BWBSmw1,BL,BL:al,al,5,1.7500085957552143,1,100
-Erosion Impact Area,BWBSmw1,BL,BL,NA,5,2.9365980710306343,0.512,51.2
-Erosion Impact Area,BWBSmw1,BL,BL,NA,6,2.7963286271331484,0.488,48.8
-Erosion Impact Area,BWBSmw1,BT,BT,NA,5,0.3564865260463897,1,100
-Erosion Impact Area,BWBSmw1,CB,CB,NA,1,102.45392050724656,1,100
-Erosion Impact Area,BWBSmw1,CF,CF,NA,2,34.016783456419546,0.973,97.3
-Erosion Impact Area,BWBSmw1,CF,CF,NA,3,0.9494113116439148,0.027,2.7
-Erosion Impact Area,BWBSmw1,ES,ES,NA,1,3.8167933052979715,1,100
-Erosion Impact Area,BWBSmw1,Fm02,Fm02,NA,3,1.5941130094559488,0.174,17.4
-Erosion Impact Area,BWBSmw1,Fm02,Fm02,NA,4,1.5167788397264268,0.166,16.6
-Erosion Impact Area,BWBSmw1,Fm02,Fm02,NA,5,1.784435824351646,0.195,19.5
-Erosion Impact Area,BWBSmw1,Fm02,Fm02,NA,6,4.251652504425591,0.465,46.5
-Erosion Impact Area,BWBSmw1,GB,GB,NA,1,1.5181301783177068,1,100
-Erosion Impact Area,BWBSmw1,GP,GP,NA,1,3.069087880376934,1,100
-Erosion Impact Area,BWBSmw1,LL,LL:ak,ak,3,0.08751630429778805,0.011,1.0999999999999999
-Erosion Impact Area,BWBSmw1,LL,LL:ak,ak,4,1.434478607023562,0.177,17.7
-Erosion Impact Area,BWBSmw1,LL,LL:ak,ak,5,6.583908795181535,0.812,81.2
-Erosion Impact Area,BWBSmw1,LL,LL,NA,4,0.5688471902053021,0.148,14.799999999999999
-Erosion Impact Area,BWBSmw1,LL,LL,NA,5,0.4885660976462593,0.127,12.7
-Erosion Impact Area,BWBSmw1,LL,LL,NA,6,2.782445452352551,0.725,72.5
-Erosion Impact Area,BWBSmw1,PD,PD,NA,NA,0.24658909945600843,1,100
-Erosion Impact Area,BWBSmw1,RI,RI,NA,NA,3.752859695607671,1,100
-Erosion Impact Area,BWBSmw1,RO,RO,NA,1,0.19164334263965624,1,100
-Erosion Impact Area,BWBSmw1,RW,RW,NA,NA,0.5072641377180985,1,100
-Erosion Impact Area,BWBSmw1,RZ,RZ,NA,NA,3.014804400292045,1,100
-Erosion Impact Area,BWBSmw1,SC,SC:ab,ab,3,1.2873938816027428,0.02,2
-Erosion Impact Area,BWBSmw1,SC,SC:ab,ab,4,1.2453213787257347,0.02,2
-Erosion Impact Area,BWBSmw1,SC,SC:ab,ab,5,29.847009317387315,0.473,47.3
-Erosion Impact Area,BWBSmw1,SC,SC:ab,ab,6,30.71212885901888,0.487,48.699999999999996
-Erosion Impact Area,BWBSmw1,SC,SC:ep,ep,3,3.9882565465231883,0.181,18.099999999999998
-Erosion Impact Area,BWBSmw1,SC,SC:ep,ep,4,2.5082844377773448,0.114,11.4
-Erosion Impact Area,BWBSmw1,SC,SC:ep,ep,5,11.653731095855253,0.53,53
-Erosion Impact Area,BWBSmw1,SC,SC:ep,ep,6,3.857433365671666,0.175,17.5
-Erosion Impact Area,BWBSmw1,SC,SC,NA,5,3.163141268659173,0.637,63.7
-Erosion Impact Area,BWBSmw1,SC,SC,NA,6,1.678166241303804,0.338,33.800000000000004
-Erosion Impact Area,BWBSmw1,SC,SC,NA,7,0.12156204027699127,0.024,2.4
-Erosion Impact Area,BWBSmw1,SE,SE,NA,2,0.2892916644792024,1,100
-Erosion Impact Area,BWBSmw1,SH,SH:ac,ac,3,0.4595869029562515,0.056,5.6000000000000005
-Erosion Impact Area,BWBSmw1,SH,SH:ac,ac,4,0.2018294319809152,0.025,2.5
-Erosion Impact Area,BWBSmw1,SH,SH:ac,ac,5,1.7154900390966021,0.21,21
-Erosion Impact Area,BWBSmw1,SH,SH:ac,ac,6,5.795866790219368,0.709,70.89999999999999
-Erosion Impact Area,BWBSmw1,SH,SH,NA,3,0.6771709964936966,0.054,5.4
-Erosion Impact Area,BWBSmw1,SH,SH,NA,4,0.7473453334012533,0.059,5.8999999999999995
-Erosion Impact Area,BWBSmw1,SH,SH,NA,5,1.3183827884687869,0.105,10.5
-Erosion Impact Area,BWBSmw1,SH,SH,NA,6,8.550761770346524,0.678,67.80000000000001
-Erosion Impact Area,BWBSmw1,SH,SH,NA,7,1.3223102149794481,0.105,10.5
-Erosion Impact Area,BWBSmw1,SO,SO,NA,3,0.08540513004638792,0.001,0.1
-Erosion Impact Area,BWBSmw1,SO,SO,NA,4,0.5264154740110545,0.006,0.6
-Erosion Impact Area,BWBSmw1,SO,SO,NA,5,66.72232587776809,0.701,70.1
-Erosion Impact Area,BWBSmw1,SO,SO,NA,6,27.708069966915595,0.291,29.099999999999998
-Erosion Impact Area,BWBSmw1,SO,SO,NA,7,0.08584717702490585,0.001,0.1
-Erosion Impact Area,BWBSmw1,SW,SW:as,as,3,7.269148252141823,0.082,8.200000000000001
-Erosion Impact Area,BWBSmw1,SW,SW:as,as,4,24.642025637373894,0.277,27.700000000000003
-Erosion Impact Area,BWBSmw1,SW,SW:as,as,5,55.532581391432274,0.624,62.4
-Erosion Impact Area,BWBSmw1,SW,SW:as,as,6,1.5471894221154983,0.017,1.7000000000000002
-Erosion Impact Area,BWBSmw1,SW,SW,NA,2,0.3448276407831044,0.003,0.3
-Erosion Impact Area,BWBSmw1,SW,SW,NA,3,0.13078087920259857,0.001,0.1
-Erosion Impact Area,BWBSmw1,SW,SW,NA,4,18.134181356595295,0.17,17
-Erosion Impact Area,BWBSmw1,SW,SW,NA,5,49.83881002999195,0.466,46.6
-Erosion Impact Area,BWBSmw1,SW,SW,NA,6,38.441989132074895,0.36,36
-Erosion Impact Area,BWBSmw1,WH,WH,NA,3,0.6021019243173694,1,100
-Erosion Impact Area,BWBSmw1,WW,WW,NA,2,63.98551688381182,0.846,84.6
-Erosion Impact Area,BWBSmw1,WW,WW,NA,3,11.627371668277027,0.154,15.4
-Erosion Impact Area,BWBSmw1,NA,NA,NA,NA,0,NaN,NaN
-Hwy 29,BWBSmw1,AM,AM:ap,ap,3,10.903521218847871,0.143,14.299999999999999
-Hwy 29,BWBSmw1,AM,AM:ap,ap,4,40.47447710876148,0.529,52.900000000000006
-Hwy 29,BWBSmw1,AM,AM:ap,ap,5,23.525165490189746,0.308,30.8
-Hwy 29,BWBSmw1,AM,AM:ap,ap,6,1.539106636383848,0.02,2
-Hwy 29,BWBSmw1,AM,AM,NA,4,1.9202679907954248,0.304,30.4
-Hwy 29,BWBSmw1,AM,AM,NA,5,4.395341265964896,0.696,69.6
-Hwy 29,BWBSmw1,AS,AS,NA,3,4.608797742942108,1,100
-Hwy 29,BWBSmw1,BL,BL:al,al,4,0.6253905134520482,1,100
-Hwy 29,BWBSmw1,BL,BL,NA,5,0.0019820037900898876,0.5,50
-Hwy 29,BWBSmw1,BL,BL,NA,6,0.0019820037900898876,0.5,50
-Hwy 29,BWBSmw1,CB,CB,NA,1,5.3589433504879,1,100
-Hwy 29,BWBSmw1,CF,CF,NA,2,111.4995851565619,1,100
-Hwy 29,BWBSmw1,CF,CF,NA,3,0.01621491713463929,0,0
-Hwy 29,BWBSmw1,Fm02,Fm02,NA,3,0.9631665054186973,0.106,10.6
-Hwy 29,BWBSmw1,Fm02,Fm02,NA,5,4.861808613295085,0.535,53.5
-Hwy 29,BWBSmw1,Fm02,Fm02,NA,6,3.2548033651362633,0.358,35.8
-Hwy 29,BWBSmw1,GB,GB,NA,1,2.1543669023636403,1,100
-Hwy 29,BWBSmw1,GP,GP,NA,1,0.19616228963544566,1,100
-Hwy 29,BWBSmw1,LL,LL,NA,4,3.8086904942223963,0.604,60.4
-Hwy 29,BWBSmw1,LL,LL,NA,5,1.9068648723277557,0.303,30.3
-Hwy 29,BWBSmw1,LL,LL,NA,6,0.585823492714513,0.093,9.3
-Hwy 29,BWBSmw1,RI,RI,NA,NA,15.840301935189403,1,100
-Hwy 29,BWBSmw1,RW,RW,NA,NA,1.027256438187185,1,100
-Hwy 29,BWBSmw1,RZ,RZ,NA,NA,13.0669761780013,1,100
-Hwy 29,BWBSmw1,SC,SC:ep,ep,4,0.2634217722458095,1,100
-Hwy 29,BWBSmw1,SC,SC,NA,5,3.7015986690706044,1,100
-Hwy 29,BWBSmw1,SH,SH:ac,ac,3,2.2393073253419185,0.722,72.2
-Hwy 29,BWBSmw1,SH,SH:ac,ac,5,0.0265445404590225,0.009,0.8999999999999999
-Hwy 29,BWBSmw1,SH,SH:ac,ac,6,0.8351372058930512,0.269,26.900000000000002
-Hwy 29,BWBSmw1,SH,SH,NA,6,1.1263027556786158,1,100
-Hwy 29,BWBSmw1,SO,SO,NA,3,0.27421469105938684,0.167,16.7
-Hwy 29,BWBSmw1,SO,SO,NA,5,1.3674611246123118,0.833,83.3
-Hwy 29,BWBSmw1,SW,SW:as,as,3,4.134300577790933,0.325,32.5
-Hwy 29,BWBSmw1,SW,SW:as,as,4,6.0160678357085695,0.473,47.3
-Hwy 29,BWBSmw1,SW,SW:as,as,5,2.55901138399587,0.201,20.1
-Hwy 29,BWBSmw1,SW,SW,NA,3,0.34721340472015233,0.015,1.5
-Hwy 29,BWBSmw1,SW,SW,NA,4,0.8883343992929169,0.038,3.8
-Hwy 29,BWBSmw1,SW,SW,NA,5,16.73422156625029,0.722,72.2
-Hwy 29,BWBSmw1,SW,SW,NA,6,5.202701911702764,0.225,22.5
-Hwy 29,BWBSmw1,WH,WH,NA,3,1.3580321223898253,1,100
-Hwy 29,BWBSmw1,WW,WW,NA,2,22.375369363755304,0.97,97
-Hwy 29,BWBSmw1,WW,WW,NA,3,0.6969025918666525,0.03,3
-Hwy 29,BWBSmw1,NA,NA,NA,NA,0,NaN,NaN
-Quarry,BWBSmw1,AM,AM:ap,ap,3,53.069469343563135,0.373,37.3
-Quarry,BWBSmw1,AM,AM:ap,ap,4,15.21548065285724,0.107,10.7
-Quarry,BWBSmw1,AM,AM:ap,ap,5,26.078926766468964,0.183,18.3
-Quarry,BWBSmw1,AM,AM:ap,ap,6,47.76676844238832,0.336,33.6
-Quarry,BWBSmw1,AM,AM,NA,3,2.9189047018306695,0.063,6.3
-Quarry,BWBSmw1,AM,AM,NA,4,0.020657633844179464,0,0
-Quarry,BWBSmw1,AM,AM,NA,5,23.36371268062961,0.501,50.1
-Quarry,BWBSmw1,AM,AM,NA,6,20.316002753550006,0.436,43.6
-Quarry,BWBSmw1,BL,BL:al,al,5,0.3523529927942255,1,100
-Quarry,BWBSmw1,BL,BL,NA,4,0.015493225383134598,0.019,1.9
-Quarry,BWBSmw1,BL,BL,NA,5,0.7925303707227976,0.981,98.1
-Quarry,BWBSmw1,BT,BT,NA,6,0.7468088670420022,1,100
-Quarry,BWBSmw1,CF,CF,NA,1,7.489857157931016,0.043,4.3
-Quarry,BWBSmw1,CF,CF,NA,2,165.55020329664563,0.957,95.7
-Quarry,BWBSmw1,GP,GP,NA,1,4.230497467255957,1,100
-Quarry,BWBSmw1,LL,LL:ak,ak,3,0.1284608321890105,0.01,1
-Quarry,BWBSmw1,LL,LL:ak,ak,4,6.26217826880565,0.48,48
-Quarry,BWBSmw1,LL,LL:ak,ak,5,6.650824249343949,0.51,51
-Quarry,BWBSmw1,LL,LL,NA,5,3.283184377071003,0.999,99.9
-Quarry,BWBSmw1,LL,LL,NA,6,0.002418988541453714,0.001,0.1
-Quarry,BWBSmw1,PD,PD,NA,NA,0.09163844691148014,1,100
-Quarry,BWBSmw1,RO,RO,NA,1,2.1121983796113493,1,100
-Quarry,BWBSmw1,RW,RW,NA,NA,0.6448653801990049,1,100
-Quarry,BWBSmw1,RZ,RZ,NA,NA,0.3037324638464411,1,100
-Quarry,BWBSmw1,SC,SC,NA,5,6.83056258008272,1,100
-Quarry,BWBSmw1,SE,SE,NA,2,1.1267948525008125,1,100
-Quarry,BWBSmw1,SH,SH,NA,5,0.1682657896548141,1,100
-Quarry,BWBSmw1,SO,SO,NA,6,0.8010780916423513,1,100
-Quarry,BWBSmw1,SW,SW:as,as,3,0.9797631560575127,0.195,19.5
-Quarry,BWBSmw1,SW,SW:as,as,5,4.032317258267238,0.805,80.5
-Quarry,BWBSmw1,SW,SW,NA,5,9.031496996511313,0.257,25.7
-Quarry,BWBSmw1,SW,SW,NA,6,26.14827013546724,0.743,74.3
-Quarry,BWBSmw1,TS,TS,NA,3,0.36655378764592056,1,100
-Quarry,BWBSmw1,UR,UR,NA,NA,4.838222522545117,1,100
-Quarry,BWBSmw1,NA,NA,NA,NA,0,NaN,NaN
-Quarry,BWBSwk1,RO,RO,NA,1,2.34685516193127,1,100
-Quarry,BWBSwk1,SC,SC,NA,5,4.600213889706982,1,100
-Quarry,BWBSwk1,SM,SM,NA,5,5.050092467380059,1,100
-Quarry,BWBSwk1,SW,SW,NA,5,48.85527984335529,0.974,97.39999999999999
-Quarry,BWBSwk1,SW,SW,NA,6,1.2866317785642583,0.026,2.6
-Quarry,BWBSwk1,TA,TA,NA,1,0.5009278608189317,1,100
-Quarry,BWBSwk1,NA,NA,NA,NA,0,NaN,NaN
-Quarry,ESSFmv2,FL,FL,NA,5,3.30109939154616,1,100
-Quarry,ESSFmv2,FR,FR,NA,5,2.8317500844266523,1,100
-Quarry,ESSFmv2,NA,NA,NA,NA,0,NaN,NaN
-Quarry,SBSwk2,BF,BF,NA,5,30.200729455661698,1,100
-Quarry,SBSwk2,GP,GP,NA,NA,11.247686602165606,1,100
-Quarry,SBSwk2,LH,LH,NA,4,3.990990198795194,0.158,15.8
-Quarry,SBSwk2,LH,LH,NA,5,11.423222587527437,0.452,45.2
-Quarry,SBSwk2,LH,LH,NA,6,9.85894614433632,0.39,39
-Quarry,SBSwk2,RN,RN,NA,NA,0.6993185811992467,1,100
-Quarry,SBSwk2,RO,RO,NA,1,2.46473653608408,1,100
-Quarry,SBSwk2,RZ,RZ,NA,NA,0.17482964529981168,1,100
-Quarry,SBSwk2,SC,SC,NA,4,2.4306845650394475,0.351,35.099999999999994
-Quarry,SBSwk2,SC,SC,NA,5,3.614137947691933,0.522,52.2
-Quarry,SBSwk2,SC,SC,NA,6,0.8799073528396533,0.127,12.7
-Quarry,SBSwk2,SD,SD,NA,5,2.0246025428146526,0.301,30.099999999999998
-Quarry,SBSwk2,SD,SD,NA,6,4.70867079654342,0.699,69.89999999999999
-Quarry,SBSwk2,SO,SO,NA,4,0.2295065154649048,0.012,1.2
-Quarry,SBSwk2,SO,SO,NA,5,4.0802469005891355,0.205,20.5
-Quarry,SBSwk2,SO,SO,NA,6,15.584676471534848,0.783,78.3
-Quarry,SBSwk2,Wf13,Wf13,NA,2,0.34425977319735723,1,100
-Quarry,SBSwk2,NA,NA,NA,NA,0,NaN,NaN
-Reservoir,BWBSmw1,AM,AM:ap,ap,3,114.10761747252387,0.131,13.100000000000001
-Reservoir,BWBSmw1,AM,AM:ap,ap,4,196.44222314734128,0.226,22.6
-Reservoir,BWBSmw1,AM,AM:ap,ap,5,493.9945002322241,0.567,56.699999999999996
-Reservoir,BWBSmw1,AM,AM:ap,ap,6,66.54897995745789,0.076,7.6
-Reservoir,BWBSmw1,AM,AM,NA,3,1.9149247808947192,0.006,0.6
-Reservoir,BWBSmw1,AM,AM,NA,4,14.191903778368653,0.045,4.5
-Reservoir,BWBSmw1,AM,AM,NA,5,151.2611563332315,0.48,48
-Reservoir,BWBSmw1,AM,AM,NA,6,147.47857232337327,0.468,46.800000000000004
-Reservoir,BWBSmw1,AS,AS,NA,3,75.00061588810017,1,100
-Reservoir,BWBSmw1,BL,BL:al,al,4,8.468218163727517,1,100
-Reservoir,BWBSmw1,BL,BL:al,al,5,0.002375768977540669,0,0
-Reservoir,BWBSmw1,BL,BL,NA,5,0.7426281153131712,1,100
-Reservoir,BWBSmw1,BT,BT,NA,5,13.514837419014313,1,100
-Reservoir,BWBSmw1,CB,CB,NA,1,167.57063996935022,1,100
-Reservoir,BWBSmw1,CF,CF,NA,1,6.21772145042317,0.01,1
-Reservoir,BWBSmw1,CF,CF,NA,2,590.422911324623,0.989,98.9
-Reservoir,BWBSmw1,CF,CF,NA,3,0.38975370371220514,0.001,0.1
-Reservoir,BWBSmw1,ES,ES,NA,1,4.356908781990591,1,100
-Reservoir,BWBSmw1,Fm02,Fm02,NA,3,554.8875688540654,0.537,53.7
-Reservoir,BWBSmw1,Fm02,Fm02,NA,4,93.55458074322227,0.091,9.1
-Reservoir,BWBSmw1,Fm02,Fm02,NA,5,165.17670399692184,0.16,16
-Reservoir,BWBSmw1,Fm02,Fm02,NA,6,219.28261267477828,0.212,21.2
-Reservoir,BWBSmw1,GB,GB,NA,1,720.5646787301683,1,100
-Reservoir,BWBSmw1,GP,GP,NA,1,6.489753286006587,1,100
-Reservoir,BWBSmw1,LL,LL:ak,ak,4,62.45748357141543,1,100
-Reservoir,BWBSmw1,LL,LL,NA,4,4.309305239031368,0.18,18
-Reservoir,BWBSmw1,LL,LL,NA,5,5.51916388094892,0.231,23.1
-Reservoir,BWBSmw1,LL,LL,NA,6,14.084778933131684,0.589,58.9
-Reservoir,BWBSmw1,OW,OW,NA,NA,13.627817809685157,1,100
-Reservoir,BWBSmw1,PD,PD,NA,NA,4.1678491380404115,1,100
-Reservoir,BWBSmw1,RI,RI,NA,NA,2833.7800567858017,1,100
-Reservoir,BWBSmw1,RO,RO,NA,1,0.05990000567866501,1,100
-Reservoir,BWBSmw1,RW,RW,NA,NA,9.772912380023719,1,100
-Reservoir,BWBSmw1,RZ,RZ,NA,NA,12.760259739515613,1,100
-Reservoir,BWBSmw1,SC,SC:ab,ab,3,6.151423568581287,0.112,11.200000000000001
-Reservoir,BWBSmw1,SC,SC:ab,ab,4,7.370997138503373,0.134,13.4
-Reservoir,BWBSmw1,SC,SC:ab,ab,5,17.621980081754355,0.321,32.1
-Reservoir,BWBSmw1,SC,SC:ab,ab,6,23.82581496852964,0.433,43.3
-Reservoir,BWBSmw1,SC,SC:ep,ep,3,3.0346466427673664,0.074,7.3999999999999995
-Reservoir,BWBSmw1,SC,SC:ep,ep,4,5.669052518888291,0.138,13.8
-Reservoir,BWBSmw1,SC,SC:ep,ep,5,23.840444154717314,0.581,58.099999999999994
-Reservoir,BWBSmw1,SC,SC:ep,ep,6,8.522287751708662,0.208,20.8
-Reservoir,BWBSmw1,SC,SC,NA,5,10.768551760992228,0.105,10.5
-Reservoir,BWBSmw1,SC,SC,NA,6,91.32016106536095,0.887,88.7
-Reservoir,BWBSmw1,SC,SC,NA,7,0.9030091490060146,0.009,0.8999999999999999
-Reservoir,BWBSmw1,SE,SE,NA,2,47.207414901510774,1,100
-Reservoir,BWBSmw1,SH,SH:ac,ac,3,93.99715264443125,0.248,24.8
-Reservoir,BWBSmw1,SH,SH:ac,ac,4,50.63741667904868,0.133,13.3
-Reservoir,BWBSmw1,SH,SH:ac,ac,5,69.80289963043755,0.184,18.4
-Reservoir,BWBSmw1,SH,SH:ac,ac,6,163.64149250432666,0.431,43.1
-Reservoir,BWBSmw1,SH,SH:ac,ac,7,1.4087243327761645,0.004,0.4
-Reservoir,BWBSmw1,SH,SH:ep,ep,5,1.3748018681334109,1,100
-Reservoir,BWBSmw1,SH,SH,NA,3,6.3066379173459985,0.009,0.8999999999999999
-Reservoir,BWBSmw1,SH,SH,NA,4,29.603364813931996,0.042,4.2
-Reservoir,BWBSmw1,SH,SH,NA,5,112.93338922096947,0.161,16.1
-Reservoir,BWBSmw1,SH,SH,NA,6,516.034861720093,0.734,73.4
-Reservoir,BWBSmw1,SH,SH,NA,7,38.162989842676225,0.054,5.4
-Reservoir,BWBSmw1,SO,SO,NA,3,22.575997092539204,0.071,7.1
-Reservoir,BWBSmw1,SO,SO,NA,4,5.458441148110369,0.017,1.7000000000000002
-Reservoir,BWBSmw1,SO,SO,NA,5,142.65917306322527,0.451,45.1
-Reservoir,BWBSmw1,SO,SO,NA,6,145.21670829191874,0.459,45.9
-Reservoir,BWBSmw1,SO,SO,NA,7,0.25379829374073243,0.001,0.1
-Reservoir,BWBSmw1,SW,SW:as,as,3,3.4919043505675442,0.032,3.2
-Reservoir,BWBSmw1,SW,SW:as,as,4,56.38279715925362,0.519,51.9
-Reservoir,BWBSmw1,SW,SW:as,as,5,48.48587636633133,0.447,44.7
-Reservoir,BWBSmw1,SW,SW:as,as,6,0.21796354037078344,0.002,0.2
-Reservoir,BWBSmw1,SW,SW,NA,3,0.003098277166648357,0,0
-Reservoir,BWBSmw1,SW,SW,NA,4,21.38279269348006,0.158,15.8
-Reservoir,BWBSmw1,SW,SW,NA,5,61.39693660681901,0.455,45.5
-Reservoir,BWBSmw1,SW,SW,NA,6,52.194464909076665,0.387,38.7
-Reservoir,BWBSmw1,TS,TS,NA,3,10.642911893722347,0.813,81.3
-Reservoir,BWBSmw1,TS,TS,NA,5,2.454142215648162,0.187,18.7
-Reservoir,BWBSmw1,UR,UR,NA,NA,6.045769534353329,1,100
-Reservoir,BWBSmw1,WH,WH,NA,2,121.15202066551647,0.313,31.3
-Reservoir,BWBSmw1,WH,WH,NA,3,265.6728491320895,0.687,68.7
-Reservoir,BWBSmw1,WS,WS,NA,3,27.709405008346373,1,100
-Reservoir,BWBSmw1,WW,WW,NA,2,72.17010147970616,0.83,83
-Reservoir,BWBSmw1,WW,WW,NA,3,14.735745575169261,0.17,17
-Reservoir,BWBSmw1,NA,NA,NA,NA,0,NaN,NaN
-Road,BWBSmw1,AM,AM:ap,ap,3,1.0796236625374585,0.069,6.9
-Road,BWBSmw1,AM,AM:ap,ap,4,0.18121812754079702,0.012,1.2
-Road,BWBSmw1,AM,AM:ap,ap,5,9.55478130883085,0.613,61.3
-Road,BWBSmw1,AM,AM:ap,ap,6,4.765174641461485,0.306,30.599999999999998
-Road,BWBSmw1,AM,AM,NA,5,2.8751625135517958,0.971,97.1
-Road,BWBSmw1,AM,AM,NA,6,0.08724811878756916,0.029,2.9000000000000004
-Road,BWBSmw1,BL,BL,NA,3,0.5902529914991937,0.491,49.1
-Road,BWBSmw1,BL,BL,NA,5,0.5989947275208709,0.498,49.8
-Road,BWBSmw1,BL,BL,NA,6,0.013879030602625537,0.012,1.2
-Road,BWBSmw1,BT,BT,NA,3,0.426976748302704,0.918,91.8
-Road,BWBSmw1,BT,BT,NA,5,0.03792099030027804,0.082,8.200000000000001
-Road,BWBSmw1,CF,CF,NA,2,0.07905452422253118,1,100
-Road,BWBSmw1,LL,LL:ak,ak,5,0.6186585671742403,1,100
-Road,BWBSmw1,LL,LL,NA,5,0.08478213317780117,1,100
-Road,BWBSmw1,RO,RO,NA,1,0.14693993166337446,1,100
-Road,BWBSmw1,RZ,RZ,NA,NA,0.6290297093683883,1,100
-Road,BWBSmw1,SC,SC:ab,ab,4,0.07601570228435368,0.069,6.9
-Road,BWBSmw1,SC,SC:ab,ab,5,0.038373854448416525,0.035,3.5000000000000004
-Road,BWBSmw1,SC,SC:ab,ab,6,0.9802654087804403,0.896,89.60000000000001
-Road,BWBSmw1,SC,SC,NA,5,1.0834985294181423,0.476,47.599999999999994
-Road,BWBSmw1,SC,SC,NA,6,1.1948918670146464,0.524,52.400000000000006
-Road,BWBSmw1,SE,SE,NA,2,0.13343896556895582,0.565,56.49999999999999
-Road,BWBSmw1,SE,SE,NA,3,0.10270395788992037,0.435,43.5
-Road,BWBSmw1,SH,SH,NA,3,0.35134238951556446,0.357,35.699999999999996
-Road,BWBSmw1,SH,SH,NA,5,0.10212770605731715,0.104,10.4
-Road,BWBSmw1,SH,SH,NA,7,0.5293529037495581,0.539,53.900000000000006
-Road,BWBSmw1,SO,SO,NA,5,3.247241362156083,0.853,85.3
-Road,BWBSmw1,SO,SO,NA,6,0.5604376147300427,0.147,14.7
-Road,BWBSmw1,SW,SW:as,as,5,6.273167498356669,1,100
-Road,BWBSmw1,SW,SW,NA,5,1.0067560124538577,0.437,43.7
-Road,BWBSmw1,SW,SW,NA,6,1.2976938152852207,0.563,56.3
-Road,BWBSmw1,NA,NA,NA,NA,0,NaN,NaN
-Road,BWBSwk1,SW,SW,NA,5,0.33176025759472966,1,100
-Road,BWBSwk1,NA,NA,NA,NA,0,NaN,NaN
-Transmission Line,BWBSmw1,AM,AM:ap,ap,3,84.12530791655777,0.313,31.3
-Transmission Line,BWBSmw1,AM,AM:ap,ap,4,73.99808086815659,0.275,27.500000000000004
-Transmission Line,BWBSmw1,AM,AM:ap,ap,5,41.687410592763776,0.155,15.5
-Transmission Line,BWBSmw1,AM,AM:ap,ap,6,68.8637100825748,0.256,25.6
-Transmission Line,BWBSmw1,AM,AM,NA,3,5.816588189384083,0.304,30.4
-Transmission Line,BWBSmw1,AM,AM,NA,5,6.209737126400312,0.324,32.4
-Transmission Line,BWBSmw1,AM,AM,NA,6,7.122446478543734,0.372,37.2
-Transmission Line,BWBSmw1,AS,AS,NA,3,0.242843205474336,1,100
-Transmission Line,BWBSmw1,BL,BL:al,al,3,6.703391085536289,0.114,11.4
-Transmission Line,BWBSmw1,BL,BL:al,al,4,14.455942862675132,0.245,24.5
-Transmission Line,BWBSmw1,BL,BL:al,al,5,25.841522039642598,0.438,43.8
-Transmission Line,BWBSmw1,BL,BL:al,al,6,12.032082158587324,0.204,20.4
-Transmission Line,BWBSmw1,BL,BL,NA,3,0.520474219620973,0.017,1.7000000000000002
-Transmission Line,BWBSmw1,BL,BL,NA,4,5.573059895781596,0.184,18.4
-Transmission Line,BWBSmw1,BL,BL,NA,5,16.548202116206912,0.547,54.7
-Transmission Line,BWBSmw1,BL,BL,NA,6,7.628407857418318,0.252,25.2
-Transmission Line,BWBSmw1,BT,BT,NA,3,9.352350434392235,0.238,23.799999999999997
-Transmission Line,BWBSmw1,BT,BT,NA,4,12.783496782418949,0.325,32.5
-Transmission Line,BWBSmw1,BT,BT,NA,5,5.1187166181532255,0.13,13
-Transmission Line,BWBSmw1,BT,BT,NA,6,12.114360464113965,0.308,30.8
-Transmission Line,BWBSmw1,CB,CB,NA,1,0.16142721893951287,1,100
-Transmission Line,BWBSmw1,CF,CF,NA,2,7.399127772333825,0.234,23.400000000000002
-Transmission Line,BWBSmw1,CF,CF,NA,3,24.20073296623226,0.766,76.6
-Transmission Line,BWBSmw1,ES,ES,NA,1,0.30904829371386,1,100
-Transmission Line,BWBSmw1,LA,LA,NA,NA,0.1522447230779825,1,100
-Transmission Line,BWBSmw1,LL,LL:ak,ak,3,3.285676632174442,0.568,56.8
-Transmission Line,BWBSmw1,LL,LL:ak,ak,5,1.3745684093046258,0.238,23.799999999999997
-Transmission Line,BWBSmw1,LL,LL:ak,ak,6,1.1246489550144638,0.194,19.400000000000002
-Transmission Line,BWBSmw1,LL,LL,NA,5,1.4736328264113712,0.123,12.3
-Transmission Line,BWBSmw1,LL,LL,NA,6,10.555412529993184,0.877,87.7
-Transmission Line,BWBSmw1,OW,OW,NA,NA,0.2165428896018466,1,100
-Transmission Line,BWBSmw1,PD,PD,NA,NA,0.13164500136608154,1,100
-Transmission Line,BWBSmw1,RI,RI,NA,NA,0.052249635807307286,1,100
-Transmission Line,BWBSmw1,RZ,RZ,NA,NA,0.05074878624834327,1,100
-Transmission Line,BWBSmw1,SC,SC:ab,ab,3,0.08965512911933235,0.015,1.5
-Transmission Line,BWBSmw1,SC,SC:ab,ab,4,0.44847117315111645,0.077,7.7
-Transmission Line,BWBSmw1,SC,SC:ab,ab,5,0.039261946447950453,0.007,0.7000000000000001
-Transmission Line,BWBSmw1,SC,SC:ab,ab,6,5.23119354255197,0.901,90.10000000000001
-Transmission Line,BWBSmw1,SC,SC:ep,ep,3,0.4274254801821375,1,100
-Transmission Line,BWBSmw1,SE,SE,NA,2,23.15931607127478,0.905,90.5
-Transmission Line,BWBSmw1,SE,SE,NA,3,2.431250004752712,0.095,9.5
-Transmission Line,BWBSmw1,SH,SH:ac,ac,4,0.8851778813459791,0.368,36.8
-Transmission Line,BWBSmw1,SH,SH:ac,ac,5,0.47257250054583155,0.197,19.7
-Transmission Line,BWBSmw1,SH,SH:ac,ac,6,1.046485282841381,0.435,43.5
-Transmission Line,BWBSmw1,SH,SH:ep,ep,5,0.27831145159288223,1,100
-Transmission Line,BWBSmw1,SH,SH,NA,5,0.6556228502466409,0.189,18.9
-Transmission Line,BWBSmw1,SH,SH,NA,6,2.8182850674648243,0.811,81.10000000000001
-Transmission Line,BWBSmw1,SO,SO,NA,5,1.7320165452566202e-4,0,0
-Transmission Line,BWBSmw1,SO,SO,NA,6,1.717027029675524,1,100
-Transmission Line,BWBSmw1,SW,SW:as,as,3,2.0166834707762495,0.074,7.3999999999999995
-Transmission Line,BWBSmw1,SW,SW:as,as,4,2.782208358338478,0.103,10.299999999999999
-Transmission Line,BWBSmw1,SW,SW:as,as,5,20.47005476930579,0.755,75.5
-Transmission Line,BWBSmw1,SW,SW:as,as,6,1.8495829706700977,0.068,6.800000000000001
-Transmission Line,BWBSmw1,SW,SW,NA,3,1.9180710366014373,0.095,9.5
-Transmission Line,BWBSmw1,SW,SW,NA,4,4.445853057009737,0.22,22
-Transmission Line,BWBSmw1,SW,SW,NA,5,11.718570758935607,0.579,57.9
-Transmission Line,BWBSmw1,SW,SW,NA,6,2.1462130627939175,0.106,10.6
-Transmission Line,BWBSmw1,TS,TS,NA,3,17.01151156443658,0.762,76.2
-Transmission Line,BWBSmw1,TS,TS,NA,4,5.316199252834359,0.238,23.799999999999997
-Transmission Line,BWBSmw1,UR,UR,NA,NA,0.8591338474778869,1,100
-Transmission Line,BWBSmw1,WH,WH,NA,3,0.15926961042325286,1,100
-Transmission Line,BWBSmw1,WS,WS,NA,2,2.758303893709083,0.209,20.9
-Transmission Line,BWBSmw1,WS,WS,NA,3,10.417165507228871,0.791,79.10000000000001
-Transmission Line,BWBSmw1,WW,WW,NA,2,5.017957048423065,1,100
-Transmission Line,BWBSmw1,NA,NA,NA,NA,0,NaN,NaN
+PAZ,BEC Variant,Ecosystem,Site Series Name,Type,STRCT,structural_class,Total_area
+Dam,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,3,Shrub,28.424905799999998
+Dam,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,5,Young Forest,10.278968
+Dam,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,6,Mature Forest,20.8468752
+Dam,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,3,Shrub,18.717458
+Dam,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,4,Young Forest,306.96480299999996
+Dam,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,5,Young Forest,300.7076107
+Dam,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,6,Mature Forest,22.747733399999998
+Dam,BWBSmw1,AS,SwAt – Soopolallie,Shrubland Ecosystems,3,Shrub,14.0864063
+Dam,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,4,Young Forest,2.8182976
+Dam,BWBSmw1,BL:al,$At - Labrador tea,Forested Ecosystems,5,Young Forest,27.535580799999998
+Dam,BWBSmw1,BT,Sb - Labrador tea – Sphagnum,Wetland Ecosystems,4,Young Forest,6.5115514999999995
+Dam,BWBSmw1,CB,Cutbank,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,29.9561622
+Dam,BWBSmw1,CF,Cultivated field,Anthropogenic Areas,2,Herbaceous,68.4748921
+Dam,BWBSmw1,ES,Exposed soil,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,1.2057576
+Dam,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,3,Shrub,33.0559685
+Dam,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,4,Young Forest,10.4124359
+Dam,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,5,Young Forest,16.5103004
+Dam,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,6,Mature Forest,6.7491354999999995
+Dam,BWBSmw1,GB,Gravel bar,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,19.8110993
+Dam,BWBSmw1,LL:ak,$At - Kinnikinnick,Forested Ecosystems,3,Shrub,3.037801
+Dam,BWBSmw1,MI,Mine,Anthropogenic Areas,1,Non/sparsely vegetated,14.241691
+Dam,BWBSmw1,OW,Shallow open water,Wetland Ecosystems,NA,"NA",1.584627
+Dam,BWBSmw1,RI,River,Water,NA,"NA",192.392227
+Dam,BWBSmw1,RN,Railway,Anthropogenic Areas,NA,"NA",11.364748
+Dam,BWBSmw1,RW,Rural,Anthropogenic Areas,NA,"NA",1.416299
+Dam,BWBSmw1,RZ,Road surface,Anthropogenic Areas,NA,"NA",0.5863096
+Dam,BWBSmw1,SC,Sw - Currant – Bluebells,Forested Ecosystems,6,Mature Forest,2.5771264
+Dam,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,4,Young Forest,4.7881152
+Dam,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,5,Young Forest,0.311579
+Dam,BWBSmw1,SC:ep,$Ep – red-osier dogwood,Forested Ecosystems,4,Young Forest,3.1920768
+Dam,BWBSmw1,SC:ep,$Ep – red-osier dogwood,Forested Ecosystems,5,Young Forest,2.84017
+Dam,BWBSmw1,SE,Sedge Wetland,Wetland Ecosystems,2,Herbaceous,23.5355996
+Dam,BWBSmw1,SE,Sedge Wetland,Wetland Ecosystems,3,Shrub,7.6721447000000005
+Dam,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,4,Young Forest,6.5176975
+Dam,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,6,Mature Forest,21.6498333
+Dam,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,4,Young Forest,0.507963
+Dam,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,6,Mature Forest,15.1651556
+Dam,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,3,Shrub,6.521321
+Dam,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,5,Young Forest,5.811006
+Dam,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,6,Mature Forest,9.913153
+Dam,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,4,Young Forest,1.603574
+Dam,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,6,Mature Forest,11.860651
+Dam,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,4,Young Forest,34.7716828
+Dam,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,5,Young Forest,60.0907709
+Dam,BWBSmw1,TS,Tamarack - Sedge – Fen,Wetland Ecosystems,3,Shrub,7.943208799999999
+Dam,BWBSmw1,TS,Tamarack - Sedge – Fen,Wetland Ecosystems,4,Young Forest,3.0183496
+Dam,BWBSmw1,UR,Urban,Anthropogenic Areas,NA,"NA",0.166821
+Dam,BWBSmw1,WH,Willow – Horsetail – Sedge – Riparian Wetland,Wetland Ecosystems,2,Herbaceous,3.0792558000000003
+Dam,BWBSmw1,WH,Willow – Horsetail – Sedge – Riparian Wetland,Wetland Ecosystems,3,Shrub,0.5264902
+Dam,BWBSmw1,WS,Willow – Sedge – Wetland,Wetland Ecosystems,2,Herbaceous,1.621112
+Dam,BWBSmw1,WS,Willow – Sedge – Wetland,Wetland Ecosystems,3,Shrub,0.47042680000000003
+Dam,BWBSmw1,WW,Fuzzy-spiked Wildrye – Wolf-willow,Grassland Ecosystems,2,Herbaceous,35.1331268
+Dam,BWBSmw1,WW,Fuzzy-spiked Wildrye – Wolf-willow,Grassland Ecosystems,3,Shrub,8.0800708
+Erosion Impact Area,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,3,Shrub,0.11568590000000001
+Erosion Impact Area,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,4,Young Forest,14.5532144
+Erosion Impact Area,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,5,Young Forest,48.440714
+Erosion Impact Area,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,6,Mature Forest,67.6058569
+Erosion Impact Area,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,3,Shrub,22.4953266
+Erosion Impact Area,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,4,Young Forest,54.1969603
+Erosion Impact Area,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,5,Young Forest,157.6144775
+Erosion Impact Area,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,6,Mature Forest,36.2682255
+Erosion Impact Area,BWBSmw1,AS,SwAt – Soopolallie,Shrubland Ecosystems,3,Shrub,31.7533989
+Erosion Impact Area,BWBSmw1,AS,SwAt – Soopolallie,Shrubland Ecosystems,4,Young Forest,1.9350436000000002
+Erosion Impact Area,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,5,Young Forest,2.9365935000000003
+Erosion Impact Area,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,6,Mature Forest,2.7963235
+Erosion Impact Area,BWBSmw1,BL:al,$At - Labrador tea,Forested Ecosystems,5,Young Forest,1.75001
+Erosion Impact Area,BWBSmw1,BT,Sb - Labrador tea – Sphagnum,Wetland Ecosystems,5,Young Forest,0.356486
+Erosion Impact Area,BWBSmw1,CB,Cutbank,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,102.4539091
+Erosion Impact Area,BWBSmw1,CF,Cultivated field,Anthropogenic Areas,2,Herbaceous,34.0167642
+Erosion Impact Area,BWBSmw1,CF,Cultivated field,Anthropogenic Areas,3,Shrub,0.9494109
+Erosion Impact Area,BWBSmw1,ES,Exposed soil,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,3.816795
+Erosion Impact Area,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,3,Shrub,1.5941125
+Erosion Impact Area,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,4,Young Forest,1.516779
+Erosion Impact Area,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,5,Young Forest,1.7844332
+Erosion Impact Area,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,6,Mature Forest,4.2516535
+Erosion Impact Area,BWBSmw1,GB,Gravel bar,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,1.5181305
+Erosion Impact Area,BWBSmw1,GP,Gravel pit,Anthropogenic Areas,1,Non/sparsely vegetated,3.0690885999999997
+Erosion Impact Area,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,4,Young Forest,0.568848
+Erosion Impact Area,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,5,Young Forest,0.488561
+Erosion Impact Area,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,6,Mature Forest,2.7824486999999998
+Erosion Impact Area,BWBSmw1,LL:ak,$At - Kinnikinnick,Forested Ecosystems,3,Shrub,0.087516
+Erosion Impact Area,BWBSmw1,LL:ak,$At - Kinnikinnick,Forested Ecosystems,4,Young Forest,1.434482
+Erosion Impact Area,BWBSmw1,LL:ak,$At - Kinnikinnick,Forested Ecosystems,5,Young Forest,6.583901
+Erosion Impact Area,BWBSmw1,PD,Pond,Wetland Ecosystems,NA,"NA",0.2465892
+Erosion Impact Area,BWBSmw1,RI,River,Water,NA,"NA",3.7528547
+Erosion Impact Area,BWBSmw1,RO,Rock,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,0.19164350000000002
+Erosion Impact Area,BWBSmw1,RW,Rural,Anthropogenic Areas,NA,"NA",0.5072655
+Erosion Impact Area,BWBSmw1,RZ,Road surface,Anthropogenic Areas,NA,"NA",3.0148014
+Erosion Impact Area,BWBSmw1,SC,Sw - Currant – Bluebells,Forested Ecosystems,5,Young Forest,3.163147
+Erosion Impact Area,BWBSmw1,SC,Sw - Currant – Bluebells,Forested Ecosystems,6,Mature Forest,1.6781674
+Erosion Impact Area,BWBSmw1,SC,Sw - Currant – Bluebells,Forested Ecosystems,7,Mature Forest,0.121562
+Erosion Impact Area,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,3,Shrub,1.2873952
+Erosion Impact Area,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,4,Young Forest,1.2453198
+Erosion Impact Area,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,5,Young Forest,29.847004300000002
+Erosion Impact Area,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,6,Mature Forest,30.7121341
+Erosion Impact Area,BWBSmw1,SC:ep,$Ep – red-osier dogwood,Forested Ecosystems,3,Shrub,3.9882518
+Erosion Impact Area,BWBSmw1,SC:ep,$Ep – red-osier dogwood,Forested Ecosystems,4,Young Forest,2.5082831
+Erosion Impact Area,BWBSmw1,SC:ep,$Ep – red-osier dogwood,Forested Ecosystems,5,Young Forest,11.653723
+Erosion Impact Area,BWBSmw1,SC:ep,$Ep – red-osier dogwood,Forested Ecosystems,6,Mature Forest,3.8574354
+Erosion Impact Area,BWBSmw1,SE,Sedge Wetland,Wetland Ecosystems,2,Herbaceous,0.289292
+Erosion Impact Area,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,3,Shrub,0.677171
+Erosion Impact Area,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,4,Young Forest,0.747346
+Erosion Impact Area,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,5,Young Forest,1.3183836
+Erosion Impact Area,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,6,Mature Forest,8.550761699999999
+Erosion Impact Area,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,7,Mature Forest,1.3223114
+Erosion Impact Area,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,3,Shrub,0.4595878
+Erosion Impact Area,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,4,Young Forest,0.20183
+Erosion Impact Area,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,5,Young Forest,1.7154911
+Erosion Impact Area,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,6,Mature Forest,5.7958612
+Erosion Impact Area,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,3,Shrub,0.08540560000000001
+Erosion Impact Area,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,4,Young Forest,0.5264168
+Erosion Impact Area,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,5,Young Forest,66.7223159
+Erosion Impact Area,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,6,Mature Forest,27.7080614
+Erosion Impact Area,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,7,Mature Forest,0.085848
+Erosion Impact Area,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,2,Herbaceous,0.344828
+Erosion Impact Area,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,3,Shrub,0.1307805
+Erosion Impact Area,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,4,Young Forest,18.1341705
+Erosion Impact Area,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,5,Young Forest,49.838813
+Erosion Impact Area,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,6,Mature Forest,38.4419924
+Erosion Impact Area,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,3,Shrub,7.2691524
+Erosion Impact Area,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,4,Young Forest,24.6420277
+Erosion Impact Area,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,5,Young Forest,55.5326243
+Erosion Impact Area,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,6,Mature Forest,1.5471904
+Erosion Impact Area,BWBSmw1,WH,Willow – Horsetail – Sedge – Riparian Wetland,Wetland Ecosystems,3,Shrub,0.602103
+Erosion Impact Area,BWBSmw1,WW,Fuzzy-spiked Wildrye – Wolf-willow,Grassland Ecosystems,2,Herbaceous,63.985529
+Erosion Impact Area,BWBSmw1,WW,Fuzzy-spiked Wildrye – Wolf-willow,Grassland Ecosystems,3,Shrub,11.6273701
+Hwy 29,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,4,Young Forest,1.9202659999999998
+Hwy 29,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,5,Young Forest,4.3953402
+Hwy 29,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,3,Shrub,10.9035206
+Hwy 29,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,4,Young Forest,40.476086200000005
+Hwy 29,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,5,Young Forest,23.5251707
+Hwy 29,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,6,Mature Forest,1.539105
+Hwy 29,BWBSmw1,AS,SwAt – Soopolallie,Shrubland Ecosystems,3,Shrub,4.6087994000000005
+Hwy 29,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,5,Young Forest,0.001982
+Hwy 29,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,6,Mature Forest,0.001982
+Hwy 29,BWBSmw1,BL:al,$At - Labrador tea,Forested Ecosystems,4,Young Forest,0.6253906
+Hwy 29,BWBSmw1,CB,Cutbank,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,5.3589473000000005
+Hwy 29,BWBSmw1,CF,Cultivated field,Anthropogenic Areas,2,Herbaceous,111.4999653
+Hwy 29,BWBSmw1,CF,Cultivated field,Anthropogenic Areas,3,Shrub,0.0162148
+Hwy 29,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,3,Shrub,0.963167
+Hwy 29,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,5,Young Forest,4.86181
+Hwy 29,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,6,Mature Forest,3.254804
+Hwy 29,BWBSmw1,GB,Gravel bar,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,2.1543671
+Hwy 29,BWBSmw1,GP,Gravel pit,Anthropogenic Areas,1,Non/sparsely vegetated,0.19616100000000003
+Hwy 29,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,4,Young Forest,3.808684
+Hwy 29,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,5,Young Forest,1.906862
+Hwy 29,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,6,Mature Forest,0.5858249999999999
+Hwy 29,BWBSmw1,RI,River,Water,NA,"NA",15.8403147
+Hwy 29,BWBSmw1,RW,Rural,Anthropogenic Areas,NA,"NA",1.0272596
+Hwy 29,BWBSmw1,RZ,Road surface,Anthropogenic Areas,NA,"NA",13.0669818
+Hwy 29,BWBSmw1,SC,Sw - Currant – Bluebells,Forested Ecosystems,5,Young Forest,3.7015991999999995
+Hwy 29,BWBSmw1,SC:ep,$Ep – red-osier dogwood,Forested Ecosystems,4,Young Forest,0.263422
+Hwy 29,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,6,Mature Forest,1.126302
+Hwy 29,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,3,Shrub,2.239309
+Hwy 29,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,5,Young Forest,0.026545
+Hwy 29,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,6,Mature Forest,0.835138
+Hwy 29,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,3,Shrub,0.2742148
+Hwy 29,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,5,Young Forest,1.367461
+Hwy 29,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,3,Shrub,0.347214
+Hwy 29,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,4,Young Forest,0.888333
+Hwy 29,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,5,Young Forest,16.7342222
+Hwy 29,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,6,Mature Forest,5.202703
+Hwy 29,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,3,Shrub,4.134298
+Hwy 29,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,4,Young Forest,6.0160656
+Hwy 29,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,5,Young Forest,2.5590145
+Hwy 29,BWBSmw1,WH,Willow – Horsetail – Sedge – Riparian Wetland,Wetland Ecosystems,3,Shrub,1.3580324
+Hwy 29,BWBSmw1,WW,Fuzzy-spiked Wildrye – Wolf-willow,Grassland Ecosystems,2,Herbaceous,22.3753728
+Hwy 29,BWBSmw1,WW,Fuzzy-spiked Wildrye – Wolf-willow,Grassland Ecosystems,3,Shrub,0.6969022
+Quarry,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,3,Shrub,2.918905
+Quarry,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,5,Young Forest,22.3757466
+Quarry,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,6,Mature Forest,20.3160023
+Quarry,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,3,Shrub,53.0694664
+Quarry,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,4,Young Forest,15.215483
+Quarry,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,5,Young Forest,22.9711473
+Quarry,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,6,Mature Forest,47.7512755
+Quarry,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,5,Young Forest,0.792531
+Quarry,BWBSmw1,BL:al,$At - Labrador tea,Forested Ecosystems,5,Young Forest,0.0255436
+Quarry,BWBSmw1,BT,Sb - Labrador tea – Sphagnum,Wetland Ecosystems,6,Mature Forest,0.7468087
+Quarry,BWBSmw1,CF,Cultivated field,Anthropogenic Areas,1,Non/sparsely vegetated,1.371886
+Quarry,BWBSmw1,CF,Cultivated field,Anthropogenic Areas,2,Herbaceous,72.3590087
+Quarry,BWBSmw1,GP,Gravel pit,Anthropogenic Areas,1,Non/sparsely vegetated,4.2304976000000005
+Quarry,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,5,Young Forest,3.2831844
+Quarry,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,6,Mature Forest,0.0024189999999999997
+Quarry,BWBSmw1,LL:ak,$At - Kinnikinnick,Forested Ecosystems,3,Shrub,0.128461
+Quarry,BWBSmw1,LL:ak,$At - Kinnikinnick,Forested Ecosystems,4,Young Forest,6.262180000000001
+Quarry,BWBSmw1,LL:ak,$At - Kinnikinnick,Forested Ecosystems,5,Young Forest,6.650824500000001
+Quarry,BWBSmw1,PD,Pond,Wetland Ecosystems,NA,"NA",0.09163860000000001
+Quarry,BWBSmw1,RO,Rock,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,2.1121985
+Quarry,BWBSmw1,RZ,Road surface,Anthropogenic Areas,NA,"NA",0.3037325
+Quarry,BWBSmw1,SC,Sw - Currant – Bluebells,Forested Ecosystems,5,Young Forest,6.830564
+Quarry,BWBSmw1,SE,Sedge Wetland,Wetland Ecosystems,2,Herbaceous,1.1267944
+Quarry,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,5,Young Forest,0.16826560000000002
+Quarry,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,6,Mature Forest,0.801079
+Quarry,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,5,Young Forest,9.0314965
+Quarry,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,6,Mature Forest,26.1482754
+Quarry,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,3,Shrub,0.979763
+Quarry,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,5,Young Forest,4.032318500000001
+Quarry,BWBSmw1,TS,Tamarack - Sedge – Fen,Wetland Ecosystems,3,Shrub,0.36655440000000006
+Quarry,BWBSmw1,UR,Urban,Anthropogenic Areas,NA,"NA",0.002066
+Quarry,BWBSwk1,RO,Rock,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,2.3468551
+Quarry,BWBSwk1,SC,Sw - Currant - Bluebells,Forested Ecosystems,5,Young Forest,4.600214
+Quarry,BWBSwk1,SM,Sw - Huckleberry - Step moss,Forested Ecosystems,5,Young Forest,5.050092
+Quarry,BWBSwk1,SW,Sw - Wildrye - Peavine,Forested Ecosystems,5,Young Forest,48.855274099999995
+Quarry,BWBSwk1,SW,Sw - Wildrye - Peavine,Forested Ecosystems,6,Mature Forest,1.286632
+Quarry,BWBSwk1,TA,Talus,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,0.5009278
+Quarry,ESSFmv2,FL,Bl - Lingonberry,Forested Ecosystems,5,Young Forest,3.3010997
+Quarry,ESSFmv2,FR,Bl - Rhododendron - Feathermoss,Forested Ecosystems,5,Young Forest,2.8317503000000004
+Quarry,SBSwk2,BF,SbPl - Feathermoss,Forested Ecosystems,5,Young Forest,30.2007302
+Quarry,SBSwk2,GP,Gravel pit,Anthropogenic Areas,NA,"NA",11.247688
+Quarry,SBSwk2,LH,Pl - Huckleberry - Cladina,Forested Ecosystems,4,Young Forest,3.9909900000000005
+Quarry,SBSwk2,LH,Pl - Huckleberry - Cladina,Forested Ecosystems,5,Young Forest,11.4232248
+Quarry,SBSwk2,LH,Pl - Huckleberry - Cladina,Forested Ecosystems,6,Mature Forest,9.8589448
+Quarry,SBSwk2,RN,Railway,Anthropogenic Areas,NA,"NA",0.6993208000000001
+Quarry,SBSwk2,RO,Rock,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,2.4647362
+Quarry,SBSwk2,RZ,Road surface,Anthropogenic Areas,NA,"NA",0.17483020000000002
+Quarry,SBSwk2,SC,Sxw - Huckleberry - Highbush-cranberry,Forested Ecosystems,4,Young Forest,2.430683
+Quarry,SBSwk2,SC,Sxw - Huckleberry - Highbush-cranberry,Forested Ecosystems,5,Young Forest,3.614137
+Quarry,SBSwk2,SC,Sxw - Huckleberry - Highbush-cranberry,Forested Ecosystems,6,Mature Forest,0.879907
+Quarry,SBSwk2,SD,Sxw - Devil's club,Forested Ecosystems,5,Young Forest,2.024602
+Quarry,SBSwk2,SD,Sxw - Devil's club,Forested Ecosystems,6,Mature Forest,4.708671
+Quarry,SBSwk2,SO,Sxw - Oak fern,Forested Ecosystems,4,Young Forest,0.2295064
+Quarry,SBSwk2,SO,Sxw - Oak fern,Forested Ecosystems,5,Young Forest,4.0802454
+Quarry,SBSwk2,SO,Sxw - Oak fern,Forested Ecosystems,6,Mature Forest,15.5846756
+Quarry,SBSwk2,Wf13,Narrow-leaved cotton-grass - Shore sedge,Wetland Ecosystems,2,Herbaceous,0.3442596
+Reservoir,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,3,Shrub,1.9149247
+Reservoir,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,4,Young Forest,14.1919226
+Reservoir,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,5,Young Forest,151.2612218
+Reservoir,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,6,Mature Forest,147.4786338
+Reservoir,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,3,Shrub,114.1075965
+Reservoir,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,4,Young Forest,196.4422055
+Reservoir,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,5,Young Forest,493.994513
+Reservoir,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,6,Mature Forest,66.5489776
+Reservoir,BWBSmw1,AS,SwAt – Soopolallie,Shrubland Ecosystems,3,Shrub,75.0005818
+Reservoir,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,5,Young Forest,0.7426292000000001
+Reservoir,BWBSmw1,BL:al,$At - Labrador tea,Forested Ecosystems,4,Young Forest,8.468217600000001
+Reservoir,BWBSmw1,BL:al,$At - Labrador tea,Forested Ecosystems,5,Young Forest,0.002376
+Reservoir,BWBSmw1,BT,Sb - Labrador tea – Sphagnum,Wetland Ecosystems,5,Young Forest,13.514834800000001
+Reservoir,BWBSmw1,CB,Cutbank,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,167.5705805
+Reservoir,BWBSmw1,CF,Cultivated field,Anthropogenic Areas,1,Non/sparsely vegetated,6.217721
+Reservoir,BWBSmw1,CF,Cultivated field,Anthropogenic Areas,2,Herbaceous,590.4228594
+Reservoir,BWBSmw1,CF,Cultivated field,Anthropogenic Areas,3,Shrub,0.3897564
+Reservoir,BWBSmw1,ES,Exposed soil,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,4.356910200000001
+Reservoir,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,3,Shrub,554.8875737
+Reservoir,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,4,Young Forest,93.5545812
+Reservoir,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,5,Young Forest,165.1767039
+Reservoir,BWBSmw1,Fm02,ActSw - Red-osier dogwood,Forested Ecosystems,6,Mature Forest,219.2826125
+Reservoir,BWBSmw1,GB,Gravel bar,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,720.5646682
+Reservoir,BWBSmw1,GP,Gravel pit,Anthropogenic Areas,1,Non/sparsely vegetated,6.489754
+Reservoir,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,4,Young Forest,4.309305
+Reservoir,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,5,Young Forest,5.5191633
+Reservoir,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,6,Mature Forest,14.084775
+Reservoir,BWBSmw1,LL:ak,$At - Kinnikinnick,Forested Ecosystems,4,Young Forest,62.45747620000001
+Reservoir,BWBSmw1,OW,Shallow open water,Wetland Ecosystems,NA,"NA",13.627818600000001
+Reservoir,BWBSmw1,PD,Pond,Wetland Ecosystems,NA,"NA",4.167849400000001
+Reservoir,BWBSmw1,RI,River,Water,NA,"NA",2833.7800702
+Reservoir,BWBSmw1,RO,Rock,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,0.0599
+Reservoir,BWBSmw1,RW,Rural,Anthropogenic Areas,NA,"NA",9.7729069
+Reservoir,BWBSmw1,RZ,Road surface,Anthropogenic Areas,NA,"NA",12.7602556
+Reservoir,BWBSmw1,SC,Sw - Currant – Bluebells,Forested Ecosystems,5,Young Forest,10.7685532
+Reservoir,BWBSmw1,SC,Sw - Currant – Bluebells,Forested Ecosystems,6,Mature Forest,91.3201606
+Reservoir,BWBSmw1,SC,Sw - Currant – Bluebells,Forested Ecosystems,7,Mature Forest,0.9030091
+Reservoir,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,3,Shrub,6.1514203
+Reservoir,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,4,Young Forest,7.3709966
+Reservoir,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,5,Young Forest,17.6219971
+Reservoir,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,6,Mature Forest,23.8258285
+Reservoir,BWBSmw1,SC:ep,$Ep – red-osier dogwood,Forested Ecosystems,3,Shrub,3.0346512
+Reservoir,BWBSmw1,SC:ep,$Ep – red-osier dogwood,Forested Ecosystems,4,Young Forest,5.6690496
+Reservoir,BWBSmw1,SC:ep,$Ep – red-osier dogwood,Forested Ecosystems,5,Young Forest,23.8404629
+Reservoir,BWBSmw1,SC:ep,$Ep – red-osier dogwood,Forested Ecosystems,6,Mature Forest,8.522295199999999
+Reservoir,BWBSmw1,SE,Sedge Wetland,Wetland Ecosystems,2,Herbaceous,47.207415600000004
+Reservoir,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,3,Shrub,6.306636
+Reservoir,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,4,Young Forest,29.6033635
+Reservoir,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,5,Young Forest,112.9333824
+Reservoir,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,6,Mature Forest,516.0348801
+Reservoir,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,7,Mature Forest,38.1629858
+Reservoir,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,3,Shrub,93.99715450000001
+Reservoir,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,4,Young Forest,50.6374177
+Reservoir,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,5,Young Forest,69.8029026
+Reservoir,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,6,Mature Forest,163.6414933
+Reservoir,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,7,Mature Forest,1.4087238
+Reservoir,BWBSmw1,SH:ep,$Ep – Ep-Dogwood,Forested Ecosystems,5,Young Forest,1.374802
+Reservoir,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,3,Shrub,22.5759978
+Reservoir,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,4,Young Forest,5.4584412
+Reservoir,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,5,Young Forest,142.6592211
+Reservoir,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,6,Mature Forest,145.2167413
+Reservoir,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,7,Mature Forest,0.253799
+Reservoir,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,3,Shrub,0.0030985
+Reservoir,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,4,Young Forest,21.382797200000002
+Reservoir,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,5,Young Forest,61.3969393
+Reservoir,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,6,Mature Forest,52.1944777
+Reservoir,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,3,Shrub,3.4918976
+Reservoir,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,4,Young Forest,56.3827589
+Reservoir,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,5,Young Forest,48.485855900000004
+Reservoir,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,6,Mature Forest,0.2179638
+Reservoir,BWBSmw1,TS,Tamarack - Sedge – Fen,Wetland Ecosystems,3,Shrub,10.6429117
+Reservoir,BWBSmw1,TS,Tamarack - Sedge – Fen,Wetland Ecosystems,5,Young Forest,2.4541422
+Reservoir,BWBSmw1,UR,Urban,Anthropogenic Areas,NA,"NA",6.0457659999999995
+Reservoir,BWBSmw1,WH,Willow – Horsetail – Sedge – Riparian Wetland,Wetland Ecosystems,2,Herbaceous,121.1520177
+Reservoir,BWBSmw1,WH,Willow – Horsetail – Sedge – Riparian Wetland,Wetland Ecosystems,3,Shrub,265.672848
+Reservoir,BWBSmw1,WS,Willow – Sedge – Wetland,Wetland Ecosystems,3,Shrub,27.7094036
+Reservoir,BWBSmw1,WW,Fuzzy-spiked Wildrye – Wolf-willow,Grassland Ecosystems,2,Herbaceous,72.1700329
+Reservoir,BWBSmw1,WW,Fuzzy-spiked Wildrye – Wolf-willow,Grassland Ecosystems,3,Shrub,14.735746900000002
+Road,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,5,Young Forest,2.875159
+Road,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,6,Mature Forest,0.08724799999999999
+Road,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,3,Shrub,1.079624
+Road,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,4,Young Forest,0.1812184
+Road,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,5,Young Forest,9.5547805
+Road,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,6,Mature Forest,4.765175
+Road,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,3,Shrub,0.590253
+Road,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,5,Young Forest,0.598995
+Road,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,6,Mature Forest,0.013879
+Road,BWBSmw1,BT,Sb - Labrador tea – Sphagnum,Wetland Ecosystems,3,Shrub,0.426976
+Road,BWBSmw1,BT,Sb - Labrador tea – Sphagnum,Wetland Ecosystems,5,Young Forest,0.037921
+Road,BWBSmw1,CF,Cultivated field,Anthropogenic Areas,2,Herbaceous,0.079054
+Road,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,5,Young Forest,0.0847822
+Road,BWBSmw1,LL:ak,$At - Kinnikinnick,Forested Ecosystems,5,Young Forest,0.618659
+Road,BWBSmw1,RO,Rock,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,0.14694
+Road,BWBSmw1,RZ,Road surface,Anthropogenic Areas,NA,"NA",0.629029
+Road,BWBSmw1,SC,Sw - Currant – Bluebells,Forested Ecosystems,5,Young Forest,1.083498
+Road,BWBSmw1,SC,Sw - Currant – Bluebells,Forested Ecosystems,6,Mature Forest,1.194892
+Road,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,4,Young Forest,0.07601560000000002
+Road,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,5,Young Forest,0.038374
+Road,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,6,Mature Forest,0.980266
+Road,BWBSmw1,SE,Sedge Wetland,Wetland Ecosystems,2,Herbaceous,0.13344
+Road,BWBSmw1,SE,Sedge Wetland,Wetland Ecosystems,3,Shrub,0.102704
+Road,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,3,Shrub,0.351342
+Road,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,5,Young Forest,0.102128
+Road,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,7,Mature Forest,0.529353
+Road,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,5,Young Forest,3.247241
+Road,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,6,Mature Forest,0.560438
+Road,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,5,Young Forest,1.0067561999999999
+Road,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,6,Mature Forest,1.2976946
+Road,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,5,Young Forest,6.2731665
+Road,BWBSwk1,SW,Sw - Wildrye - Peavine,Forested Ecosystems,5,Young Forest,0.33176
+Transmission Line ROW,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,3,Shrub,5.816587
+Transmission Line ROW,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,5,Young Forest,6.209796
+Transmission Line ROW,BWBSmw1,AM,SwAt - Step moss,Forested Ecosystems,6,Mature Forest,7.1224436
+Transmission Line ROW,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,3,Shrub,84.1253416
+Transmission Line ROW,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,4,Young Forest,73.9981302
+Transmission Line ROW,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,5,Young Forest,41.6874112
+Transmission Line ROW,BWBSmw1,AM:ap,$At - Creamy peavine,Forested Ecosystems,6,Mature Forest,68.8637783
+Transmission Line ROW,BWBSmw1,AS,SwAt – Soopolallie,Shrubland Ecosystems,3,Shrub,0.24284319999999998
+Transmission Line ROW,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,3,Shrub,0.5204743000000001
+Transmission Line ROW,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,4,Young Forest,5.5730567
+Transmission Line ROW,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,5,Young Forest,16.5481972
+Transmission Line ROW,BWBSmw1,BL,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,6,Mature Forest,7.6284034
+Transmission Line ROW,BWBSmw1,BL:al,$At - Labrador tea,Forested Ecosystems,3,Shrub,6.7034016
+Transmission Line ROW,BWBSmw1,BL:al,$At - Labrador tea,Forested Ecosystems,4,Young Forest,14.4559415
+Transmission Line ROW,BWBSmw1,BL:al,$At - Labrador tea,Forested Ecosystems,5,Young Forest,25.841518400000002
+Transmission Line ROW,BWBSmw1,BL:al,$At - Labrador tea,Forested Ecosystems,6,Mature Forest,12.0320769
+Transmission Line ROW,BWBSmw1,BT,Sb - Labrador tea – Sphagnum,Wetland Ecosystems,3,Shrub,9.3523542
+Transmission Line ROW,BWBSmw1,BT,Sb - Labrador tea – Sphagnum,Wetland Ecosystems,4,Young Forest,12.7834935
+Transmission Line ROW,BWBSmw1,BT,Sb - Labrador tea – Sphagnum,Wetland Ecosystems,5,Young Forest,5.118715
+Transmission Line ROW,BWBSmw1,BT,Sb - Labrador tea – Sphagnum,Wetland Ecosystems,6,Mature Forest,12.114355000000002
+Transmission Line ROW,BWBSmw1,CB,Cutbank,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,0.1614272
+Transmission Line ROW,BWBSmw1,CF,Cultivated field,Anthropogenic Areas,2,Herbaceous,7.3991354
+Transmission Line ROW,BWBSmw1,CF,Cultivated field,Anthropogenic Areas,3,Shrub,24.200725
+Transmission Line ROW,BWBSmw1,ES,Exposed soil,Naturally Non-vegetated Ecosystems,1,Non/sparsely vegetated,0.3090485
+Transmission Line ROW,BWBSmw1,LA,Lake,Water,NA,"NA",0.152245
+Transmission Line ROW,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,5,Young Forest,1.4736335
+Transmission Line ROW,BWBSmw1,LL,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,6,Mature Forest,10.555408
+Transmission Line ROW,BWBSmw1,LL:ak,$At - Kinnikinnick,Forested Ecosystems,3,Shrub,3.2856799999999997
+Transmission Line ROW,BWBSmw1,LL:ak,$At - Kinnikinnick,Forested Ecosystems,5,Young Forest,1.374568
+Transmission Line ROW,BWBSmw1,LL:ak,$At - Kinnikinnick,Forested Ecosystems,6,Mature Forest,1.124649
+Transmission Line ROW,BWBSmw1,OW,Shallow open water,Wetland Ecosystems,NA,"NA",0.216543
+Transmission Line ROW,BWBSmw1,PD,Pond,Wetland Ecosystems,NA,"NA",0.13164499999999998
+Transmission Line ROW,BWBSmw1,RI,River,Water,NA,"NA",0.0522494
+Transmission Line ROW,BWBSmw1,RZ,Road surface,Anthropogenic Areas,NA,"NA",0.0507488
+Transmission Line ROW,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,3,Shrub,0.089655
+Transmission Line ROW,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,4,Young Forest,0.448471
+Transmission Line ROW,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,5,Young Forest,0.039261899999999995
+Transmission Line ROW,BWBSmw1,SC:ab,$At – Black Twinberry,Forested Ecosystems,6,Mature Forest,5.231191
+Transmission Line ROW,BWBSmw1,SC:ep,$Ep – red-osier dogwood,Forested Ecosystems,3,Shrub,0.42742430000000003
+Transmission Line ROW,BWBSmw1,SE,Sedge Wetland,Wetland Ecosystems,2,Herbaceous,23.1593251
+Transmission Line ROW,BWBSmw1,SE,Sedge Wetland,Wetland Ecosystems,3,Shrub,2.431255
+Transmission Line ROW,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,5,Young Forest,0.6556227
+Transmission Line ROW,BWBSmw1,SH,Sw - Currant – Horsetail,Forested Ecosystems,6,Mature Forest,2.8182836
+Transmission Line ROW,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,4,Young Forest,0.8851776
+Transmission Line ROW,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,5,Young Forest,0.4725725
+Transmission Line ROW,BWBSmw1,SH:ac,$Ac – Cow parsnip,Forested Ecosystems,6,Mature Forest,1.0464851
+Transmission Line ROW,BWBSmw1,SH:ep,$Ep – Ep-Dogwood,Forested Ecosystems,5,Young Forest,0.2783105
+Transmission Line ROW,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,5,Young Forest,1.73e-4
+Transmission Line ROW,BWBSmw1,SO,Sw - Currant - Oak fern,Forested Ecosystems,6,Mature Forest,1.7170269999999999
+Transmission Line ROW,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,3,Shrub,1.918071
+Transmission Line ROW,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,4,Young Forest,4.4458515
+Transmission Line ROW,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,5,Young Forest,11.7186063
+Transmission Line ROW,BWBSmw1,SW,Sw - Wildrye – Peavine,Forested Ecosystems,6,Mature Forest,2.1462114000000003
+Transmission Line ROW,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,3,Shrub,2.0166842
+Transmission Line ROW,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,4,Young Forest,2.782209
+Transmission Line ROW,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,5,Young Forest,20.4700463
+Transmission Line ROW,BWBSmw1,SW:as,$At - Soopolallie,Forested Ecosystems,6,Mature Forest,1.8495822
+Transmission Line ROW,BWBSmw1,TS,Tamarack - Sedge – Fen,Wetland Ecosystems,3,Shrub,17.011525300000002
+Transmission Line ROW,BWBSmw1,TS,Tamarack - Sedge – Fen,Wetland Ecosystems,4,Young Forest,5.3161982000000005
+Transmission Line ROW,BWBSmw1,UR,Urban,Anthropogenic Areas,NA,"NA",0.8591344999999999
+Transmission Line ROW,BWBSmw1,WH,Willow – Horsetail – Sedge – Riparian Wetland,Wetland Ecosystems,3,Shrub,0.1592696
+Transmission Line ROW,BWBSmw1,WS,Willow – Sedge – Wetland,Wetland Ecosystems,2,Herbaceous,2.758305
+Transmission Line ROW,BWBSmw1,WS,Willow – Sedge – Wetland,Wetland Ecosystems,3,Shrub,10.4171655
+Transmission Line ROW,BWBSmw1,WW,Fuzzy-spiked Wildrye – Wolf-willow,Grassland Ecosystems,2,Herbaceous,5.0179561
