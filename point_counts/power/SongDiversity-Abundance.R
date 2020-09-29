@@ -11,7 +11,7 @@ library(ggplot2)
 library(lme4)
 library(MuMIn)                # model selection
 library(effects)              # for extracting effects terms. Use effects or Alleffects
-library(emmeans)              # for estiamting marginal means
+library(emmeans)              # for estimating marginal means
 library(glmmTMB)
 library(MASS)
 library(DHARMa)               # Analysis of residuals for mixed models. By simulation.
@@ -23,8 +23,6 @@ library(emmeans)              # for estiamting marginal means
 library(PerformanceAnalytics)
 library(lattice)
 library(gridExtra)
-
-rm(list=ls()) # Clear the workspace
 
 setwd("C:/Users/jeff.matheson/Documents/R Working/SiteC/Song/PowerOut")
 getwd()

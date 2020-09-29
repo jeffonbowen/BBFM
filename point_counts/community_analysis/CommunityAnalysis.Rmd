@@ -11,7 +11,7 @@ What do I want to do?
 1. Some basic data summaries
 2. Species richness and diversity
 3. Expected diversity using rarefaction 
-4. Community strucuture exploration using ordination and cluster analysis
+4. Community structure exploration using ordination and cluster analysis
 5. Indicator species analysis
 
 
