@@ -17,7 +17,7 @@ library(lubridate)
 # Set some nicer names for variables regularly used.
 # Get rid of variables that will not be used in any analysis, just for cleaner tables.
 
-stations <- read_excel("Songbirds/Data/Songto2019data.xlsx", "Stations") %>% 
+stations <- read_excel("point_counts/data/Songto2019data.xlsx", "Stations") %>% 
   rename(StationID = 'Sample Station Label',
          Easting = `Easting Sample Station`,
          Northing = `Northing Sample Station`) %>%
@@ -26,25 +26,25 @@ stations <- read_excel("Songbirds/Data/Songto2019data.xlsx", "Stations") %>%
          -c(`Sample Station Photos`, `Sample Station Comments`,
             `UTM Zone Sample Station`, `Survey Name`, Station))
 
-surveys <- read_excel("Songbirds/Data/Songto2019data.xlsx", "Surveys") %>% 
+surveys <- read_excel("point_counts/data/Songto2019data.xlsx", "Surveys") %>% 
   rename(StationID = 'Sample Station Label') %>% 
   select(StationID, Visit, Date, Time, SurveyDuration) %>% 
   mutate(Date = as_date(Date), 
          Time = as_datetime(Time)) 
 # Update the date in `Time` with correct date from `Date` 
 date(surveys$Time) <- date(surveys$Date)
-# Most analysis if the songbird data must account for temporal survey-level effects
+# Most analysis of the songbird data must account for temporal survey-level effects
 # These variables can be created now and to be used later.
 # Year, TSSR, YDAY, DSLS
   
-obs <- read_excel("Songbirds/Data/Songto2019data.xlsx", "Observations", na = "NA") %>% 
+obs <- read_excel("point_counts/data/Songto2019data.xlsx", "Observations", na = "NA") %>% 
   rename(StationID = 'Sample Station Label', SpCode = Species) %>% 
   select(StationID, Visit, SpCode, `Count 5 min`, `Count 0-3 min`, `Count 3-5 min`, 
          `Count 5-10 min`, Count, `Distance Category`) %>% 
   filter(str_detect(SpCode, "B-U", negate = TRUE)) # Clear out the unknowns
 
 # Bring in the BC Bird list from BC Species and Ecosystem Explorer
-BCbirds <- read_excel("Songbirds/Data/Songto2019data.xlsx", "BC_Bird_List")
+BCbirds <- read_excel("point_counts/data/Songto2019data.xlsx", "BC_Bird_List")
 BCbirds <- BCbirds %>% 
   select(ID, `English Name`, `Scientific Name`, `Species Code`, Order, 
          `BC List`, COSEWIC, SARA) %>% 

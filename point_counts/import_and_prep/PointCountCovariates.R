@@ -14,7 +14,7 @@ library(readxl)
 # The covariate data is built using the songbird station and survey data as a base 
 # and must already be in memory. 
 # Run this if songbird data not already in memory.
-source("SongImport.R")
+# source("SongImport.R")
 
 #### TIME AND DATE COVARIATES ####
 
@@ -29,7 +29,7 @@ source("SongImport.R")
 # https://nrc.canada.ca/en/research-development/products-services/software-applications/sun-calculator/
 # The NRC data is specific to 2020. Can join data using day of the year (yday) to 
 # allow for matches for other years.
-sunrise <- read_csv("dat/sunrisesunsetFSJ.csv", skip = 1) %>% 
+sunrise <- read_csv("point_counts/data/sunrisesunsetFSJ.csv", skip = 1) %>% 
   select(SunDate = Date, `Sun rise`) %>% 
   mutate(SunDate = mdy(SunDate), YDAY = yday(SunDate), 
          `Sun rise` = as_hms(`Sun rise`))
@@ -85,7 +85,7 @@ rm(sunrise)
 
 ## Tree Cover ----
 
-TreeCover <- read_excel("dat/TREEto2019.xlsx", "Tree") %>% 
+TreeCover <- read_excel("point_counts/data/TREEto2019.xlsx", "Tree") %>% 
   select(StationID, TREE)
 survey_cov <- survey_cov %>% 
   left_join(TreeCover, by = "StationID")
@@ -94,13 +94,14 @@ survey_cov <- survey_cov %>%
 filter(survey_cov, is.na(TREE))
 
 ## BHC and LCC ---- 
-BHC_LCC <- read_excel("dat/BHCto2019.xlsx", "Habitat") %>%
+BHC_LCC <- read_excel("point_counts/data/BHCto2019.xlsx", "Habitat") %>%
   select(StationID, BHC20_100, NALCMS100m)
 survey_cov <- survey_cov %>% 
   left_join(BHC_LCC, by = "StationID")
 filter(survey_cov, is.na(BHC20_100))
 
 # Load the BHC lookup table
-BHClookup <- read_excel("dat/BHClookup.xlsx", "BHClookup")
+BHClookup <- read_excel("point_counts/data/BHClookup.xlsx", "BHClookup")
 # Clean up intermediate tables.  
 rm(BHC_LCC, TreeCover)
+

@@ -19,7 +19,8 @@ What do I want to do?
 Import the tidied raw songbird station and observation data. 
 ```{r Import}
 # Run the script that imports raw stations, surveys and observation data from Excel and does quick check. The QA results are not shown in this notebook. 
-source("SongImport.R")
+
+source("point_counts/import_and_prep/point_count_data_import.R")
 ```
 
 # Species Richness by Number of Surveys in a Season
