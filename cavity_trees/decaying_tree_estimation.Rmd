@@ -1,7 +1,7 @@
 ---
 title: "Estimation of Decaying Trees"
 author: SEES JV (Tetra Tech/EcoLogic)
-date: 2020-09-28
+date: 2020-10-08
 output: 
   html_notebook:
     code_folding: hide
@@ -11,46 +11,50 @@ output:
 
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+options(scipen = 999)
 ```
 
 # Introduction
 
-The loss of suitable trees for cavity nesting birds may be relevant for the Site C offset accounting framework. Data on decaying trees was collected at select locations as part of the Breeding Bird Follow-up Monitoring program. Decaying trees are often referred to as "wildlife trees" in BC. The wildlife tree data can be used to estimate the density of wildlife trees by habitat type and then extrapolated to the entire project footprint using the ecosystem mapping data.
+The loss of suitable trees for birds that nest in cavities of decaying trees (cavity-nesters) may be relevant for the Site C offset accounting framework. Data on decaying trees was collected at select locations as part of habitat data collection for the Breeding Bird Follow-up Monitoring program. Decaying trees are often referred to as "wildlife trees" in BC and that term is used to refer to the data that was collected. The wildlife tree data can be used to estimate the density of decaying trees by habitat type and then extrapolated to the entire project footprint using ecosystem mapping data.
 
-This document first describes the estimation of the number of wildlife trees per hectare for various habitat types and then extrapolates to the entire Site C footprint to generate a total count.
+This document first describes the estimation of the number of decaying trees per hectare for various habitat types and then extrapolates to the entire Site C footprint to generate an estimate of the total number of decaying trees that may be lost to the project.
 
 **NOTE: This document is an Rmarkdown notebook that includes R code, results, and text description. The R code is hidden by default. Individual blocks of code can be revealed using the "code" buttons wherever they occur. To show all code by default, use the pull-down menu in the top right.**
 
-# Snag Density Estimation
+# Wildlife Tree Data
 
-## Snag Data
+Two types of wildlife tree data were collected.
 
-Two types of snag data were collected.
+**WT50**\
+Approximate total number of live decaying trees and dead standing trees \>15cm dbh within 50m of plot centre. Trees were not identified to species. Data was collected at all bird survey locations 2017-2019 (459 locations.
 
-**SN50**\
-Approximate total number of dead standing trees \>15cm dbh within 50m of plot centre. Trees not identified to species. Collected at all survey locations since 2017 (459 locations to date).
+**WT11**\
+Wildlife trees \>15cm dbh by species and decay class within 11.3m of station centre. 11.3m radius is the area of a SIVI plot ($400m^2$) . This was only collected in 2018 and 2019 at woodpecker survey stations (318 locations), so there are fewer locations than WT50.
 
-**SN11**\
-Species by decay class in SIVI plot, \>15cm dbh. The "11" in SN11 refers to 11.3m radius = \~400m2, the area of a SIVI plot. This was only collected in 2018 and 2019 at woodpecker survey stations (318 locations), so there are fewer locations than SN50.
-
-The SN11 data will be better for this exercise: the snag counts are more accurate and for the same plot area that the ecosystem unit was identified.
-
-There are more notes about the data in the first tab of the "snag\_data.xlsx" workbook.
+The WT11 data will be better for this exercise: the wildlife counts are more accurate and for the same plot area that the ecosystem unit was identified.
 
 Wildlife trees were classified according to species and by the decay classes listed below. The SN11 data does not include class 1 (live tree with no decay).
 
 **Wildlife tree decay classes:**\
 ![](images/wildlife_tree_classes.png)
 
-## Setup and Data Prep
+# Ecosystem Attributes
 
-All data is in "snag\_data.xlsx".
+Ecosystem classification and vegetation data were collected at each location that wildlife tree data was collected. Typical soil moisture regime (SMR) , stand composition and structural stage were used as model variables to estimate wildlife tree density.
+
+# Decaying Tree Density Estimation
+
+## Setup and Data Preparation
+
+All data is in "wildlife\_tree\_data.xlsx".
 
 ```{r message=FALSE, warning=FALSE}
 # Required Packages
 library(here)
 library(tidyverse)
 library(readxl)
+library(kableExtra)
 library(vcd)
 library(MASS)
 library(visreg)
@@ -60,13 +64,13 @@ library(DHARMa)
 library(emmeans)
 library(broom)
 library(ggpubr)
-```
 
-```{r}
-# Read and Prepare Data
+# Read and prepare data
+# Replace structural stage numbers with labels.
+# "P-S" is Pole-sapling.
 tree_dat <- 
   read_xlsx(here("cavity_trees", "dat", "wildlife_tree_data.xlsx"), 
-                      sheet = "SN11_long") %>% 
+                      sheet = "WT11_long") %>% 
   mutate(Structural_Stage = case_when(
     Structural_Stage == "2" ~ "Herb",
     Structural_Stage == "3" ~ "Shrub",
@@ -75,8 +79,9 @@ tree_dat <-
     Structural_Stage == "6" ~ "Mature",
     Structural_Stage == "7" ~ "Old")
     ) %>% 
-  mutate(Structural_Stage = factor(Structural_Stage, 
-                                   levels = c("Herb", "Shrub", "P-S", "Young", "Mature", "Old")),
+  mutate(Structural_Stage = 
+           factor(Structural_Stage, 
+           levels = c("Herb", "Shrub", "P-S", "Young", "Mature", "Old")),
          Stand_Composition = factor(Stand_Composition),
          SMR = factor(SMR, levels = c("dry", "mesic", "moist", "wet"))
          )
@@ -94,20 +99,24 @@ P-S = Pole/Sapling
 tree_dat %>% 
   group_by(Structural_Stage, SMR) %>% 
   summarize(n = n_distinct(HabDat_ID)) %>% 
-  pivot_wider(names_from = "SMR", values_from = "n")
-
-tree_dat %>% 
-  group_by(SMR) %>% 
-  summarize(n = n_distinct(HabDat_ID))
+  pivot_wider(names_from = "SMR", values_from = "n") %>% 
+  dplyr::select(Structural_Stage, dry, mesic, moist, wet, "NA") %>% 
+  kable(caption = "<strong>Table 1. Number of samples (plots) by structural stage and soil moisture regime</strong>") %>% 
+  kable_styling(full_width = FALSE,
+                position = "left")
 
 tree_dat %>% 
   group_by(Stand_Composition) %>% 
-  summarize(n = n_distinct(HabDat_ID))
+  summarize(n = n_distinct(HabDat_ID)) %>% 
+  kable(caption = "<strong>Table 2. Number of samples (plots) by stand composistion</strong>") %>% 
+  kable_styling(full_width = FALSE,
+                position = "left")
+
 ```
 
 ### Descriptive Stats
 
-Boxplot shows (from inside out): median, first and third quartiles, minimum and maximum and outliers.
+Boxplots below show (from inside out): median, first and third quartiles, minimum and maximum and outliers.
 
 ```{r message=FALSE}
 tree_dat %>% 
@@ -116,7 +125,7 @@ tree_dat %>%
   summarize(total_count = sum(Count)) %>% 
   ggplot() + 
   geom_boxplot(aes(x = Structural_Stage, y = total_count, colour = Stand_Composition)) +
-  labs(subtitle = "Total Number of Wildlife Trees by Structural Stage and Stand Composition",
+  labs(subtitle = "Total Number of Decaying Trees by Structural Stage and Stand Composition",
        y = "Total number of wildlife trees per plot")
 ```
 
@@ -127,17 +136,18 @@ tree_dat %>%
   summarize(total_count = sum(Count)) %>% 
   ggplot() + 
   geom_boxplot(aes(x = Structural_Stage, y = total_count, colour = SMR)) +
-  labs(subtitle = "Total Number of Wildlife Trees by Structural Stage and SMR",
+  labs(subtitle = "Total Number of Decaying Trees by Structural Stage and SMR",
        y = "Total number of wildlife trees per plot")
 ```
 
-## Model to Estimate Snag Density
+## Model
 
-Two models: one for total number of snags (both conifers and deciduous) and a second just for deciduous, in case that becomes the focus.
+Two models: one for total number of decaying trees (both conifers and deciduous) and a second just for deciduous decaying trees.
 
-### Total Number of Snags
+### Total Number of Decaying Trees
 
 ```{r message=FALSE, warning=FALSE, paged.print=TRUE}
+# Sum trees of all decay classes for each station.
 tree_total <- tree_dat %>% 
   filter(Structural_Stage != "Herb") %>% 
   droplevels() %>% 
@@ -145,7 +155,7 @@ tree_total <- tree_dat %>%
   summarize(count_total = sum(Count))
 ```
 
-Data fits negative binomial distribution:
+Below is (1) a frequency histogram of all data and (2) a goodness of fit test for a negative binomial distribution. The data fits negative binomial distribution.
 
 ```{r message=FALSE, warning=FALSE}
 hist(tree_total$count_total)  
@@ -154,7 +164,7 @@ fit_nbinom <- goodfit(tree_total$count_total, type = "nbinomial")
 rootogram(fit_nbinom)
 ```
 
-Fit GLM with negative binomial distribution. Fitting all possible variations of the three explanatory variables. Table shows ranking by AICc.
+GLM with negative binomial distribution was used. Model equations with all possible variations of the three explanatory variables were fit. Table below shows ranking of each model by AICc.
 
 ```{r}
 model_nb_full <- glm.nb(count_total ~ Structural_Stage + SMR + Stand_Composition, 
@@ -163,16 +173,16 @@ model_nb_full <- glm.nb(count_total ~ Structural_Stage + SMR + Stand_Composition
 dredge(model_nb_full)
 ```
 
-Best model has SMR and Structural Stage. Though not very different from model with all three variables. It appears that stand composition has little influence on total number of snags.
+Best model has SMR and structural stage. Though not very different from model with all three variables. It appears that stand composition has little influence on total number of decaying trees.
 
 Models with interactions were attempted but could not be fit. There are not enough samples in the various combinations of variables to model interactions.
 
 **Best Model: Structural Stage and SMR**\
-Model summary, analysis of residuals and quick look at effects.
+The outputs below provide a summary of the best model, analysis of residuals and quick look at effects.
 
 ```{r paged.print=TRUE}
 model_nb <- glm.nb(count_total ~ Structural_Stage + SMR, 
-                        data = snag_total)
+                        data = tree_total)
 summary(model_nb)
 
 # Simulate residuals to check model fit. 
@@ -183,7 +193,11 @@ ae <- allEffects(model_nb)
 plot(ae)
 ```
 
-**Predict Wildlife Tree Density Means**
+**Estimation of Decaying Tree Density**
+
+Estimation of decaying tree density by each combination of structural stage and SMR.
+
+Some of the combinations of SMR and Structural Stage do not exist, either in the wildlife tree data or as mapped ecosystems in the footprint (n = 3). So that we don't waste time on trying to interpret patterns for these cases that have not been measured AND are not in the footprint, they have been removed and do not show up in the plots.
 
 ```{r}
 means_total_trees <- emmeans(model_nb, specs = c( "SMR", "Structural_Stage"), type = "response")
@@ -192,17 +206,10 @@ means_total_trees <- tidy(summary(means_total_trees)) %>%
   mutate(SMR = factor(SMR, levels = c("dry", "mesic", "moist", "wet")),
          Structural_Stage = factor(Structural_Stage, levels = c("Shrub", "P-S", "Young", "Mature", "Old"))
          ) %>% 
-  rename(total_trees = response)
-means_total_trees
-```
-
-Some of the predicted combinations of SMR and Structural Stage do not exist, either in the tree data or as mapped ecosystems in the footprint (n = 3). So that we don't waste time on trying to interpret patterns for these cases that have not been measured AND are not in the footprint, they have been removed and do not show up in the plots.
-
-```{r}
-means_total_trees <- means_total_trees %>% 
+  rename(total_trees = response) %>% 
   mutate(removal_flag = case_when(
     SMR == "wet" & Structural_Stage %in% c("Mature", "Old") ~ "not mapped in footprint",
-    SMR == "dry" & Structural_Stage == "Mature" ~ "not mapped in footprint",
+    SMR == "dry" & Structural_Stage == "Old" ~ "not mapped in footprint",
     TRUE ~ "keep")
     ) %>% 
   filter(removal_flag == "keep")
@@ -214,29 +221,29 @@ means_total_trees
 total_trees_plot <- means_total_trees %>% 
   ggplot(aes(x = Structural_Stage, y = total_trees, fill = SMR))+
   geom_bar(stat = "identity", width = 0.5, position = position_dodge())+
-  labs(subtitle = "Estimated Number of Wildlife Trees")+
+  labs(subtitle = "Estimated Number of Decaying Trees")+
   xlab(label = "Structural Stage") +
-  ylab(label = "Snag Density (# / 400m2) with 95% CI")+
+  ylab(label = "Decaying Tree Density (# / 400m2) with 95% CI")+
   geom_errorbar(aes(ymin = asymp.LCL, ymax = asymp.UCL), 
                 width = 0.05,
                 position = position_dodge(.5)
                 ) +
   theme_bw() +
   theme(axis.title=element_text(size=10))
-total_snags_plot
+total_trees_plot
 ```
 
-Interesting that the highest density is in young forest. Might logically think that older stands would have more dying trees. However this pattern could be explained by overall tree density: younger stands tend to have more stems than older stands. If we were estimating proportion of wildlife trees of all tree stems (living and dead), the pattern might be different. Might also expect that older stands have wildlife trees that are a larger diameter. This might have implications for cavity-nesters.
+Highest densities are in mesic sites and in young forest. Interesting that the highest density is in young forest. Might logically think that older stands would have more dying trees. However this pattern could be explained by overall tree density: younger stands tend to have more stems than older stands. If we were estimating proportion of wildlife trees of all tree stems (living and dead), the pattern might be different.
 
 ### Number of Decaying Deciduous Trees
 
-The above analysis all over again. Will not show all of the detail.
+The above analysis all over again. Will not show some of the detail.
 
 ```{r}
 # Using the summary data instead on this round.
-snag_dat_sum <- 
-  read_xlsx(here("cavity_trees", "dat", "snag_data.xlsx"), 
-                      sheet = "SN11_summary") %>% 
+tree_dat_sum <- 
+  read_xlsx(here("cavity_trees", "dat", "wildlife_tree_data.xlsx"), 
+                      sheet = "WT11_summary") %>% 
   mutate(Structural_Stage = case_when(
     Structural_Stage == "2" ~ "Herb",
     Structural_Stage == "3" ~ "Shrub",
@@ -250,28 +257,27 @@ snag_dat_sum <-
          Stand_Composition = factor(Stand_Composition),
          SMR = factor(SMR, levels = c("dry", "mesic", "moist", "wet"))
          )
-
 ```
 
 ```{r message=FALSE, warning=FALSE, paged.print=TRUE}
-snag_decid <- snag_dat_sum %>% 
-  dplyr::select(HabDat_ID:BHC, Conif_Tot:Snags_Total) %>% 
+tree_decid <- tree_dat_sum %>% 
+  dplyr::select(HabDat_ID:BHC, Conif_Tot:Trees_Total) %>% 
   filter(Structural_Stage != "Herb") %>% 
   droplevels() %>% 
   group_by(HabDat_ID, SMR, Stand_Composition, Structural_Stage) %>% 
   summarize(count_total = sum(Decid_Tot))
 
-hist(snag_decid$count_total)
+hist(tree_decid$count_total)
 ```
 
 ```{r message=FALSE, warning=FALSE}
 model_nb_full <- glm.nb(count_total ~ Structural_Stage + SMR + Stand_Composition, 
-                        data = snag_decid,
+                        data = tree_decid,
                         na.action = "na.fail")
 dredge(model_nb_full)
 ```
 
-Best model is the full model with SMR, Stand Composition and Structural Stage.
+Best model is the full model with SMR, stand composition and structural stage.
 
 Models with interactions were attempted but could not be fit. There are not enough samples in the various combinations of variables to model interactions.
 
@@ -279,7 +285,7 @@ Model summary, analysis of residuals and quick look at effects.
 
 ```{r paged.print=TRUE}
 model_nb <- glm.nb(count_total ~ Structural_Stage + Stand_Composition + SMR, 
-                        data = snag_decid)
+                        data = tree_decid)
 summary(model_nb)
 
 # Simulate residuals to check model fit. 
@@ -290,7 +296,11 @@ ae <- allEffects(model_nb)
 plot(ae)
 ```
 
-**Predict Deciduous Snag Density Means**
+**Estimation of Decaying Deciduous Tree Density**
+
+Estimation of deciduous decaying tree density by each combination of structural stage, SMR and Stand Composition.
+
+As before, combinations that have not been measured AND are not in the footprint (n=6) have been removed and do not show up in the plots.
 
 ```{r}
 means_total_decid <- emmeans(model_nb, specs = c( "SMR", "Structural_Stage", "Stand_Composition"), type = "response")
@@ -299,33 +309,29 @@ means_total_decid <- tidy(summary(means_total_decid)) %>%
   mutate(SMR = factor(SMR, levels = c("dry", "mesic", "moist", "wet")),
          Structural_Stage = factor(Structural_Stage, levels = c("Shrub", "P-S", "Young", "Mature", "Old"))
          ) %>% 
-  rename(total_snags = response)
-means_total_decid
-```
-
-```{r}
-means_total_decid <- means_total_decid %>% 
+  rename(total_trees = response) %>% 
   mutate(removal_flag = case_when(
     SMR == "wet" & Structural_Stage %in% c("Mature", "Old") ~ "not mapped in footprint",
-    SMR == "dry" & Structural_Stage == "Mature" ~ "not mapped in footprint",
+    SMR == "dry" & Structural_Stage == "Old" ~ "not mapped in footprint",
     TRUE ~ "keep")
     ) %>% 
   filter(removal_flag == "keep")
-write_csv(means_total_decid, here("cavity_trees", "out", "decid_snags_estimates.csv"))
-means_total_decid
+
+# Table not displayed. Uncomment below to 
+# means_total_decid
 ```
 
-Hard to visualize effect of three variables in two-dimensional plot. The plot is shown twice, one for deciduous stands and the second for coniferous stands.
+Hard to visualize effect of three variables in two-dimensional plot. The plot is shown twice, once for deciduous stands and the second for coniferous stands.
 
 ```{r}
 decid_snags_plot1 <- means_total_decid %>%
   filter(Stand_Composition == "decid") %>% 
-  ggplot(aes(x = Structural_Stage, y = total_snags, fill = SMR))+
+  ggplot(aes(x = Structural_Stage, y = total_trees, fill = SMR))+
   geom_bar(stat = "identity", width = 0.5, position = position_dodge())+
-  labs(subtitle = "Deciduous Snags in Deciduous Stands")+
+  labs(subtitle = "Deciduous Decaying Trees in\n Deciduous Stands")+
   coord_cartesian(ylim=c(0,5)) +
   xlab(label = "Structural Stage") +
-  ylab(label = "Decid Snag Density (# / 400m2) with 95% CI")+
+  ylab(label = "Density (# / 400m2) with 95% CI")+
   geom_errorbar(aes(ymin = asymp.LCL, ymax = asymp.UCL), 
                 width = 0.05,
                 position = position_dodge(.5)
@@ -335,12 +341,12 @@ decid_snags_plot1 <- means_total_decid %>%
 
 decid_snags_plot2 <- means_total_decid %>%
   filter(Stand_Composition == "conif") %>% 
-  ggplot(aes(x = Structural_Stage, y = total_snags, fill = SMR))+
+  ggplot(aes(x = Structural_Stage, y = total_trees, fill = SMR))+
   geom_bar(stat = "identity", width = 0.5, position = position_dodge())+
-  labs(subtitle = "Deciduous Snags in Coniferous Stands")+
+  labs(subtitle = "Deciduous Decaying Trees in\n Coniferous Stands")+
   coord_cartesian(ylim=c(0,5)) +
   xlab(label = "Structural Stage") +
-  ylab(label = "Decid Snag Density (# / 400m2) with 95% CI")+
+  ylab(label = "Density (# / 400m2) with 95% CI")+
   geom_errorbar(aes(ymin = asymp.LCL, ymax = asymp.UCL), 
                 width = 0.05,
                 position = position_dodge(.5)
@@ -358,13 +364,15 @@ x = dev.off()
 decid_snags_plot_both
 ```
 
-## Estimation for Entire Footprint
+## Extrapolation to Entire Footprint
 
-First bring in the footprint ecosystem summary calculations, summarize by SMR, Stand Composition and Structural Stage.
+The total number of decaying trees in the footprint can be estimated by multiplying the density estimates by the area mapped in the footprint and summing across all categories.
+
+First bring in the footprint ecosystem summary calculations and summarize by SMR, Stand Composition and Structural Stage.
 
 ```{r message=FALSE}
 footprint_eco <- 
-  read_xlsx(here("cavity_trees", "dat", "snag_data.xlsx"), 
+  read_xlsx(here("cavity_trees", "dat", "wildlife_tree_data.xlsx"), 
                       sheet = "Footprint_CEM_EU") %>% 
   rename(Structural_Stage = `Structural Stage`)
 
@@ -382,38 +390,25 @@ footprint_eco_sum <- footprint_eco %>%
   summarize(Area_Total = sum(`Total (ha)`))
 ```
 
-Total area of potential cavity nest habitat (shrub and forest) is:
-
-```{r}
-sum(footprint_eco_sum$Area_Total)
-```
-
-Estimated total number of snags in the footprint:
+Total area (hectares) of potential cavity nest habitat (shrub and forest) is: `r format(sum(footprint_eco_sum$Area_Total), 0)`
 
 ```{r message=FALSE, warning=FALSE}
-snag_total_detail <- footprint_eco_sum %>% 
+tree_total_detail <- footprint_eco_sum %>% 
   group_by(SMR, Structural_Stage) %>% 
   summarize(Area_Total = sum(Area_Total)) %>% 
-  left_join(means_total_snags) %>% 
-  mutate(snags_per_ha = total_snags / 400 * 10000,
-         footprint_snags = Area_Total * snags_per_ha) %>% 
-  dplyr::select(SMR, Structural_Stage, snags_per_ha, Area_Total, footprint_snags)
-snag_total_detail
+  left_join(means_total_trees, by = c("SMR", "Structural_Stage")) %>% 
+  mutate(trees_per_ha = total_trees / 400 * 10000,
+         footprint_trees = Area_Total * trees_per_ha,
+         LCL = asymp.LCL / 400 * 10000 * Area_Total,
+         UCL = asymp.UCL / 400 * 10000 * Area_Total) %>% 
+  dplyr::select(SMR, Structural_Stage, trees_per_ha, Area_Total, footprint_trees, LCL, UCL)
+tree_total_detail %>% 
+  kable(caption = "<strong>Table 3. Estimated number of decaying trees in footprint</strong>", digits = 1) %>% 
+  kable_styling(full_width = FALSE,
+                position = "left")
 ```
 
-**Total estimated number of snags lost to footprint:**
-
-```{r}
-sum(snag_total_detail$footprint_snags, na.rm = TRUE)
-```
-
-Confidence interval can estimated as well.
-
-**For discussion:** Note that this if for the entire footprint. The cavity nesting program plan refers to the reservoir. Is there a reason to do this calculation excluding transmission line?
-
-**Quick cross check:** The overall mean number of snags is \~50 / ha. If there are 8,000 ha of habitat that could have snags, then that would suggest 400,000 snags. The total estimate is higher than that. That is likely accounted for by the greater relative are of mesic sites in the footprint that also tend to have the highest snag density. So the estimate is not out of line.
-
-Same approach as above for deciduous snags. Code and detail not shown.
+**Total estimated number of decaying trees lost to footprint:** `r format(sum(tree_total_detail$footprint_trees, na.rm = TRUE), digits = 0)`
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 snag_total_detail <- footprint_eco_sum %>% 
@@ -431,9 +426,3 @@ snag_total_detail
 ```{r}
 sum(snag_total_detail$footprint_snags, na.rm = TRUE)
 ```
-
-# Cavity Estimation
-
-Is there anything in the literature that we can use to assume the number of cavities per snag?
-
-Could conservatively estimate an average of 1 per snag?
