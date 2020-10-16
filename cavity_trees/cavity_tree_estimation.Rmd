@@ -4,6 +4,7 @@ author: SEES JV (Tetra Tech/EcoLogic)
 date: 2020-09-02
 output: 
   html_notebook:
+    code_folding: hide
     toc: TRUE
     toc_float: TRUE
 ---
@@ -17,7 +18,7 @@ Snag data was collected at select locations as part of the Breeding Bird Follow-
 
 This document first describes the estimation of the number of snags per hectare for various stand types and then extrapolates to the entire Site C footprint.  
 
-**NOTE: The R code can be hidden using the pull-down menu in the top right.**  
+**NOTE: This document is an Rmarkdown notebook that includes R code, results, and text description. The R code is hidden by default. Individual blocks of code can be revealed using the "code" buttons wherever they occur. To show all code by default, use the pull-down menu in the top right.**  
 
 # Snag Density Estimation
 ## Snag Data

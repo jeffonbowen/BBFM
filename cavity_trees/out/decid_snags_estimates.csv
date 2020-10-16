@@ -1,4 +1,4 @@
-SMR,Structural_Stage,Stand_Composition,total_snags,std.error,df,asymp.LCL,asymp.UCL,removal_flag
+SMR,Structural_Stage,Stand_Composition,total_trees,std.error,df,asymp.LCL,asymp.UCL,removal_flag
 dry,Shrub,conif,0.6469622683512667,0.25952356174034186,Inf,0.2947314600958531,1.420140817454952,keep
 dry,P-S,conif,1.480170358153071,0.78980489098334,Inf,0.5201380405629698,4.212159308293761,keep
 dry,Young,conif,1.2883930762571725,0.5319336211478737,Inf,0.5736093941570305,2.893879939652789,keep

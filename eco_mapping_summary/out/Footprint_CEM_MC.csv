@@ -1,57 +1,56 @@
-Sort,BEC Variant,Ecosystem,Site Series,Site Series Name,Type,Dam,Reservoir,TL,Road,Quarry,Erosion Impact,Total
-1,BWBSmw1,AM,01,SwAt - Step moss,Forested Ecosystem,93.11,314.85,19.15,2.96,46.62,130.72,607.40
-2,BWBSmw1,LL,02,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystem,0.00,23.91,12.03,0.08,3.29,3.84,43.15
-3,BWBSmw1,SW,03,Sw - Wildrye – Peavine,Forested Ecosystem,15.35,134.98,20.23,2.30,35.18,106.89,314.93
-4,BWBSmw1,BL,04,Sb - Lingonberry - Coltsfoot,Forested Ecosystem,2.88,0.74,30.27,1.20,0.81,5.73,41.63
-5,BWBSmw1,SO,05,Sw - Currant - Oak fern,Forested Ecosystem,22.26,316.16,1.72,3.81,0.80,95.13,439.88
-6,BWBSmw1,SC,06,Sw - Currant – Bluebells,Forested Ecosystem,3.62,102.99,0.00,2.28,6.83,4.96,120.68
-7,BWBSmw1,SH,07,Sw - Currant – Horsetail,Forested Ecosystem,31.99,703.04,3.47,0.98,0.17,12.62,752.27
-8,BWBSmw1,Fm02,09,ActSw - Red-osier dogwood,Forested Ecosystem,82.90,1032.90,0.00,0.00,0.00,9.15,1124.95
-11,BWBSmw1,AM:ap,$01,$At - Creamy peavine,Forested Ecosystem,1036.28,871.09,268.67,15.58,142.13,270.57,2604.33
-12,BWBSmw1,LL:ak,$02,$At - Kinnikinnick,Forested Ecosystem,3.04,62.46,5.78,0.62,13.04,8.11,93.05
-13,BWBSmw1,SW:as,$03,$At - Soopolallie,Forested Ecosystem,122.77,108.58,27.12,6.27,5.01,88.99,358.74
-14,BWBSmw1,BL:al,$04,$At - Labrador tea,Forested Ecosystem,37.10,8.47,59.03,0.00,0.35,1.75,106.71
-15,BWBSmw1,SC:ab,$05,$At – Black Twinberry,Forested Ecosystem,5.10,54.97,5.81,1.09,0.00,63.09,130.07
-16,BWBSmw1,SC:ep,$05,$Ep – red-osier dogwood,Forested Ecosystem,6.03,41.07,0.43,0.00,0.00,22.01,69.53
-17,BWBSmw1,SH:ac,$07,$Ac – Cow parsnip,Forested Ecosystem,16.72,379.49,2.40,0.00,0.00,8.17,406.78
-18,BWBSmw1,SH:ep,$07,$Ep – Ep-Dogwood,Forested Ecosystem,0.00,1.37,0.28,0.00,0.00,0.00,1.65
-19,BWBSmw1,BT,08,Sb - Labrador tea – Sphagnum,Wetland Ecosystem,6.51,13.51,39.37,0.46,0.75,0.36,60.96
-20,BWBSmw1,TS,10,Tamarack - Sedge – Fen,Wetland Ecosystem,12.89,13.10,22.33,0.00,0.37,0.00,48.68
-21,BWBSmw1,SE,00,Sedge Wetland,Wetland Ecosystem,39.91,47.21,25.59,0.24,1.13,0.29,114.36
-22,BWBSmw1,WS,00,Willow – Sedge – Wetland,Wetland Ecosystem,3.13,27.71,13.18,0.00,0.00,0.00,44.01
-23,BWBSmw1,WH,00,Willow – Horsetail – Sedge – Riparian Wetland,Wetland Ecosystem,3.61,386.82,0.16,0.00,0.00,0.60,391.19
-24,BWBSmw1,AS,00,SwAt – Soopolallie,Shrubland Ecosystem,26.70,75.00,0.24,0.00,0.00,33.69,135.64
-25,BWBSmw1,WW,00,Fuzzy-spiked Wildrye – Wolf-willow,Grassland Ecosystem,48.11,86.91,5.02,0.00,0.00,75.61,215.65
-26,BWBSmw1,CB,-,Cutbank,Non-vegetated/Anthropogenic Ecosystems,39.18,167.57,0.16,0.00,0.00,102.45,309.37
-27,BWBSmw1,CF,-,Cultivated field,Non-vegetated/Anthropogenic Ecosystems,120.76,597.03,31.60,0.08,173.04,34.97,957.48
-28,BWBSmw1,ES,-,Exposed soil,Non-vegetated/Anthropogenic Ecosystems,1.21,4.36,0.31,0.00,0.00,3.82,9.69
-29,BWBSmw1,GB,-,Gravel bar,Non-vegetated/Anthropogenic Ecosystems,19.81,720.56,0.00,0.00,0.00,1.52,741.89
-30,BWBSmw1,GP,-,Gravel pit,Non-vegetated/Anthropogenic Ecosystems,0.00,6.49,0.00,0.00,4.23,3.07,13.79
-31,BWBSmw1,LA,-,Lake,Non-vegetated/Anthropogenic Ecosystems,0.00,0.00,0.15,0.00,0.00,0.00,0.15
-32,BWBSmw1,MI,-,Mine,Non-vegetated/Anthropogenic Ecosystems,25.06,0.00,0.00,0.00,0.00,0.00,25.06
-33,BWBSmw1,OW,-,Shallow open water,Non-vegetated/Anthropogenic Ecosystems,1.60,13.63,0.22,0.00,0.00,0.00,15.44
-34,BWBSmw1,PD,-,Pond,Non-vegetated/Anthropogenic Ecosystems,0.00,4.17,0.13,0.00,0.09,0.25,4.64
-36,BWBSmw1,RI,-,River,Non-vegetated/Anthropogenic Ecosystems,193.78,2833.78,0.05,0.00,0.00,3.75,3031.36
-37,BWBSmw1,RN,-,Railway,Non-vegetated/Anthropogenic Ecosystems,11.36,0.00,0.00,0.00,0.00,0.00,11.36
-38,BWBSmw1,RO,-,Rock,Non-vegetated/Anthropogenic Ecosystems,0.00,0.06,0.00,0.15,2.11,0.19,2.51
-39,BWBSmw1,RW,-,Rural,Non-vegetated/Anthropogenic Ecosystems,1.42,9.77,0.00,0.00,0.64,0.51,12.34
-41,BWBSmw1,RZ,-,Road surface,Non-vegetated/Anthropogenic Ecosystems,0.59,12.76,0.05,0.63,0.30,3.01,17.34
-42,BWBSmw1,UR,-,Urban,Non-vegetated/Anthropogenic Ecosystems,0.39,6.05,0.86,0.00,4.84,0.00,12.13
-101,BWBSwk1,SM,01,Sw - Huckleberry - Step moss,Forested Ecosystem,0.00,0.00,0.00,0.00,5.05,0.00,5.05
-102,BWBSwk1,SW,04,Sw - Wildrye - Peavine,Forested Ecosystem,0.00,0.00,0.00,0.33,50.14,0.00,50.47
-105,BWBSwk1,SC,05,Sw - Currant - Bluebells,Forested Ecosystem,0.00,0.00,0.00,0.00,4.60,0.00,4.60
-106,BWBSwk1,TA,-,Talus,Non-vegetated/Anthropogenic Ecosystems,0.00,0.00,0.00,0.00,0.50,0.00,0.50
-107,BWBSwk1,RO,-,Rock,Non-vegetated/Anthropogenic Ecosystems,0.00,0.00,0.00,0.00,2.35,0.00,2.35
-201,ESSFmv2,FR,01,Bl - Rhododendron - Feathermoss,Forested Ecosystem,0.00,0.00,0.00,0.00,2.83,0.00,2.83
-202,ESSFmv2,FL,02,Bl - Lingonberry,Forested Ecosystem,0.00,0.00,0.00,0.00,3.30,0.00,3.30
-301,SBSwk2,SO,01,Sxw - Oak fern,Forested Ecosystem,0.00,0.00,0.00,0.00,19.89,0.00,19.89
-302,SBSwk2,LH,02,Pl - Huckleberry - Cladina,Forested Ecosystem,0.00,0.00,0.00,0.00,25.27,0.00,25.27
-303,SBSwk2,SC,03,Sxw - Huckleberry - Highbush-cranberry,Forested Ecosystem,0.00,0.00,0.00,0.00,6.92,0.00,6.92
-304,SBSwk2,BF,04,SbPl - Feathermoss,Forested Ecosystem,0.00,0.00,0.00,0.00,30.20,0.00,30.20
-305,SBSwk2,SD,05,Sxw - Devil's club,Forested Ecosystem,0.00,0.00,0.00,0.00,6.73,0.00,6.73
-309,SBSwk2,Wf13,00,Narrow-leaved cotton-grass - Shore sedge,Wetland Ecosystem,0.00,0.00,0.00,0.00,0.34,0.00,0.34
-310,SBSwk2,GP,-,Gravel pit,Non-vegetated/Anthropogenic Ecosystems,0.00,0.00,0.00,0.00,11.25,0.00,11.25
-311,SBSwk2,RN,-,Railway,Non-vegetated/Anthropogenic Ecosystems,0.00,0.00,0.00,0.00,0.70,0.00,0.70
-312,SBSwk2,RZ,-,Road surface,Non-vegetated/Anthropogenic Ecosystems,0.00,0.00,0.00,0.00,0.17,0.00,0.17
-313,SBSwk2,RO,-,Rock,Non-vegetated/Anthropogenic Ecosystems,0.00,0.00,0.00,0.00,2.46,0.00,2.46
-Total,,,,,,2035.16,9183.56,595.81,39.08,614.46,1095.81,13563.89
+Sort,BEC Variant,Ecosystem,Site Series,Site Series Name,Type,Dam,Reservoir,TL,Hwy 29,Road,Quarry,Erosion Impact
+1,BWBSmw1,AM,01,SwAt - Step moss,Forested Ecosystems,59.550748999999996,314.8467029,19.1488266,6.3156061999999995,2.962407,45.6106539,130.7154712
+2,BWBSmw1,LL,02,Pl - Lingonberry - Velvet-leaved blueberry,Forested Ecosystems,NA,23.9132433,12.0290415,6.301371,0.0847822,3.2856034000000003,3.8398576999999996
+3,BWBSmw1,SW,03,Sw - Wildrye â€“ Peavine,Forested Ecosystems,13.464225,134.9773127,20.2287402,23.1724722,2.3044507999999997,35.1797719,106.8905844
+4,BWBSmw1,BL,04,Sb - Lingonberry - Coltsfoot,Forested Ecosystems,2.8182976,0.7426292000000001,30.2701316,0.003964,1.203127,0.792531,5.7329170000000005
+5,BWBSmw1,SO,05,Sw - Currant - Oak fern,Forested Ecosystems,22.24548,316.16420039999997,1.7171999999999998,1.6416758,3.807679,0.801079,95.1280477
+6,BWBSmw1,SC,06,Sw - Currant â€“ Bluebells,Forested Ecosystems,2.5771264,102.9917229,NA,3.7015991999999995,2.27839,6.830564,4.9628764
+7,BWBSmw1,SH,07,Sw - Currant â€“ Horsetail,Forested Ecosystems,28.1675308,703.0412478000001,3.4739063,1.126302,0.982823,0.16826560000000002,12.6159737
+8,BWBSmw1,Fm02,09,ActSw - Red-osier dogwood,Forested Ecosystems,66.7278403,1032.9014713,NA,9.079781,NA,NA,9.1469782
+11,BWBSmw1,AM:ap,$01,$At - Creamy peavine,Forested Ecosystems,649.1376051,871.0932926,268.6746613,76.4438825,15.5807979,139.0073722,270.5749899
+12,BWBSmw1,LL:ak,$02,$At - Kinnikinnick,Forested Ecosystems,3.037801,62.45747620000001,5.784897,NA,0.618659,13.041465500000001,8.105899
+13,BWBSmw1,SW:as,$03,$At - Soopolallie,Forested Ecosystems,94.8624537,108.5784762,27.1185217,12.7093781,6.2731665,5.012081500000001,88.9909948
+14,BWBSmw1,BL:al,$04,$At - Labrador tea,Forested Ecosystems,27.535580799999998,8.4705936,59.0329384,0.6253906,NA,0.0255436,1.75001
+15,BWBSmw1,SC:ab,$05,$At â€“ Black Twinberry,Forested Ecosystems,5.0996942,54.9702425,5.8085789,NA,1.0946556,NA,63.091853400000005
+16,BWBSmw1,SC:ep,$05,$Ep â€“ red-osier dogwood,Forested Ecosystems,6.0322468,41.0664589,0.42742430000000003,0.263422,NA,NA,22.0076933
+17,BWBSmw1,SH:ac,$07,$Ac â€“ Cow parsnip,Forested Ecosystems,15.6731186,379.4876919,2.4042352,3.100992,NA,NA,8.1727701
+18,BWBSmw1,SH:ep,$07,$Ep â€“ Ep-Dogwood,Forested Ecosystems,NA,1.374802,0.2783105,NA,NA,NA,NA
+19,BWBSmw1,BT,08,Sb - Labrador tea â€“ Sphagnum,Wetland Ecosystems,6.5115514999999995,13.514834800000001,39.368917700000004,NA,0.464897,0.7468087,0.356486
+20,BWBSmw1,TS,10,Tamarack - Sedge â€“ Fen,Wetland Ecosystems,10.9615584,13.0970539,22.327723500000005,NA,NA,0.36655440000000006,NA
+21,BWBSmw1,SE,00,Sedge Wetland,Wetland Ecosystems,31.2077443,47.207415600000004,25.5905801,NA,0.23614400000000002,1.1267944,0.289292
+22,BWBSmw1,WS,00,Willow â€“ Sedge â€“ Wetland,Wetland Ecosystems,2.0915388000000004,27.7094036,13.1754705,NA,NA,NA,NA
+23,BWBSmw1,WH,00,Willow â€“ Horsetail â€“ Sedge â€“ Riparian Wetland,Wetland Ecosystems,3.6057460000000003,386.8248657,0.1592696,1.3580324,NA,NA,0.602103
+24,BWBSmw1,AS,00,SwAt â€“ Soopolallie,Shrubland Ecosystems,14.0864063,75.0005818,0.24284319999999998,4.6087994000000005,NA,NA,33.6884425
+25,BWBSmw1,WW,00,Fuzzy-spiked Wildrye â€“ Wolf-willow,Grassland Ecosystems,43.2131976,86.9057798,5.0179561,23.072275,NA,NA,75.61289909999999
+26,BWBSmw1,CB,-,Cutbank,Non-vegetated/Anthropogenic Ecosystems,29.9561622,167.5705805,0.1614272,5.3589473000000005,NA,NA,102.4539091
+27,BWBSmw1,CF,-,Cultivated field,Non-vegetated/Anthropogenic Ecosystems,68.4748921,597.0303368,31.599860399999997,111.5161801,0.079054,73.73089470000001,34.966175099999994
+28,BWBSmw1,ES,-,Exposed soil,Non-vegetated/Anthropogenic Ecosystems,1.2057576,4.356910200000001,0.3090485,NA,NA,NA,3.816795
+29,BWBSmw1,GB,-,Gravel bar,Non-vegetated/Anthropogenic Ecosystems,19.8110993,720.5646682,NA,2.1543671,NA,NA,1.5181305
+30,BWBSmw1,GP,-,Gravel pit,Non-vegetated/Anthropogenic Ecosystems,NA,6.489754,NA,0.19616100000000003,NA,4.2304976000000005,3.0690885999999997
+31,BWBSmw1,LA,-,Lake,Water,NA,NA,0.152245,NA,NA,NA,NA
+32,BWBSmw1,MI,-,Mine,Non-vegetated/Anthropogenic Ecosystems,14.241691,NA,NA,NA,NA,NA,NA
+33,BWBSmw1,OW,-,Shallow open water,Wetland Ecosystems,1.584627,13.627818600000001,0.216543,NA,NA,NA,NA
+34,BWBSmw1,PD,-,Pond,Wetland Ecosystems,NA,4.167849400000001,0.13164499999999998,NA,NA,0.09163860000000001,0.2465892
+36,BWBSmw1,RI,-,River,Water,192.392227,2833.7800702,0.0522494,15.8403147,NA,NA,3.7528547
+37,BWBSmw1,RN,-,Railway,Non-vegetated/Anthropogenic Ecosystems,11.364748,NA,NA,NA,NA,NA,NA
+38,BWBSmw1,RO,-,Rock,Non-vegetated/Anthropogenic Ecosystems,NA,0.0599,NA,NA,0.14694,2.1121985,0.19164350000000002
+39,BWBSmw1,RW,-,Rural,Non-vegetated/Anthropogenic Ecosystems,1.416299,9.7729069,NA,1.0272596,NA,NA,0.5072655
+41,BWBSmw1,RZ,-,Road surface,Non-vegetated/Anthropogenic Ecosystems,0.5863096,12.7602556,0.0507488,13.0669818,0.629029,0.3037325,3.0148014
+42,BWBSmw1,UR,-,Urban,Non-vegetated/Anthropogenic Ecosystems,0.166821,6.0457659999999995,0.8591344999999999,NA,NA,0.002066,NA
+101,BWBSwk1,SM,01,Sw - Huckleberry - Step moss,Forested Ecosystems,NA,NA,NA,NA,NA,5.050092,NA
+102,BWBSwk1,SW,04,Sw - Wildrye - Peavine,Forested Ecosystems,NA,NA,NA,NA,0.33176,50.14190609999999,NA
+105,BWBSwk1,SC,05,Sw - Currant - Bluebells,Forested Ecosystems,NA,NA,NA,NA,NA,4.600214,NA
+106,BWBSwk1,TA,-,Talus,Non-vegetated/Anthropogenic Ecosystems,NA,NA,NA,NA,NA,0.5009278,NA
+107,BWBSwk1,RO,-,Rock,Non-vegetated/Anthropogenic Ecosystems,NA,NA,NA,NA,NA,2.3468551,NA
+201,ESSFmv2,FR,01,Bl - Rhododendron - Feathermoss,Forested Ecosystems,NA,NA,NA,NA,NA,2.8317503000000004,NA
+202,ESSFmv2,FL,02,Bl - Lingonberry,Forested Ecosystems,NA,NA,NA,NA,NA,3.3010997,NA
+301,SBSwk2,SO,01,Sxw - Oak fern,Forested Ecosystems,NA,NA,NA,NA,NA,19.8944274,NA
+302,SBSwk2,LH,02,Pl - Huckleberry - Cladina,Forested Ecosystems,NA,NA,NA,NA,NA,25.2731596,NA
+303,SBSwk2,SC,03,Sxw - Huckleberry - Highbush-cranberry,Forested Ecosystems,NA,NA,NA,NA,NA,6.924727,NA
+304,SBSwk2,BF,04,SbPl - Feathermoss,Forested Ecosystems,NA,NA,NA,NA,NA,30.2007302,NA
+305,SBSwk2,SD,05,Sxw - Devil's club,Forested Ecosystems,NA,NA,NA,NA,NA,6.733273,NA
+309,SBSwk2,Wf13,00,Narrow-leaved cotton-grass - Shore sedge,Wetland Ecosystems,NA,NA,NA,NA,NA,0.3442596,NA
+310,SBSwk2,GP,-,Gravel pit,Non-vegetated/Anthropogenic Ecosystems,NA,NA,NA,NA,NA,11.247688,NA
+311,SBSwk2,RN,-,Railway,Non-vegetated/Anthropogenic Ecosystems,NA,NA,NA,NA,NA,0.6993208000000001,NA
+312,SBSwk2,RZ,-,Road surface,Non-vegetated/Anthropogenic Ecosystems,NA,NA,NA,NA,NA,0.17483020000000002,NA
+313,SBSwk2,RO,-,Rock,Non-vegetated/Anthropogenic Ecosystems,NA,NA,NA,NA,NA,2.4647362,NA

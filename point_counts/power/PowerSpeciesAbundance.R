@@ -1,4 +1,4 @@
-# Power Analysis Using Exsting Data
+# Power Analysis Using Existing Data
 
 # This is a replacement for the Rmd version. 
 
@@ -7,8 +7,6 @@
 # Would also like to do simulation with 75 and 100 statons per year. Need to figure that out.
 
 ## Generate Offset ----
-
-rm(list = ls()) 
 
 library(tidyverse)
 library(ggplot2)
