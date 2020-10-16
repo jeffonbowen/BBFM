@@ -17,7 +17,7 @@ library(lubridate)
 # Set some nicer names for variables regularly used.
 # Get rid of variables that will not be used in any analysis, just for cleaner tables.
 
-stations <- read_excel("Songbirds/Data/Songto2019data.xlsx", "Stations") %>% 
+stations <- read_excel("point_counts/data/Songto2019data.xlsx", "Stations") %>% 
   rename(StationID = 'Sample Station Label',
          Easting = `Easting Sample Station`,
          Northing = `Northing Sample Station`) %>%
@@ -26,7 +26,8 @@ stations <- read_excel("Songbirds/Data/Songto2019data.xlsx", "Stations") %>%
          -c(`Sample Station Photos`, `Sample Station Comments`,
             `UTM Zone Sample Station`, `Survey Name`, Station))
 
-surveys <- read_excel("Songbirds/Data/Songto2019data.xlsx", "Surveys") %>% 
+# Warnings are ok. They are for variables/fields that arnet used.
+surveys <- read_excel("point_counts/data/Songto2019data.xlsx", "Surveys") %>% 
   rename(StationID = 'Sample Station Label') %>% 
   select(StationID, Visit, Date, Time, SurveyDuration) %>% 
   mutate(Date = as_date(Date), 
