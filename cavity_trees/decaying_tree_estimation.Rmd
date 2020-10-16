@@ -56,7 +56,6 @@ library(tidyverse)
 library(readxl)
 library(kableExtra)
 library(vcd)
-library(MASS)
 library(visreg)
 library(MuMIn) 
 library(effects)
@@ -214,7 +213,8 @@ means_total_trees <- tidy(summary(means_total_trees)) %>%
     ) %>% 
   filter(removal_flag == "keep")
 write_csv(means_total_trees, here("cavity_trees", "out", "total_trees_estimates.csv"))
-means_total_trees
+# Table not shown. Uncomment and run again to show.
+# means_total_trees
 ```
 
 ```{r}
@@ -277,9 +277,7 @@ model_nb_full <- glm.nb(count_total ~ Structural_Stage + SMR + Stand_Composition
 dredge(model_nb_full)
 ```
 
-Best model is the full model with SMR, stand composition and structural stage.
-
-Models with interactions were attempted but could not be fit. There are not enough samples in the various combinations of variables to model interactions.
+Best model is the full model with SMR, stand composition and structural stage. Models with interactions were attempted but could not be fit. There are not enough samples in the various combinations of variables to model interactions.
 
 Model summary, analysis of residuals and quick look at effects.
 
@@ -408,21 +406,28 @@ tree_total_detail %>%
                 position = "left")
 ```
 
-**Total estimated number of decaying trees lost to footprint:** `r format(sum(tree_total_detail$footprint_trees, na.rm = TRUE), digits = 0)`
+**Total estimated number of decaying trees in footprint:** `r format(sum(tree_total_detail$footprint_trees, na.rm = TRUE), digits = 0)`  
+**Lower Confidence Limit:** `r format(sum(tree_total_detail$LCL, na.rm = TRUE), digits = 0)`  
+**Upper Confidence Limit:** `r format(sum(tree_total_detail$UCL, na.rm = TRUE), digits = 0)`  
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-snag_total_detail <- footprint_eco_sum %>% 
+decid_total_detail <- footprint_eco_sum %>% 
   group_by(SMR, Stand_Composition, Structural_Stage) %>% 
   summarize(Area_Total = sum(Area_Total)) %>% 
   left_join(means_total_decid) %>% 
-  mutate(snags_per_ha = total_snags / 400 * 10000,
-         footprint_snags = Area_Total * snags_per_ha) %>% 
-  dplyr::select(SMR, Structural_Stage, snags_per_ha, Area_Total, footprint_snags)
-snag_total_detail
+  mutate(trees_per_ha = total_trees / 400 * 10000,
+         footprint_trees = Area_Total * trees_per_ha,
+         LCL = asymp.LCL / 400 * 10000 * Area_Total,
+         UCL = asymp.UCL / 400 * 10000 * Area_Total) %>% 
+  dplyr::select(SMR, Structural_Stage, trees_per_ha, Area_Total, footprint_trees, LCL, UCL)
+decid_total_detail  %>% 
+  kable(caption = "<strong>Table 4. Estimated number of deciduous decaying trees in footprint</strong>", digits = 1) %>% 
+  kable_styling(full_width = FALSE,
+                position = "left")
 ```
 
-**Estimated total number of deciduous snags in the footprint:**
+**Total estimated number of decaying deciduous trees in footprint:** `r format(sum(decid_total_detail$footprint_trees, na.rm = TRUE), digits = 0)`  
+**Lower Confidence Limit:** `r format(sum(decid_total_detail$LCL, na.rm = TRUE), digits = 0)`  
+**Upper Confidence Limit:** `r format(sum(decid_total_detail$UCL, na.rm = TRUE), digits = 0)`  
 
-```{r}
-sum(snag_total_detail$footprint_snags, na.rm = TRUE)
-```
