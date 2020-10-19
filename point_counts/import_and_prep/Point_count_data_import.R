@@ -26,10 +26,6 @@ stations <- read_excel("point_counts/data/Songto2019data.xlsx", "Stations") %>%
          -c(`Sample Station Photos`, `Sample Station Comments`,
             `UTM Zone Sample Station`, `Survey Name`, Station))
 
-<<<<<<< HEAD:point_counts/import_and_prep/Point-count-data-import.R
-# Warnings are ok. They are for variables/fields that arnet used.
-=======
->>>>>>> bf2d466a2324656cce9acafbd45a0d400a3bf406:point_counts/import_and_prep/Point_count_data_import.R
 surveys <- read_excel("point_counts/data/Songto2019data.xlsx", "Surveys") %>% 
   rename(StationID = 'Sample Station Label') %>% 
   select(StationID, Visit, Date, Time, SurveyDuration) %>% 
