@@ -5,18 +5,14 @@ output:
     toc: TRUE
 ---
 
-Exploration of bird community metrics using Site C bird point count survey data.  
+Exploration of bird community metrics using Site C bird point count survey data.
 
-What do I want to do?
-1. Some basic data summaries
-2. Species richness and diversity
-3. Expected diversity using rarefaction 
-4. Community structure exploration using ordination and cluster analysis
-5. Indicator species analysis
-
+What do I want to do? 1. Some basic data summaries 2. Species richness and diversity 3. Expected diversity using rarefaction 4. Community structure exploration using ordination and cluster analysis 5. Indicator species analysis
 
 # Import Data
-Import the tidied raw songbird station and observation data. 
+
+Import the tidied raw songbird station and observation data.
+
 ```{r Import}
 # Run the script that imports raw stations, surveys and observation data from Excel and does quick check. The QA results are not shown in this notebook. 
 
@@ -24,16 +20,16 @@ source("point_counts/import_and_prep/point_count_data_import.R")
 ```
 
 # Species Richness by Number of Surveys in a Season
-Cumulative number of species with each successtive survey.
-Then take mean.
+
+Cumulative number of species with each successtive survey. Then take mean.
 
 One problem with cumulative count is that surveys get added togethor and cannot account for survey level differences, only station-level differences.
 
-An alternative could be to use number of new species detected instead of richness. I think that might allow for inclusion of survey-level covariates. This could be an intersting comparison. 
+An alternative could be to use number of new species detected instead of richness. I think that might allow for inclusion of survey-level covariates. This could be an intersting comparison.
 
-Is there perhaps a third way using the method of Chao(?) and rarefaction? Perhpas reconsider this later. 
+Is there perhaps a third way using the method of Chao(?) and rarefaction? Perhpas reconsider this later.
 
-Does habtiat need be accounted for? Yes, because there will be a difference in number of samples by habitat. Or is that true? Would be good to do at least  Forest/Open as there may be a difference in detectibility.
+Does habitat need be accounted for? Yes, because there will be a difference in number of samples by habitat. Or is that true? Would be good to do at least Forest/Open as there may be a difference in detectibility.
 
 ```{r Richness by Surveys Data Prep}
 # Create a data table with species obs standardized to 5 minutes in order to use  
@@ -50,7 +46,7 @@ obs.5min <- obs %>%
 # Clean up
   select(StationID, Visit, SpCode, Count, Count5min)
 
-# Add a flag to to each record to indicate if t should be included in the total
+# Add a flag to to each record to indicate if it should be included in the total
 # visit summary. 
 MaxVisits <- obs.5min %>% 
   group_by(StationID) %>% 
@@ -94,7 +90,8 @@ levels(VisitDat$Visits)
 rm(OneVisit, TwoVisit, ThreeVisit, FourVisit, FiveVisit)
 rm(MaxVisits)
 ```
-```{r Fit Model}
+
+```{r Fit Model, paged.print=TRUE}
 
 library(lme4)                 # GLMMs
 library(MASS)     # For glm.nb. Alternative if glmmTMB
@@ -105,25 +102,36 @@ library(MuMIn)    # model selection
 library(vcd)      # Fits a discrete (count data) distribution for goodness-of-fit.
 library(broom)
 library(broom.mixed)          # Tidy regression tables
+```
 
-
+```{r}
 # Quick visualization
 boxplot(Richness ~ Visits, dat = VisitDat)
 # Violonplot not as goot but here it is.
 ggplot(VisitDat, aes(x = Visits, y = Richness, fill = Visits)) +
   geom_violin()
+```
 
-# GLM to account for survey differences. Can account for year and habitat. 
-# Can't account for survey timing within a year becasue data is pooled.  
+GLM to account for survey differences. Can account for year and habitat. Can't account for survey timing within a year because data is pooled.
+
+```{r}
 survey_covtemp <- survey_cov %>% filter(Visit == 1)
 dat <- VisitDat %>% 
   left_join(survey_covtemp, by = "StationID") %>% 
   mutate(BHC20 = BHC20_100) %>% 
   left_join(BHClookup, by = "BHC20")
+```
 
-# Step 1. Check distribution
+Step 1. Check distribution
+
+```{r}
 hist(dat$Richness)
-# Package VCD is good for assessing distribution of discrete variables and count data. 
+```
+
+Package VCD is good for assessing distribution of discrete variables and count data.\
+Data fits a negative binomial distribtion.
+
+```{r paged.print=TRUE}
 fit.p <- goodfit(dat$Richness, type = "poisson")
 summary(fit.p)
 rootogram(fit.p)
@@ -134,33 +142,22 @@ fit.nb <- goodfit(dat$Richness, type = "nbinomial")
 summary(fit.nb)
 rootogram(fit.nb)
 
-fit.x <- goodfit(dat$Richness, type = c("poisson", "binomial", "nbinomial"))
-summary(fit.x)
-rootogram(fit.x)
+```
 
-
+```{r}
 m1 <- glm.nb(Richness ~ Visits, dat = dat)
-summary(m1)
 m2 <- glm.nb(Richness ~ Visits + MonYear, dat = dat)
-summary(m2)
 m3 <- glm.nb(Richness ~ Visits + BHC7 + MonYear, dat = dat)
-summary(m3)
 m4 <- glm.nb(Richness ~ Visits + ForestOpen + MonYear, dat = dat)
-summary(m4)
 
 model.sel(m1, m2, m3, m4)
 
 bestmod <- m3
+```
 
+```{r}
 
-m.full <- glm.nb(Richness ~ Visits + BHC7 + ForestOpen + MonYear, dat = dat)
-summary(m3)
-x <- dredge(m.full)
-x
-y <- tidy(x)
-
-
-library(visreg)       # What does this do?
+library(visreg)       # Effect plots
 visreg(bestmod)
 
 # Plot all effects
@@ -169,52 +166,32 @@ plot(ae, residuals="TRUE")
 ae
 
 # Or plot individual effects
-e <- predictorEffect("BHC7", bestmod)
+e <- predictorEffect("Visits", bestmod)
 plot(e)
+```
 
-# Examine Residuals for Gaussian
-qqnorm(residuals(bestmod))
-qqline(residuals(bestmod))
-plot(bestmod,MonYear~resid(.))
+Check the residuals.
 
+```{r}
 # For other model distributions, use DHARMAa (simulation)
 res <- simulateResiduals(fittedModel = bestmod)
 plot(res)
 
-testDispersion(res)
+```
 
-# Test for overdispersion
-deviance(bestmod)/df.residual(bestmod)
-# or
-overdisp_fun <- function(model) {
-  rdf <- df.residual(model)
-  rp <- residuals(model,type="pearson")
-  Pearson.chisq <- sum(rp^2)
-  prat <- Pearson.chisq/rdf
-  pval <- pchisq(Pearson.chisq, df=rdf, lower.tail=FALSE)
-  c(chisq=Pearson.chisq,ratio=prat,rdf=rdf,p=pval)
-}
-overdisp_fun(bestmod)
-
+```{r}
 library(broom)
 tidy(m3)
 glance(m3)
 augment(m3)
 ```
 
-
 # Effect of Survey Duration
+
 Use the 10 min survey data (2017 onward) and calculate richness for 0-5 and 0-10.
 
 # Species Richness and Diversity
 
-
 ```{r}
-plot(cars)
+
 ```
-
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
-
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
-
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

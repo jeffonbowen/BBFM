@@ -56,9 +56,11 @@ survey_cov <- surveys %>%
 
 # Add Easting and then rescale (centre on mean).
 survey_cov <- survey_cov %>% 
-  left_join(select(stations, StationID, Easting), by = "StationID") %>% 
-  mutate(EastWest = scale(Easting)) %>% 
-  select(-Easting)    # Clean up intermediate variables.   
+  left_join(select(stations, StationID, Easting), by = "StationID")
+# Scale needs a matrix and not a data frame.
+survey_cov$EastWest <- scale(survey_cov$Easting)
+# Clean up intermediate variables.
+survey_cov <- survey_cov %>% select(-Easting)   
 
 # Remove sunrise table since we are done with it. 
 rm(sunrise)

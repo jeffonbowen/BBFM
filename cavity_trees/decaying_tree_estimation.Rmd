@@ -1,7 +1,7 @@
 ---
 title: "Estimation of Decaying Trees"
 author: SEES JV (Tetra Tech/EcoLogic)
-date: 2020-10-08
+date: 2020-10-19
 output: 
   html_notebook:
     code_folding: hide
@@ -16,7 +16,7 @@ options(scipen = 999)
 
 # Introduction
 
-The loss of suitable trees for birds that nest in cavities of decaying trees (cavity-nesters) may be relevant for the Site C offset accounting framework. Data on decaying trees was collected at select locations as part of habitat data collection for the Breeding Bird Follow-up Monitoring program. Decaying trees are often referred to as "wildlife trees" in BC and that term is used to refer to the data that was collected. The wildlife tree data can be used to estimate the density of decaying trees by habitat type and then extrapolated to the entire project footprint using ecosystem mapping data.
+The loss of suitable trees for birds that nest in cavities of decaying trees (cavity-nesters) may be relevant for the Site C offset accounting framework. Data on decaying trees were collected at select locations as part of habitat data collection for the Breeding Bird Follow-up Monitoring program. Decaying trees are often referred to as "wildlife trees" in BC and that term is used to refer to the data that were collected. The wildlife tree data were used to estimate the density of decaying trees by habitat type and then extrapolated to the entire project footprint using ecosystem mapping data.
 
 This document first describes the estimation of the number of decaying trees per hectare for various habitat types and then extrapolates to the entire Site C footprint to generate an estimate of the total number of decaying trees that may be lost to the project.
 
@@ -26,15 +26,13 @@ This document first describes the estimation of the number of decaying trees per
 
 Two types of wildlife tree data were collected.
 
-**WT50**\
-Approximate total number of live decaying trees and dead standing trees \>15cm dbh within 50m of plot centre. Trees were not identified to species. Data was collected at all bird survey locations 2017-2019 (459 locations.
+**WT50 -** This dataset includes the approximate total number of wildlife trees (live decaying trees and dead standing trees) greater than 15 cm diameter at breast height (d.b.h.) within 50m of plot centre. Trees were not identified to species. Data were collected at all bird survey locations in 2017, 2018 and 2019 (459 locations).
 
-**WT11**\
-Wildlife trees \>15cm dbh by species and decay class within 11.3m of station centre. 11.3m radius is the area of a SIVI plot ($400m^2$) . This was only collected in 2018 and 2019 at woodpecker survey stations (318 locations), so there are fewer locations than WT50.
+**WT11 -** This dataset includes the approximate total number of wildlife trees greater than 15 cm d.b.h. by species and decay class within 11.3 m of plot centre (400m2). This dataset was collected in 2018 and 2019 at woodpecker survey stations (318 locations), so there are fewer locations than the WT50 dataset.
 
-The WT11 data will be better for this exercise: the wildlife counts are more accurate and for the same plot area that the ecosystem unit was identified.
+The WT11 dataset was used in the analyses described below because the tree counts have higher accuracy than the WT11 dataset and are for the same plot area that the ecosystem unit was identified.
 
-Wildlife trees were classified according to species and by the decay classes listed below. The SN11 data does not include class 1 (live tree with no decay).
+Wildlife trees were classified according to species and by the decay classes listed below. The SN11 dataset does not include class 1 (live tree with no decay).
 
 **Wildlife tree decay classes:**\
 ![](images/wildlife_tree_classes.png)
@@ -47,7 +45,7 @@ Ecosystem classification and vegetation data were collected at each location tha
 
 ## Setup and Data Preparation
 
-All data is in "wildlife\_tree\_data.xlsx".
+All data is in the accompanying file "wildlife\_tree\_data.xlsx".
 
 ```{r message=FALSE, warning=FALSE}
 # Required Packages
@@ -55,6 +53,7 @@ library(here)
 library(tidyverse)
 library(readxl)
 library(kableExtra)
+library(MASS)
 library(vcd)
 library(visreg)
 library(MuMIn) 
@@ -64,7 +63,7 @@ library(emmeans)
 library(broom)
 library(ggpubr)
 
-# Read and prepare data
+# Read and prepare data.
 # Replace structural stage numbers with labels.
 # "P-S" is Pole-sapling.
 tree_dat <- 
@@ -115,7 +114,7 @@ tree_dat %>%
 
 ### Descriptive Stats
 
-Boxplots below show (from inside out): median, first and third quartiles, minimum and maximum and outliers.
+The boxplots below show (from inside out): median, first and third quartiles, minimum and maximum and outliers.
 
 ```{r message=FALSE}
 tree_dat %>% 
@@ -141,9 +140,11 @@ tree_dat %>%
 
 ## Model
 
-Two models: one for total number of decaying trees (both conifers and deciduous) and a second just for deciduous decaying trees.
+Regression analysis was used to estimate the mean density of decaying trees.
 
-### Total Number of Decaying Trees
+### Number of Decaying Trees
+
+The analysis below is for both coniferous and deciduous trees.
 
 ```{r message=FALSE, warning=FALSE, paged.print=TRUE}
 # Sum trees of all decay classes for each station.
@@ -163,7 +164,7 @@ fit_nbinom <- goodfit(tree_total$count_total, type = "nbinomial")
 rootogram(fit_nbinom)
 ```
 
-GLM with negative binomial distribution was used. Model equations with all possible variations of the three explanatory variables were fit. Table below shows ranking of each model by AICc.
+GLM with a negative binomial distribution was used. Model equations with all possible variations of the three explanatory variables were fit. The table below shows ranking of each model by AICc.
 
 ```{r}
 model_nb_full <- glm.nb(count_total ~ Structural_Stage + SMR + Stand_Composition, 
@@ -172,12 +173,11 @@ model_nb_full <- glm.nb(count_total ~ Structural_Stage + SMR + Stand_Composition
 dredge(model_nb_full)
 ```
 
-Best model has SMR and structural stage. Though not very different from model with all three variables. It appears that stand composition has little influence on total number of decaying trees.
+The model with the lowest AICc has SMR and structural stage, though not very different from the model with all three variables. It appears that stand composition has little influence on total number of decaying trees.
 
-Models with interactions were attempted but could not be fit. There are not enough samples in the various combinations of variables to model interactions.
+Models with interactions were attempted but could not be fit because there are not enough samples in the various combinations of variables to model interactions.
 
-**Best Model: Structural Stage and SMR**\
-The outputs below provide a summary of the best model, analysis of residuals and quick look at effects.
+The outputs below provide a summary of the selected model, analysis of residuals and effects plots.
 
 ```{r paged.print=TRUE}
 model_nb <- glm.nb(count_total ~ Structural_Stage + SMR, 
@@ -194,9 +194,9 @@ plot(ae)
 
 **Estimation of Decaying Tree Density**
 
-Estimation of decaying tree density by each combination of structural stage and SMR.
+Decaying tree density was estimated for each combination of SMR and structural stage.
 
-Some of the combinations of SMR and Structural Stage do not exist, either in the wildlife tree data or as mapped ecosystems in the footprint (n = 3). So that we don't waste time on trying to interpret patterns for these cases that have not been measured AND are not in the footprint, they have been removed and do not show up in the plots.
+Some of the combinations of SMR and structural stage do not exist, either in the wildlife tree data or as mapped ecosystems in the footprint (n = 3). So that we don't waste time on trying to interpret patterns for these cases that have not been measured AND are not in the footprint, they have been removed and do not show up in the plots.
 
 ```{r}
 means_total_trees <- emmeans(model_nb, specs = c( "SMR", "Structural_Stage"), type = "response")
@@ -233,11 +233,11 @@ total_trees_plot <- means_total_trees %>%
 total_trees_plot
 ```
 
-Highest densities are in mesic sites and in young forest. Interesting that the highest density is in young forest. Might logically think that older stands would have more dying trees. However this pattern could be explained by overall tree density: younger stands tend to have more stems than older stands. If we were estimating proportion of wildlife trees of all tree stems (living and dead), the pattern might be different.
+The highest estimated densities are in mesic sites and in young forest. It is interesting that the highest density is in young forest. Might logically think that older stands would have more dying trees. However this pattern could be explained by overall tree density: younger stands tend to have more stems than older stands. If we were estimating proportion of wildlife trees of all tree stems (living and dead), the pattern might be different.
 
 ### Number of Decaying Deciduous Trees
 
-The above analysis all over again. Will not show some of the detail.
+The section is the same analysis as completed, except fir decaying deciduous trees only.
 
 ```{r}
 # Using the summary data instead on this round.
@@ -277,9 +277,9 @@ model_nb_full <- glm.nb(count_total ~ Structural_Stage + SMR + Stand_Composition
 dredge(model_nb_full)
 ```
 
-Best model is the full model with SMR, stand composition and structural stage. Models with interactions were attempted but could not be fit. There are not enough samples in the various combinations of variables to model interactions.
+The model with the lowest AICc is the full model with SMR, stand composition and structural stage. Models with interactions were attempted but could not be fit as there are not enough samples in the various combinations of variables to model interactions.
 
-Model summary, analysis of residuals and quick look at effects.
+Model summary, analysis of residuals and quick look at effects are shown below.
 
 ```{r paged.print=TRUE}
 model_nb <- glm.nb(count_total ~ Structural_Stage + Stand_Composition + SMR, 
@@ -296,7 +296,7 @@ plot(ae)
 
 **Estimation of Decaying Deciduous Tree Density**
 
-Estimation of deciduous decaying tree density by each combination of structural stage, SMR and Stand Composition.
+Decaying deciduous tree density was estimated for each combination of SMR, structural stage and stand composition.
 
 As before, combinations that have not been measured AND are not in the footprint (n=6) have been removed and do not show up in the plots.
 
@@ -319,7 +319,7 @@ means_total_decid <- tidy(summary(means_total_decid)) %>%
 # means_total_decid
 ```
 
-Hard to visualize effect of three variables in two-dimensional plot. The plot is shown twice, once for deciduous stands and the second for coniferous stands.
+It is hard to visualize the effect of three variables in a two-dimensional plot. The plot is shown twice, once for deciduous stands and the second for coniferous stands.
 
 ```{r}
 decid_snags_plot1 <- means_total_decid %>%
@@ -366,7 +366,7 @@ decid_snags_plot_both
 
 The total number of decaying trees in the footprint can be estimated by multiplying the density estimates by the area mapped in the footprint and summing across all categories.
 
-First bring in the footprint ecosystem summary calculations and summarize by SMR, Stand Composition and Structural Stage.
+The first step was to bring in the footprint ecosystem summary calculations and summarize area by SMR and structural stage for all trees and by SMR, stand composition and structural stage for deciduous trees only.
 
 ```{r message=FALSE}
 footprint_eco <- 
@@ -388,7 +388,7 @@ footprint_eco_sum <- footprint_eco %>%
   summarize(Area_Total = sum(`Total (ha)`))
 ```
 
-Total area (hectares) of potential cavity nest habitat (shrub and forest) is: `r format(sum(footprint_eco_sum$Area_Total), 0)`
+The total area (hectares) of potential cavity nest habitat (shrub and forest) is: `r format(sum(footprint_eco_sum$Area_Total), 0)`
 
 ```{r message=FALSE, warning=FALSE}
 tree_total_detail <- footprint_eco_sum %>% 
@@ -406,10 +406,9 @@ tree_total_detail %>%
                 position = "left")
 ```
 
-**Total estimated number of decaying trees in footprint:** `r format(sum(tree_total_detail$footprint_trees, na.rm = TRUE), digits = 0)`  
-**Lower Confidence Limit:** `r format(sum(tree_total_detail$LCL, na.rm = TRUE), digits = 0)`  
-**Upper Confidence Limit:** `r format(sum(tree_total_detail$UCL, na.rm = TRUE), digits = 0)`  
-
+**Total estimated number of decaying trees in footprint:** `r format(sum(tree_total_detail$footprint_trees, na.rm = TRUE), digits = 0)`\
+**Lower Confidence Limit:** `r format(sum(tree_total_detail$LCL, na.rm = TRUE), digits = 0)`\
+**Upper Confidence Limit:** `r format(sum(tree_total_detail$UCL, na.rm = TRUE), digits = 0)`
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 decid_total_detail <- footprint_eco_sum %>% 
@@ -427,7 +426,6 @@ decid_total_detail  %>%
                 position = "left")
 ```
 
-**Total estimated number of decaying deciduous trees in footprint:** `r format(sum(decid_total_detail$footprint_trees, na.rm = TRUE), digits = 0)`  
-**Lower Confidence Limit:** `r format(sum(decid_total_detail$LCL, na.rm = TRUE), digits = 0)`  
-**Upper Confidence Limit:** `r format(sum(decid_total_detail$UCL, na.rm = TRUE), digits = 0)`  
-
+**Total estimated number of decaying deciduous trees in footprint:** `r format(sum(decid_total_detail$footprint_trees, na.rm = TRUE), digits = 0)`\
+**Lower Confidence Limit:** `r format(sum(decid_total_detail$LCL, na.rm = TRUE), digits = 0)`\
+**Upper Confidence Limit:** `r format(sum(decid_total_detail$UCL, na.rm = TRUE), digits = 0)`
