@@ -1,5 +1,5 @@
 ---
-title: "Community Analysis Using Site C Bird Data"
+title: "Site C Point Count Data: Diversity Analyses"
 output:
   html_notebook:
     toc: TRUE
@@ -7,188 +7,22 @@ output:
 
 Exploration of bird community metrics using Site C bird point count survey data.
 
-What do I want to do? 1. Some basic data summaries 2. Species richness and diversity 3. Expected diversity using rarefaction 4. Community structure exploration using ordination and cluster analysis 5. Indicator species analysis
+What do I want to do?  
+1. Some basic data summaries  
+2. Species richness and diversity  
+3. Expected diversity using rarefaction  
+4. Community structure exploration using ordination and cluster analysis  
+5. Indicator species analysis  
 
 # Import Data
-
 Import the tidied raw songbird station and observation data.
 
 ```{r Import}
 # Run the script that imports raw stations, surveys and observation data from Excel and does quick check. The QA results are not shown in this notebook. 
 
+# This is not working
 source("point_counts/import_and_prep/point_count_data_import.R")
 ```
-
-# Species Richness by Number of Surveys in a Season
-
-Cumulative number of species with each successtive survey. Then take mean.
-
-One problem with cumulative count is that surveys get added togethor and cannot account for survey level differences, only station-level differences.
-
-An alternative could be to use number of new species detected instead of richness. I think that might allow for inclusion of survey-level covariates. This could be an intersting comparison.
-
-Is there perhaps a third way using the method of Chao(?) and rarefaction? Perhpas reconsider this later.
-
-Does habitat need be accounted for? Yes, because there will be a difference in number of samples by habitat. Or is that true? Would be good to do at least Forest/Open as there may be a difference in detectibility.
-
-```{r Richness by Surveys Data Prep}
-# Create a data table with species obs standardized to 5 minutes in order to use  
-# alldata going back to 2006.
-obs.5min <- obs %>% 
-  left_join(surveys, by = c("StationID", "Visit")) %>% 
-# To use all data, use 5 min counts for all stations to standardize.
-  mutate(Count5min = ifelse(is.na(`Count 5 min`) == FALSE,
-                          `Count 5 min`,
-                          `Count 0-3 min` + `Count 3-5 min`)) %>% 
-# Filter for songbirds only
-  left_join(BCbirds, "SpCode") %>% 
-  filter(IsSongbird == TRUE) %>% 
-# Clean up
-  select(StationID, Visit, SpCode, Count, Count5min)
-
-# Add a flag to to each record to indicate if it should be included in the total
-# visit summary. 
-MaxVisits <- obs.5min %>% 
-  group_by(StationID) %>% 
-  summarize(MaxVisits = max(Visit)) 
-obs.5min <- obs.5min %>% 
-  left_join(MaxVisits, by = "StationID") %>% 
-# There are some records with counts of 0 from 10-min surveys and the species was
-# not observed in the first 5 minutes.These need to be removed.
-  filter(Count5min != "0")
-
-OneVisit <- obs.5min %>%  
-  filter(Visit == 1) %>% 
-  group_by(StationID) %>% 
-  summarize(Richness = length(unique(SpCode))) %>% 
-  mutate(Visits = "After One Visit")
-TwoVisit <- obs.5min %>%  
-  filter(Visit %in% c(1,2),  MaxVisits > 1) %>% 
-  group_by(StationID) %>% 
-  summarize(Richness = length(unique(SpCode))) %>% 
-  mutate(Visits = "After Two Visits")
-ThreeVisit <- obs.5min %>%  
-  filter(Visit %in% c(1,2,3),  MaxVisits > 2) %>% 
-  group_by(StationID) %>% 
-  summarize(Richness = length(unique(SpCode))) %>% 
-  mutate(Visits = "After Three Visits")
-FourVisit <- obs.5min %>%  
-  filter(Visit %in% c(1,2,2,4),  MaxVisits > 3) %>% 
-  group_by(StationID) %>% 
-  summarize(Richness = length(unique(SpCode))) %>% 
-  mutate(Visits = "After Four Visits")
-FiveVisit <- obs.5min %>%  
-  filter(Visit %in% c(1,2,2,4,5),  MaxVisits > 4) %>% 
-  group_by(StationID) %>% 
-  summarize(Richness = length(unique(SpCode))) %>% 
-  mutate(Visits = "After Five Visits")
-VisitDat <- bind_rows(OneVisit, TwoVisit, ThreeVisit, FourVisit, FiveVisit) %>% 
-  select(StationID, Visits, Richness) %>% 
-  mutate(Visits = factor(Visits, levels = c("After One Visit", "After Two Visits", "After Three Visits", "After Four Visits", "After Five Visits")))
-levels(VisitDat$Visits)
-# Cleanup intermediarte files
-rm(OneVisit, TwoVisit, ThreeVisit, FourVisit, FiveVisit)
-rm(MaxVisits)
-```
-
-```{r Fit Model, paged.print=TRUE}
-
-library(lme4)                 # GLMMs
-library(MASS)     # For glm.nb. Alternative if glmmTMB
-library(emmeans)              # for estiamting marginal means
-library(DHARMa)               # Analysis of residuals for mixed models. By simulation.
-library(effects)              # Also estimating means
-library(MuMIn)    # model selection
-library(vcd)      # Fits a discrete (count data) distribution for goodness-of-fit.
-library(broom)
-library(broom.mixed)          # Tidy regression tables
-```
-
-```{r}
-# Quick visualization
-boxplot(Richness ~ Visits, dat = VisitDat)
-# Violonplot not as goot but here it is.
-ggplot(VisitDat, aes(x = Visits, y = Richness, fill = Visits)) +
-  geom_violin()
-```
-
-GLM to account for survey differences. Can account for year and habitat. Can't account for survey timing within a year because data is pooled.
-
-```{r}
-survey_covtemp <- survey_cov %>% filter(Visit == 1)
-dat <- VisitDat %>% 
-  left_join(survey_covtemp, by = "StationID") %>% 
-  mutate(BHC20 = BHC20_100) %>% 
-  left_join(BHClookup, by = "BHC20")
-```
-
-Step 1. Check distribution
-
-```{r}
-hist(dat$Richness)
-```
-
-Package VCD is good for assessing distribution of discrete variables and count data.\
-Data fits a negative binomial distribtion.
-
-```{r paged.print=TRUE}
-fit.p <- goodfit(dat$Richness, type = "poisson")
-summary(fit.p)
-rootogram(fit.p)
-fit.b <- goodfit(dat$Richness, type = "binomial")
-summary(fit.b)
-rootogram(fit.b)
-fit.nb <- goodfit(dat$Richness, type = "nbinomial")
-summary(fit.nb)
-rootogram(fit.nb)
-
-```
-
-```{r}
-m1 <- glm.nb(Richness ~ Visits, dat = dat)
-m2 <- glm.nb(Richness ~ Visits + MonYear, dat = dat)
-m3 <- glm.nb(Richness ~ Visits + BHC7 + MonYear, dat = dat)
-m4 <- glm.nb(Richness ~ Visits + ForestOpen + MonYear, dat = dat)
-
-model.sel(m1, m2, m3, m4)
-
-bestmod <- m3
-```
-
-```{r}
-
-library(visreg)       # Effect plots
-visreg(bestmod)
-
-# Plot all effects
-ae <- allEffects(bestmod)
-plot(ae, residuals="TRUE")
-ae
-
-# Or plot individual effects
-e <- predictorEffect("Visits", bestmod)
-plot(e)
-```
-
-Check the residuals.
-
-```{r}
-# For other model distributions, use DHARMAa (simulation)
-res <- simulateResiduals(fittedModel = bestmod)
-plot(res)
-
-```
-
-```{r}
-library(broom)
-tidy(m3)
-glance(m3)
-augment(m3)
-```
-
-# Effect of Survey Duration
-
-Use the 10 min survey data (2017 onward) and calculate richness for 0-5 and 0-10.
 
 # Species Richness and Diversity
 
