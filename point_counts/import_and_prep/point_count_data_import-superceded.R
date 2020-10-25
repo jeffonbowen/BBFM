@@ -3,12 +3,12 @@
 ########################################################
 
 # This script is for import, tidy and quality assurance checks of the survey data.
-# Environment data is also imported for analytical use. It might not all be 
-# needed for a given analysis, but it is ready to go when needed. 
+
 
 library(tidyverse)
 library(readxl)
 library(lubridate)
+library(skimr)
 
 ## Read and tidy data ----
 
@@ -37,7 +37,12 @@ date(surveys$Time) <- date(surveys$Date)
 # These variables can be created now and to be used later.
 # Year, TSSR, YDAY, DSLS
   
-obs <- read_excel("point_counts/data_raw/Songto2019data.xlsx", "Observations", na = "NA") %>% 
+obs <- read_excel("point_counts/data_raw/Songto2019data.xlsx", "Observations",
+                  col_types = c("text", "numeric", "numeric", "text", "numeric", "numeric", 
+                                "numeric", "numeric", "numeric", "text", "text",
+                                "text", "text", "numeric", "numeric", "text", 
+                                "numeric", "text", "numeric", "numeric"),
+                  na = "NA") %>% 
   rename(StationID = 'Sample Station Label', SpCode = Species) %>% 
   select(StationID, Visit, SpCode, `Count 5 min`, `Count 0-3 min`, `Count 3-5 min`, 
          `Count 5-10 min`, Count, `Distance Category`) %>% 
@@ -161,4 +166,56 @@ qa <- surveys %>%
          survey = "x") %>% 
   pivot_wider(id_cols = StationID, names_from = Visit, values_from = survey)
 
+
+## Create wide format ----
+
+# Prepare Data
+
+-   Will use the 5 minute count column.
+
+-   Since some survey years were fixed radius and some unlimited, select only the obs =\< 100.
+
+-   Filter for songbirds only.
+
+-   Then reformat data to wide format for use in vegan: samples by species.
+
+-   To make the wide matrix, it is necessary to join up with the survey data. This is because there were some surveys with no species detections and therefore the surveys are not in the observations.
+
+Filter for songbirds only and then pivot wider:
+  
+  ```{r message=FALSE}
+# Make list of songbirds to filter data on.
+song_list <- BCbirds %>%
+  filter(IsSongbird == TRUE)
+song_list <-song_list$SpCode
+
+# Filter
+songbirds_wide <- obs %>% 
+  filter(SpCode %in% song_list) %>% 
+  filter(`Distance Category` != ">100") %>%
+  group_by(StationID, Visit, SpCode) %>% 
+  summarize(count = sum(`Count 5 min`)) %>% 
+  pivot_wider(id_cols = c("StationID", "Visit"), 
+              names_from = "SpCode",
+              values_from = "count",
+              values_fill = 0) %>% 
+  select(sort(names(.))) %>% 
+  select(StationID, Visit, everything())
+```
+
+Join to survey data to pick up the extra stations that had no observations.
+
+```{r}
+
+temp <- full_join(songbirds_wide, surveys, by = c("StationID", "Visit")) %>% 
+  filter(is.na(StationID))
+temp
+
+
+
+
+# Will need this later
+replace(is.na(.), 0)
+
+```
 

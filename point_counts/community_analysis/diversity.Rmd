@@ -1,30 +1,106 @@
 ---
-title: "Site C Point Count Data: Diversity Analyses"
+title: "Site C Point Count Data: Songbird Diversity Analyses"
 output:
   html_notebook:
     toc: TRUE
+    toc_float: TRUE
 ---
 
 Exploration of bird community metrics using Site C bird point count survey data.
 
-What do I want to do?  
-1. Some basic data summaries  
-2. Species richness and diversity  
-3. Expected diversity using rarefaction  
-4. Community structure exploration using ordination and cluster analysis  
-5. Indicator species analysis  
+What do I want to do?\
+-Species richness and diversity\
+-Expected diversity using rarefaction\
+-Community structure exploration using ordination and cluster analysis\
+-Indicator species analysis
 
-# Import Data
-Import the tidied raw songbird station and observation data.
+# Setup
+
+```{r}
+# Packages
+library(tidyverse)
+library(vegan)
+library(indicspecies)         # Indicator species analysis
+
+```
+
+Import the tidied raw songbird station and observation data, if no already in memory.
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+options(scipen = 999)
+```
+
+# Import
 
 ```{r Import}
 # Run the script that imports raw stations, surveys and observation data from Excel and does quick check. The QA results are not shown in this notebook. 
 
-# This is not working
+# This is not working. Not sure why.
 source("point_counts/import_and_prep/point_count_data_import.R")
 ```
 
+# Approach
+
+Need to determine how repeated samples will be dealt with.
+
+For patterns of species richness, want to use sample (survey) and use site (station) as random effect. That is clear.
+
+But what about other community analysis about composition, like sp accumulation and ordination? Could roll up surveys to station. The problem with this approach is that there are differnt number of surveys per station and any roll-up would introduce an effort bias. I think samples (surveys) must be used for all analyses.
+
+# Prepare Data
+
+-   Will use the 5 minute count column.
+
+-   Since some survey years were fixed radius and some unlimited, select only the obs =\< 100.
+
+-   Filter for songbirds only.
+
+-   Then reformat data to wide format for use in vegan: samples by species.
+
+-   To make the wide matrix, it is necessary to join up with the survey data. This is because there were some surveys with no species detections and therefore the surveys are not in the observations.
+
+Filter for songbirds only and then pivot wider:
+
+```{r message=FALSE}
+# Make list of songbirds to filter data on.
+song_list <- BCbirds %>%
+  filter(IsSongbird == TRUE)
+song_list <-song_list$SpCode
+
+# Filter
+songbirds_wide <- obs %>% 
+  filter(SpCode %in% song_list) %>% 
+  filter(`Distance Category` != ">100") %>%
+  group_by(StationID, Visit, SpCode) %>% 
+  summarize(count = sum(`Count 5 min`)) %>% 
+  pivot_wider(id_cols = c("StationID", "Visit"), 
+              names_from = "SpCode",
+              values_from = "count",
+              values_fill = 0) %>% 
+  select(sort(names(.))) %>% 
+  select(StationID, Visit, everything())
+```
+
+Join to survey data to pick up the extra stations that had no observations.
+
+```{r}
+
+temp <- full_join(songbirds_wide, surveys, by = c("StationID", "Visit")) %>% 
+  filter(is.na(StationID))
+temp
+
+
+
+
+# Will need this later
+replace(is.na(.), 0)
+
+```
+
 # Species Richness and Diversity
+
+Questions:
 
 ```{r}
 

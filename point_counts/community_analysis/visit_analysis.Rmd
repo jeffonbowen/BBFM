@@ -21,13 +21,13 @@ source("point_counts/import_and_prep/point_count_data_import.R")
 
 # Species Richness by Number of Surveys in a Season
 
-Cumulative number of species with each successtive survey. Then take mean.
+Cumulative number of species with each successive survey. Then take mean.
 
-One problem with cumulative count is that surveys get added togethor and cannot account for survey level differences, only station-level differences.
+One problem with cumulative count is that surveys get added together and cannot account for survey level differences, only station-level differences.
 
-An alternative could be to use number of new species detected instead of richness. I think that might allow for inclusion of survey-level covariates. This could be an intersting comparison.
+An alternative could be to use number of new species detected instead of richness. I think that might allow for inclusion of survey-level covariates. This could be an interesting comparison.
 
-Is there perhaps a third way using the method of Chao(?) and rarefaction? Perhpas reconsider this later.
+Is there perhaps a third way using the method of Chao(?) and rarefaction? Perhaps reconsider this later.
 
 Does habitat need be accounted for? Yes, because there will be a difference in number of samples by habitat. Or is that true? Would be good to do at least Forest/Open as there may be a difference in detectibility.
 
