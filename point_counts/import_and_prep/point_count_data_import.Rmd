@@ -8,15 +8,20 @@ output:
 
 This script is for import, tidy and quality assurance checks of the survey data.
 
+To keep referential integrity, it seems best to join the three tables (stations, surveys and obs).
+
+QA That way the visits can be properly renumbered (although that really only matter for the visit analysis)
+
 # Setup
 
-```{r}
+```{r message=FALSE}
 # Packages
 library(tidyverse)
 library(readxl)
 library(lubridate)
 library(skimr)
 library(here)
+library(kableExtra)
 
 ```
 
@@ -27,10 +32,12 @@ options(scipen = 999)
 
 # Read and tidy data
 
-The data imported below is a copy of the master data file that is located in the project sp site. Make sure it is up to date. Set some nicer names for variables regularly used. Get rid of variables that will not be used in any analysis, just for cleaner tables.
+The data imported below is a copy of the master data file that is located in the project Sharepoint site. Make sure it is up to date.
+
+Set some nicer names for variables regularly used. Get rid of variables that will not be used in any analysis, just for cleaner tables.
 
 ```{r message=FALSE, warning=FALSE}
-stations <- read_excel(here("point_counts", "data_raw", "Songto2019data.xlsx"), "Stations") %>% 
+stations <- read_excel(here("point_counts", "data_raw", "Songto2020data.xlsx"), "Stations") %>% 
   rename(StationID = 'Sample Station Label',
          Easting = `Easting Sample Station`,
          Northing = `Northing Sample Station`) %>%
@@ -39,7 +46,8 @@ stations <- read_excel(here("point_counts", "data_raw", "Songto2019data.xlsx"), 
          -c(`Sample Station Photos`, `Sample Station Comments`,
             `UTM Zone Sample Station`, `Survey Name`, Station))
 
-surveys <- read_excel(here("point_counts", "data_raw", "Songto2019data.xlsx"), "Surveys") %>% 
+surveys <- read_excel(here("point_counts", "data_raw", "Songto2020data.xlsx"), 
+                      "Surveys") %>% 
   rename(StationID = 'Sample Station Label') %>% 
   select(StationID, Visit, Date, Time, SurveyDuration) %>% 
   mutate(Date = as_date(Date), 
@@ -50,27 +58,44 @@ date(surveys$Time) <- date(surveys$Date)
 # These variables can be created now and to be used later.
 # Year, TSSR, YDAY, DSLS
 
-obs <- read_excel(here("point_counts", "data_raw", "Songto2019data.xlsx"), "Observations",
-                  col_types = c("text", "numeric", "text", "text", "numeric", "numeric", "numeric", "numeric", "numeric", "text", "text",
-"text", "text", "numeric", "numeric", "text", "guess", "guess", "guess", "guess"),
+obs <- read_excel(here("point_counts", "data_raw", "Songto2020data.xlsx"), 
+                  "Observations",
+                  col_types = c("text", "numeric", "text", "numeric", "text", "numeric",
+                                "numeric", "numeric", "numeric", "numeric", 
+                                "text", "text", "text", "text", "numeric", 
+                                "numeric", "text", "guess", "guess", "guess", 
+                                "guess", "guess"),
                   na = "NA") %>% 
   rename(StationID = 'Sample Station Label', SpCode = Species) %>% 
-  select(StationID, Visit, SpCode, `Count 5 min`, `Count 0-3 min`, `Count 3-5 min`, 
-         `Count 5-10 min`, Count, `Distance Category`) %>% 
+  select(StationID, Visit, SpCode, `Count 5 min`, `Count 0-3 min`, `Count 3-5 min`,          `Count 5-10 min`, Count, `Distance Category`, Flyovers) %>% 
   filter(str_detect(SpCode, "B-U", negate = TRUE)) # Clear out the unknowns
 
 # Bring in the BC Bird list from BC Species and Ecosystem Explorer
-BCbirds <- read_excel(here("point_counts", "data_raw", "Songto2019data.xlsx"), "BC_Bird_List")
+BCbirds <- read_excel(here("point_counts", "data_raw", "Songto2019data.xlsx"), 
+                      "BC_Bird_List")
 BCbirds <- BCbirds %>% 
   select(ID, `English Name`, `Scientific Name`, `Species Code`, Order, 
          `BC List`, COSEWIC, SARA) %>% 
   rename(SpCode = "Species Code") %>% 
-  mutate(IsSongbird = ifelse(Order %in% c("Columbiformes", "Caprimulgiformes", "Piciformes", "Passeriformes"), TRUE, FALSE))
+  mutate(IsSongbird = ifelse(Order %in% c("Columbiformes", "Caprimulgiformes", 
+                                          "Piciformes", "Passeriformes"), 
+                             TRUE, 
+                             FALSE))
 ```
 
 # Check for Errors
 
-Check for duplicates in stations$StationID ```f3175f2a-e8a0-4436-be12-b33925b6d220 31b8e172-b470-440e-83d8-e6b185028602:dAB5AHAAZQA6AFoAZwBBAHoAQQBEAEUAQQBOAHcAQQAxAEEARwBZAEEATQBnAEIAaABBAEMAMABBAFoAUQBBADQAQQBHAEUAQQBNAEEAQQB0AEEARABRAEEATgBBAEEAegBBAEQAWQBBAEwAUQBCAGkAQQBHAFUAQQBNAFEAQQB5AEEAQwAwAEEAWQBnAEEAegBBAEQATQBBAE8AUQBBAHkAQQBEAFUAQQBZAGcAQQAyAEEARwBRAEEATQBnAEEAeQBBAEQAQQBBAAoAcABvAHMAaQB0AGkAbwBuADoATQBnAEEANQBBAEQASQBBAE4AZwBBAD0ACgBwAHIAZQBmAGkAeAA6AAoAcwBvAHUAcgBjAGUAOgBZAEEAQgBnAEEARwBBAEEAZQB3AEIAeQBBAEgAMABBAEMAZwBCAHoAQQBIAFEAQQBZAFEAQgAwAEEARwBrAEEAYgB3AEIAdQBBAEgATQBBAEkAQQBBAGwAQQBEADQAQQBKAFEAQQBnAEEAQQBvAEEASQBBAEEAZwBBAEcATQBBAGIAdwBCADEAQQBHADQAQQBkAEEAQQBvAEEARgBNAEEAZABBAEIAaABBAEgAUQBBAGEAUQBCAHYAQQBHADQAQQBTAFEAQgBFAEEAQwBrAEEASQBBAEEAbABBAEQANABBAEoAUQBBAGcAQQBBAG8AQQBJAEEAQQBnAEEARwBZAEEAYQBRAEIAcwBBAEgAUQBBAFoAUQBCAHkAQQBDAGcAQQBiAGcAQQArAEEARABFAEEASwBRAEEASwBBAEcAQQBBAFkAQQBCAGcAQQBBAD0APQAKAHMAdQBmAGYAaQB4ADoA:31b8e172-b470-440e-83d8-e6b185028602 ``` Check for duplicates in surveys$StationID & Visit Note: There are some duplicates in 2011 data. Need to fix (2020-06-29).
+Check for duplicates in stations\$StationID.
+
+```{r}
+stations %>% 
+  count(StationID) %>% 
+  filter(n>1)
+```
+
+Check for duplicates in surveys\$StationID & Visit.
+
+Note: There are some duplicates in 2011 data. Need to fix (2020-06-29).
 
 ```{r}
 surveys %>% 
@@ -92,6 +117,8 @@ StationID_match %>% filter(is.na(Visit))
 
 Now check for match for StationID between 'surveys' and 'obs'. Note that stations and surveys must be clean before this is useful.
 
+For the second "test", surveys that had no observations will also be listed.
+
 ```{r}
 StationID_match <- surveys %>% 
   full_join(obs, by = c("StationID", "Visit"))
@@ -103,6 +130,8 @@ StationID_match %>% filter(is.na(SpCode))
 ```
 
 Validate species codes in obs table.
+
+NONE is used to indicate a survey with no observations.
 
 ```{r}
 obs %>% 
@@ -128,53 +157,31 @@ stations %>%
   geom_point()
 ```
 
-Check number of surveys per station per year
+Summary by number of visits.
 
-```{r paged.print=TRUE}
-table(surveys$Visit, year(surveys$Date))
-# This is a tidyverse way of creating frequency tables. 
-# Longer but good for exporting or further analysis. 
-surveys %>% 
-  group_by(Visit, Year = year(Date)) %>% 
-  summarize(Frequency = n()) %>% 
-  pivot_wider(Visit, names_from = Year, values_from = Frequency) %>% 
-  replace(is.na(.), 0)  # Could also use mutate with ifelse instead.
-```
-
-The Visit numbering is not correct for all stations. In general it doesn't matter for other analyses but it does for the analysis of the number of surveys. The script below does a proper re-numbering.
-
-```{r}
-surveys <- surveys %>% 
-  select(StationID, Date, Time, Visit,SurveyDuration) %>% 
-  arrange(StationID, Date) %>% 
-  group_by(StationID) %>% 
-  mutate(Visit = row_number())
-```
-
-The above approach just counts visit numbers, which is ok for QA, but not for reporting. Below is an approach to displaying by number of visits.
-
-```{r}
-s.tmp <- surveys %>% 
-  count(StationID, Year = year(Date), name  = "Visits") %>% 
+```{r message=FALSE}
+visit_sum <- surveys %>% 
+  group_by(StationID, Year = year(Date)) %>% 
+  summarize(Visits = n()) %>% 
+  mutate(Visits = as_factor(Visits)) %>% 
   group_by(Year, Visits) %>% 
-  summarize(Count = n())
+  summarize("Number of Locations" = n())
 
-```
+# Make a summary table
+visit_sum %>% 
+  pivot_wider(id_cols = "Visits", 
+              names_from = "Year", 
+              values_from = "Number of Locations") %>% 
+  replace(is.na(.), 0) %>% 
+  kable()
 
-Table for presentation
-
-```{r}
-s.tmp %>% 
-  pivot_wider(id_cols = "Visits", names_from = "Year", values_from = "Count") %>% 
-  replace(is.na(.), 0)
 # Plot for presentation
-s.tmp %>% 
-  ggplot(aes(x = as.character(Year), y = Count, 
-             fill = fct_rev(factor(Visits)))) +
+visit_sum %>% 
+  ggplot(aes(x = as.character(Year), y = `Number of Locations`,
+             fill = Visits)) +
   geom_bar(stat = "identity") +
-  scale_fill_brewer(palette="reds") +
-  xlab("Year") +
-  labs(fill='# of Visits')
+#  scale_fill_brewer(palette="reds") +
+  xlab("Year")
 ```
 
 ```{r paged.print=TRUE}
@@ -189,25 +196,22 @@ table(obs$Count)
 table(obs$`Distance Category`)
 ```
 
-Some extra QA on surveys. Check visits.
+Clean up temp files before next step.
 
 ```{r}
-qa <- surveys %>% 
-  select(StationID, Visit) %>% 
-  mutate(Visit = factor(as.character(`Visit`)),
-         survey = "x") %>% 
-  pivot_wider(id_cols = StationID, names_from = Visit, values_from = survey)
+rm(StationID_match)
+rm(visit_sum)
 ```
 
 # Create Wide Format
 
 -   Need to create two versions:
 
-    -   Total count (regardless of survey duration), for use with QPAD or other analyses that can account for differing durations.
+    -   Total count (regardless of survey duration), for use with QPAD or other analyses that can account for differing durations among surveys.
 
-    -   Count in 5 minutes.
+    -   Count in 5 minutes. This standardizes to 5 mins for analyses when accounting for differing durations is difficult.
 
--   Since some survey years were fixed radius and some unlimited, select only the obs =\< 100.
+-   Since some survey years were fixed radius and some unlimited, must select only the obs =\< 100 when using data for all years. If using the 2016 onward data, can use unlimited.
 
 -   Filter for songbirds only.
 
@@ -224,12 +228,45 @@ song_list <-song_list$SpCode
 
 ```
 
+Create the filter list of obs.
+
+```{r}
+
+obs_filter_wide <- obs %>% 
+  left_join(surveys, by = c("StationID", "Visit")) %>% 
+  rowwise() %>% 
+  mutate(count5 = 
+           case_when(year(Date) > 2016 ~ sum(c(`Count 0-3 min`, `Count 3-5 min`),
+                                             na.rm = TRUE),
+                     TRUE ~ `Count 5 min`)) %>% 
+  filter(`Distance Category` != ">100") %>%
+  filter(SpCode %in% song_list) %>% 
+  filter(is.na(Flyovers)) %>% 
+  group_by(StationID, Visit, SpCode) %>% 
+  summarise(count5 = sum(count5)) %>% 
+  pivot_wider(names_from = "SpCode", values_from = count5, values_fill = 0)
+    
+  
+```
+
+Create full dataset by joining all tables and then pivot wider.
+
+```{r}
+alldat_long <- obs_filter %>% 
+  inner_join(surveys, by = c("StationID", "Visit"))
+
+%>% 
+  left_join(stations, by = "StationID")
+
+```
+
+Filter data for songbirds, less than 100m and calculate 5-min counts.
+
+get rid of flyovers as well
 
 ```{r}
 # Filter
-songbirds_wide <- obs %>% 
-filter(SpCode %in% song_list) %>% 
-filter(`Distance Category` != ">100") %>%
+
 group_by(StationID, Visit, SpCode) %>% 
 summarize(count = sum(`Count 5 min`)) %>% 
 pivot_wider(id_cols = c("StationID", "Visit"), 
@@ -244,11 +281,10 @@ Join to survey data to pick up the extra stations that had no observations.
 
 ```{r}
 
-temp <- full_join(songbirds_wide, surveys, by = c("StationID", "Visit")) %>% 
-  filter(is.na(StationID))
+temp <- left_join(surveys, songbirds_wide, by = c("StationID", "Visit")) 
 temp
 
-
+## *** Problem. Surveys were renumberd? and now dont join
 
 
 # Will need this later
