@@ -10,7 +10,7 @@ This script is for import, tidy and quality assurance checks of the survey data.
 
 To keep referential integrity, it seems best to join the three tables (stations, surveys and obs).
 
-QA That way the visits can be properly renumbered (although that really only matter for the visit analysis)
+That way the visits can be properly renumbered (although that really only matter for the visit analysis)
 
 # Setup
 
@@ -26,7 +26,7 @@ library(kableExtra)
 ```
 
 ```{r global_options, include=FALSE}
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(message = FALSE)
 options(scipen = 999)
 ```
 
@@ -72,8 +72,7 @@ obs <- read_excel(here("point_counts", "data_raw", "Songto2020data.xlsx"),
 
 # Bring in the BC Bird list from BC Species and Ecosystem Explorer
 BCbirds <- read_excel(here("point_counts", "data_raw", "Songto2019data.xlsx"), 
-                      "BC_Bird_List")
-BCbirds <- BCbirds %>% 
+                      "BC_Bird_List") %>% 
   select(ID, `English Name`, `Scientific Name`, `Species Code`, Order, 
          `BC List`, COSEWIC, SARA) %>% 
   rename(SpCode = "Species Code") %>% 
@@ -81,9 +80,10 @@ BCbirds <- BCbirds %>%
                                           "Piciformes", "Passeriformes"), 
                              TRUE, 
                              FALSE))
+
 ```
 
-# Check for Errors
+# Check for errors
 
 Check for duplicates in stations\$StationID.
 
@@ -196,22 +196,15 @@ table(obs$Count)
 table(obs$`Distance Category`)
 ```
 
-Clean up temp files before next step.
-
-```{r}
-rm(StationID_match)
-rm(visit_sum)
-```
-
-# Create Wide Format
+# Create wide format
 
 -   Need to create two versions:
 
     -   Total count (regardless of survey duration), for use with QPAD or other analyses that can account for differing durations among surveys.
 
-    -   Count in 5 minutes. This standardizes to 5 mins for analyses when accounting for differing durations is difficult.
+    -   Count in 5 minutes. This standardizes to 5 mins for analyses when accounting for durations is difficult.
 
--   Since some survey years were fixed radius and some unlimited, must select only the obs =\< 100 when using data for all years. If using the 2016 onward data, can use unlimited.
+-   Since some survey years were fixed radius and some unlimited, must select only the obs =\< 100 when using data for all years. If using the 2016 onward data, can use unlimited (data not produced in this script).
 
 -   Filter for songbirds only.
 
@@ -228,11 +221,37 @@ song_list <-song_list$SpCode
 
 ```
 
-Create the filter list of obs.
+Create the filtered list of obs. Files written to 'data\_processed' so that subsequent analyses can load the data without running the scripts here.
 
-```{r}
+For all duration data:
 
-obs_filter_wide <- obs %>% 
+```{r message=FALSE}
+song_wide <- obs %>% 
+  left_join(surveys, by = c("StationID", "Visit")) %>% 
+  filter(`Distance Category` != ">100") %>%
+  filter(SpCode %in% song_list) %>% 
+  filter(is.na(Flyovers)) %>% 
+  group_by(StationID, Visit, SpCode) %>% 
+  summarise(count = sum(Count)) %>% 
+  pivot_wider(names_from = "SpCode", values_from = count, values_fill = 0) %>% 
+  select(sort(names(.))) %>% 
+  select(StationID, Visit, everything()) %>% 
+  full_join(surveys, by = c("StationID", "Visit")) %>% 
+  left_join(stations, by = "StationID") %>%
+  select(StationID, Visit, Year, Footprint, `Mitigation Property`, Valley,
+         ValleyUpstPine, ValleyUpstDam, BBFM_ID, 
+         Easting, Northing, Longitude, Latitude, BHC20, Date, Time,
+         SurveyDuration, `B-ALFL`:`B-YRWA`) %>% 
+  replace(is.na(.), 0) %>% 
+  arrange(StationID)
+
+write_csv(song_wide, here("point_counts", "data_processed", "song_wide.csv"))
+```
+
+For the 5-min counts:
+
+```{r message=FALSE}
+song_wide_5min <- obs %>% 
   left_join(surveys, by = c("StationID", "Visit")) %>% 
   rowwise() %>% 
   mutate(count5 = 
@@ -243,59 +262,28 @@ obs_filter_wide <- obs %>%
   filter(SpCode %in% song_list) %>% 
   filter(is.na(Flyovers)) %>% 
   group_by(StationID, Visit, SpCode) %>% 
-  summarise(count5 = sum(count5)) %>% 
-  pivot_wider(names_from = "SpCode", values_from = count5, values_fill = 0)
+  summarise(count = sum(count5)) %>% 
+  pivot_wider(names_from = "SpCode", values_from = count, values_fill = 0) %>% 
+  select(sort(names(.))) %>% 
+  select(StationID, Visit, everything()) %>% 
+  full_join(surveys, by = c("StationID", "Visit")) %>% 
+  left_join(stations, by = "StationID") %>%
+  select(StationID, Visit, Year, Footprint, `Mitigation Property`, Valley,
+         ValleyUpstPine, ValleyUpstDam, BBFM_ID, 
+         Easting, Northing, Longitude, Latitude, BHC20, Date, Time, 
+         SurveyDuration, `B-ALFL`:`B-YRWA`) %>% 
+  replace(is.na(.), 0) %>% 
+  arrange(StationID)
+
+write_csv(song_wide, here("point_counts", "data_processed", "song_wide_5min.csv"))
     
-  
 ```
 
-Create full dataset by joining all tables and then pivot wider.
-
-```{r}
-alldat_long <- obs_filter %>% 
-  inner_join(surveys, by = c("StationID", "Visit"))
-
-%>% 
-  left_join(stations, by = "StationID")
-
-```
-
-Filter data for songbirds, less than 100m and calculate 5-min counts.
-
-get rid of flyovers as well
-
-```{r}
-# Filter
-
-group_by(StationID, Visit, SpCode) %>% 
-summarize(count = sum(`Count 5 min`)) %>% 
-pivot_wider(id_cols = c("StationID", "Visit"), 
-            names_from = "SpCode",
-            values_from = "count",
-            values_fill = 0) %>% 
-select(sort(names(.))) %>% 
-select(StationID, Visit, everything())
-```
-
-Join to survey data to pick up the extra stations that had no observations.
-
-```{r}
-
-temp <- left_join(surveys, songbirds_wide, by = c("StationID", "Visit")) 
-temp
-
-## *** Problem. Surveys were renumberd? and now dont join
-
-
-# Will need this later
-replace(is.na(.), 0)
-
-```
-
-Clean up temp tables
+Clean up temp files.
 
 ```{r}
 rm(StationID_match)
-rm(s.tmp)
-rm(qa)
+rm(visit_sum)
 ```
+
+# 

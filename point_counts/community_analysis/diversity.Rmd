@@ -16,11 +16,19 @@ What do I want to do?\
 
 # Setup
 
-```{r}
+```{r message=FALSE}
 # Packages
 library(tidyverse)
 library(vegan)
+library(BiodiversityR)
+library(vcd)
 library(indicspecies)         # Indicator species analysis
+library(lme4)
+library(glmmTMB)
+library(MuMIn)
+library(emmeans)
+library(effects)
+library(DHARMa)
 
 ```
 
@@ -31,15 +39,6 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 options(scipen = 999)
 ```
 
-# Import
-
-```{r Import}
-# Run the script that imports raw stations, surveys and observation data from Excel and does quick check. The QA results are not shown in this notebook. 
-
-# This is not working. Not sure why.
-source("point_counts/import_and_prep/point_count_data_import.R")
-```
-
 # Approach
 
 Need to determine how repeated samples will be dealt with.
@@ -48,59 +47,191 @@ For patterns of species richness, want to use sample (survey) and use site (stat
 
 But what about other community analysis about composition, like sp accumulation and ordination? Could roll up surveys to station. The problem with this approach is that there are differnt number of surveys per station and any roll-up would introduce an effort bias. I think samples (surveys) must be used for all analyses.
 
-# Prepare Data
+Questions:
 
--   Will use the 5 minute count column.
+# Import and prep
 
--   Since some survey years were fixed radius and some unlimited, select only the obs =\< 100.
+Load the 5-min count data. Note for later: May need to create a surveyID (single variable identifier).
 
--   Filter for songbirds only.
+```{r Import}
+song_wide_5min <- read_csv(here("point_counts", "data_processed", "song_wide_5min.csv"))
 
--   Then reformat data to wide format for use in vegan: samples by species.
-
--   To make the wide matrix, it is necessary to join up with the survey data. This is because there were some surveys with no species detections and therefore the surveys are not in the observations.
-
-Filter for songbirds only and then pivot wider:
-
-```{r message=FALSE}
-# Make list of songbirds to filter data on.
-song_list <- BCbirds %>%
-  filter(IsSongbird == TRUE)
-song_list <-song_list$SpCode
-
-# Filter
-songbirds_wide <- obs %>% 
-  filter(SpCode %in% song_list) %>% 
-  filter(`Distance Category` != ">100") %>%
-  group_by(StationID, Visit, SpCode) %>% 
-  summarize(count = sum(`Count 5 min`)) %>% 
-  pivot_wider(id_cols = c("StationID", "Visit"), 
-              names_from = "SpCode",
-              values_from = "count",
-              values_fill = 0) %>% 
-  select(sort(names(.))) %>% 
-  select(StationID, Visit, everything())
+# Survey covariats
+survey_cov <- read_csv(here("point_counts", "data_processed", "survey_cov.csv")) %>% 
+  mutate(Year = as_factor(Year))
+  
 ```
 
-Join to survey data to pick up the extra stations that had no observations.
+Create the sp matrices for use in vegan.
+
+```{r}
+sp <- song_wide_5min %>% 
+  select(`B-ALFL`:`B-YRWA`)
+```
+
+Prepare env data and create lumped BHC variables.
+
+```{r}
+env <- song_wide_5min %>% 
+  select(`StationID`:`SurveyDuration`) %>%
+  mutate(Year = as_factor(Year)) %>% 
+  mutate(BHC17 = case_when(
+    BHC20 == "FBT" ~ "FBS/FBT",
+    BHC20 == "FBS" ~ "FBS/FBT",
+    BHC20 == "DSG" ~ "DSG/DSS",
+    BHC20 == "DSS" ~ "DSG/DSS",
+    TRUE ~ BHC20
+    )) %>% 
+  mutate(BHC17 = factor(BHC17, levels = c("CSH","CYF","CMF","DSH","DYF","DMF",
+                                          "RSH","RYF","RMF", "FBS/FBT","WGR",
+                                          "WSH","WRI","DSG/DSS","CUL","NVE", 
+                                          "ANT")
+                        )
+         ) %>% 
+  mutate(BHC8 = case_when(
+    BHC20 == "CSH"	~ "Conif",
+    BHC20 == "CYF"	~ "Conif",
+    BHC20 == "CMF"	~ "Conif",
+    BHC20 == "DSH"	~ "Decid",
+    BHC20 == "DYF"	~ "Decid",
+    BHC20 == "DMF"	~ "Decid",
+    BHC20 == "RSH"	~ "RipForest",
+    BHC20 == "RYF"	~ "RipForest",
+    BHC20 == "RMF"	~ "RipForest",
+    BHC20 == "FBS"	~ "Wetland",
+    BHC20 == "FBT"	~ "Conif",
+    BHC20 == "WGR"	~ "Wetland",
+    BHC20 == "WSH"	~ "Wetland",
+    BHC20 == "WRI"	~ "Wetland",
+    BHC20 == "DSG"	~ "Dry slopes",
+    BHC20 == "DSS"	~ "Dry slopes",
+    BHC20 == "CUL"	~ "Cultiv",
+    BHC20 == "NVE"	~ "Non-veg",
+    BHC20 == "ANT"	~ "Anthropogenic")
+    ) %>% 
+  mutate(BHC8 = factor(BHC8, levels = c("Conif", "Decid", 'RipForest', 
+                                            "Wetland", "Dry slopes", "Cultiv", 
+                                            "Non-veg", "Anthropogenic")
+                       )
+         ) %>% 
+  left_join(survey_cov, by = c("StationID", "Visit", "Year", "Date", "Time", 
+                               "SurveyDuration"))
+```
+
+# Patterns of species richness
+
+```{r paged.print=TRUE}
+rich <- diversityresult(sp, index = "richness", method = "each site", sortit = FALSE, digits = 6)
+shan <- diversityresult(sp, index = "Shannon", method = "each site", sortit = FALSE, digits = 6)
+simp <- diversityresult(sp, index = "Simpson", method = "each site", sortit = FALSE, digits = 6)
+divdat <- bind_cols(env, rich, shan, simp)
+
+hist(divdat$richness)
+hist(divdat$Shannon)
+hist(divdat$Simpson)
+
+# or
+ggplot(divdat, aes(x=richness)) + 
+  geom_histogram(binwidth = 1)
+
+```
+
+The richness data seems to fit poisson a bit bettter.
+
+```{r paged.print=TRUE}
+
+fit_poisson <- goodfit(divdat$richness, type = "poisson")
+rootogram(fit_poisson)
+summary(fit_poisson)
+
+fit_nbinom <- goodfit(divdat$richness, type = "nbinomial")
+rootogram(fit_nbinom)
+summary(fit_nbinom)
+
+```
+
+Not sure how to make sense of the goodness of fit tests on Shannon div.
+
+```{r paged.print=TRUE}
+
+fit_poisson <- goodfit(divdat$Shannon, type = "poisson")
+rootogram(fit_poisson)
+summary(fit_poisson)
+
+fit_nbinom <- goodfit(divdat$Shannon, type = "nbinomial")
+rootogram(fit_nbinom)
+summary(fit_nbinom)
+
+```
+
+## Model
+
+```{r paged.print=TRUE}
+model_full <- glmmTMB(richness ~ Year + BHC8 + EastWest + TSSR + JDAY + 
+                        (1|StationID),
+                   data = divdat,
+                   family = (poisson("log"))
+                   )
+
+# Not sur eif this is needed
+# na.action = "na.fail")
+
+dredge(model_full)
+
+```
+
+For the model with lowest AICc
+```{r}
+
+model_sel <- glmmTMB(richness ~ Year + BHC8 + EastWest + JDAY + 
+                        (1|StationID),
+                   data = divdat,
+                   family = (poisson("log"))
+                   )
+
+summary(model_sel)
+
+ae <- allEffects(model_sel)
+plot(ae, residuals="TRUE")
+
+```
+
+
+
+
+## A test with Year as continuous
+```{r paged.print=TRUE}
+model_sel <- glmmTMB(richness ~ MonYear + BHC8 + EastWest + JDAY + 
+                        (1|StationID),
+                   data = divdat,
+                   family = (poisson("log"))
+                   )
+
+summary(model_sel)
+
+ae <- allEffects(model_sel)
+plot(ae, residuals="TRUE")
+```
+
+# Species accumulation / rarefaction
+
+iNext is the package for this. There is some ore though,
+
+Basic, using vegan.
+
+```{r}
+sac <- specaccum(sp)
+plot(sac, ci.type="polygon", ci.col="yellow")
+
+```
+
+# Ordination
 
 ```{r}
 
-temp <- full_join(songbirds_wide, surveys, by = c("StationID", "Visit")) %>% 
-  filter(is.na(StationID))
-temp
-
-
-
-
-# Will need this later
-replace(is.na(.), 0)
-
 ```
 
-# Species Richness and Diversity
-
-Questions:
+# Indicator Species Analysis
 
 ```{r}
 

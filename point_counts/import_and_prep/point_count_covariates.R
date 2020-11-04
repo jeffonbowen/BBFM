@@ -10,6 +10,7 @@ library(tidyverse)
 library(lubridate)
 library(hms)
 library(readxl)
+library(here)
 
 # The covariate data is built using the songbird station and survey data as a base 
 # and must already be in memory. 
@@ -95,15 +96,17 @@ survey_cov <- survey_cov %>%
 # previous errors fixed. 
 filter(survey_cov, is.na(TREE))
 
-## BHC and LCC ---- 
-BHC_LCC <- read_excel("point_counts/data_raw/BHCto2019.xlsx", "Habitat") %>%
-  select(StationID, BHC20_100, NALCMS100m)
+## LCC ---- 
+LCC <- read_excel("point_counts/data_raw/BHCto2019.xlsx", "Habitat") %>%
+  select(StationID, NALCMS100m)
 survey_cov <- survey_cov %>% 
-  left_join(BHC_LCC, by = "StationID")
-filter(survey_cov, is.na(BHC20_100))
+  left_join(LCC, by = "StationID")
 
 # Load the BHC lookup table
-BHClookup <- read_excel("point_counts/data_raw/BHClookup.xlsx", "BHClookup")
+# BHClookup <- read_excel("point_counts/data_raw/BHClookup.xlsx", "BHClookup")
+
 # Clean up intermediate tables.  
-rm(BHC_LCC, TreeCover)
+rm(LCC, TreeCover)
+
+write_csv(survey_cov, here("point_counts", "data_processed", "survey_cov.csv"))
 

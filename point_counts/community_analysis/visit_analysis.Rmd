@@ -7,7 +7,15 @@ output:
 
 Exploration of bird community metrics using Site C bird point count survey data.
 
-What do I want to do? 1. Some basic data summaries 2. Species richness and diversity 3. Expected diversity using rarefaction 4. Community structure exploration using ordination and cluster analysis 5. Indicator species analysis
+**Note**: The analysis below requires the visits to be sequentially numbered. That is not the case for the raw data. The original import script renumbered the visits. However that was messing up the joins. The renumbering needs to be included in this script. Its copied below but needs to be revised (November 1 2020).
+
+```{r eval=FALSE, include=FALSE}
+surveys <- surveys %>% 
+  select(StationID, Date, Time, Visit, SurveyDuration) %>% 
+  arrange(StationID, Date) %>% 
+  group_by(StationID) %>% 
+  mutate(Visit = row_number())
+```
 
 # Import Data
 
