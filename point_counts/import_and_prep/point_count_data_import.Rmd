@@ -67,7 +67,8 @@ obs <- read_excel(here("point_counts", "data_raw", "Songto2020data.xlsx"),
                                 "guess", "guess"),
                   na = "NA") %>% 
   rename(StationID = 'Sample Station Label', SpCode = Species) %>% 
-  select(StationID, Visit, SpCode, `Count 5 min`, `Count 0-3 min`, `Count 3-5 min`,          `Count 5-10 min`, Count, `Distance Category`, Flyovers) %>% 
+  select(StationID, Visit, SpCode, `Count 5 min`, `Count 0-3 min`, `Count 3-5 min`, 
+         `Count 5-10 min`, Count, `Distance Category`, Flyovers) %>% 
   filter(str_detect(SpCode, "B-U", negate = TRUE)) # Clear out the unknowns
 
 # Bring in the BC Bird list from BC Species and Ecosystem Explorer

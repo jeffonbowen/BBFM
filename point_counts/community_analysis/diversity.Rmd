@@ -14,11 +14,20 @@ What do I want to do?\
 -Community structure exploration using ordination and cluster analysis\
 -Indicator species analysis
 
+-Multi-Species Occupancy Model (MSOM)
+
+-is it possible that occupancy models may be better than abundance?
+
+-Species co-occurrence - why?
+
+-what about species association? pos, neg, neutral
+
 # Setup
 
 ```{r message=FALSE}
 # Packages
 library(tidyverse)
+library(here)
 library(vegan)
 library(BiodiversityR)
 library(vcd)
@@ -29,6 +38,7 @@ library(MuMIn)
 library(emmeans)
 library(effects)
 library(DHARMa)
+library(doParallel)
 
 ```
 
@@ -53,7 +63,7 @@ Questions:
 
 Load the 5-min count data. Note for later: May need to create a surveyID (single variable identifier).
 
-```{r Import}
+```{r Import, message=FALSE}
 song_wide_5min <- read_csv(here("point_counts", "data_processed", "song_wide_5min.csv"))
 
 # Survey covariats
@@ -136,7 +146,7 @@ ggplot(divdat, aes(x=richness)) +
 
 ```
 
-The richness data seems to fit poisson a bit bettter.
+The richness data seems to fit poisson a bit better.
 
 ```{r paged.print=TRUE}
 
@@ -180,10 +190,11 @@ dredge(model_full)
 
 ```
 
-For the model with lowest AICc
+For the model with lowest AICc.
+
 ```{r}
 
-model_sel <- glmmTMB(richness ~ Year + BHC8 + EastWest + JDAY + 
+model_sel <- glmmTMB(richness ~ Year + BHC8 + EastWest + JDAY +
                         (1|StationID),
                    data = divdat,
                    family = (poisson("log"))
@@ -196,10 +207,8 @@ plot(ae, residuals="TRUE")
 
 ```
 
-
-
-
 ## A test with Year as continuous
+
 ```{r paged.print=TRUE}
 model_sel <- glmmTMB(richness ~ MonYear + BHC8 + EastWest + JDAY + 
                         (1|StationID),
@@ -213,6 +222,24 @@ ae <- allEffects(model_sel)
 plot(ae, residuals="TRUE")
 ```
 
+## Follow-up
+
+-   Could GAM help with interpretation?
+
+-   Are there any other random effects that should be incorporated?
+
+-   Does reducing the number of habitat classes help?
+
+-   Are there any other variables that need to be accounted for?
+
+-   The 2006-2012 data is so much higher. Are there any data methodological reasons?
+
+    -   Review methods used.
+
+    -   More random locations? Many are on habitat edges. Perhaps a bias toward surveys in richer habitats?
+
+    -   Will be interesting to compare total species richness
+
 # Species accumulation / rarefaction
 
 iNext is the package for this. There is some ore though,
@@ -223,16 +250,131 @@ Basic, using vegan.
 sac <- specaccum(sp)
 plot(sac, ci.type="polygon", ci.col="yellow")
 
+
+
 ```
 
 # Ordination
 
+## NMDS
+
+Does not like empty rows, so need to filter out sites with no species. First have to join the sp and env data, then filter, then split.
+
 ```{r}
+song_wide_5min_nonzero <- bind_cols(env, sp) %>% 
+  filter(rowSums(select(., `B-ALFL`:`B-YRWA`)) > 1)
+  
+sp_nmds <- song_wide_5min_nonzero %>% 
+  select(`B-ALFL`:`B-YRWA`)
+
+env_nmds <- song_wide_5min_nonzero %>% 
+  select(`StationID`:`SurveyDuration`, BHC8) %>% 
+  mutate(SampleID = str_c(StationID, Visit, sep = "-"))
+```
+
+Run NMDS. Test using parallel processing.
+
+First run without parallel, it took 33 minutes.
+
+With parallel, 25 mins!
+
+```{r}
+
+# Set parallel processing
+# registerDoParallel()
+
+start.time <- proc.time() 
+
+nmds <- metaMDS(sp_nmds, distance = "bray")
+
+stop.time <- proc.time() 
+run.time <- stop.time-start.time 
+print(run.time) 
+```
+
+Plot the scores.
+
+```{r}
+
+data.scores <- as.data.frame(scores(nmds))
+
+# add columns to data frame 
+data.scores$SampleID <- env_nmds$SampleID
+data.scores$BHC8 <- env_nmds$BHC8
+
+n_plot <- ggplot(data.scores, aes(x = NMDS1, y = NMDS2)) + 
+  geom_point(size = 2, aes(colour = BHC8))+ 
+  theme(axis.text.y = element_text(colour = "black", size = 10, face = "bold"), 
+        axis.text.x = element_text(colour = "black", face = "bold", size = 10), 
+        legend.text = element_text(size = 10, face ="bold", colour ="black"), 
+        legend.position = "right", axis.title.y = element_text(face = "bold", 
+                                                               size = 11), 
+        axis.title.x = element_text(face = "bold", size = 10, colour = "black"), 
+        legend.title = element_text(size = 11, colour = "black", face = "bold"), 
+        panel.background = element_blank(), 
+        panel.border = element_rect(colour = "black", fill = NA, size = 1.2),
+        legend.key=element_blank()) + 
+  labs(x = "NMDS1", colour = "Species", y = "NMDS2") 
+n_plot
 
 ```
 
+There seem to be outliers that skew the ordination. I tried removing one, but another was just produced. Another approach may be needed.
+
 # Indicator Species Analysis
 
-```{r}
+Create the sp matrix. Same as the one for nmds with the null sites removed.
 
+The groups matrix is BHC8.
+
+```{r}
+sp_indic <- sp_nmds
+groups <- pluck(env_nmds$`BHC8`)
+```
+
+```{r}
+indval <- multipatt(sp_indic, groups, control = how(nperm=999))
+summary(indval)
+```
+
+Some of the results don't make sense.
+
+Now try it 2016-2020 data.
+
+```{r}
+song_wide_5min_nonzero_2016plus <- bind_cols(env, sp) %>% 
+  mutate(Year = as.numeric(Year)) %>% 
+  filter(Year > 4) %>% 
+  filter(rowSums(select(., `B-ALFL`:`B-YRWA`)) > 1)
+
+sp_indic <- song_wide_5min_nonzero_2016plus %>% 
+  select(`B-ALFL`:`B-YRWA`)
+
+birds_select <- sp_indic %>% 
+  map_dfr(., sum) %>% 
+  t() %>% 
+  as.data.frame() %>% 
+  rownames_to_column("species") %>% 
+  filter(V1 > 0)
+
+sp_indic <- sp_indic %>% 
+  select(any_of(birds_select$species))
+
+env_indic <- song_wide_5min_nonzero_2016plus %>% 
+  select(`StationID`:`SurveyDuration`, BHC8) %>% 
+  mutate(SampleID = str_c(StationID, Visit, sep = "-"))
+
+groups <- pluck(env_indic$`BHC8`)
+
+ %>% 
+```
+
+```{r}
+dist <- dist(sp_indic, method="euclidean")
+
+hc <- hclust(dist, method = "complete")
+
+summary(hc)
+
+plot(hc)
 ```
