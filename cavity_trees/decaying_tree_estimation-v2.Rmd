@@ -14,6 +14,8 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 options(scipen = 999)
 ```
 
+**This version does not include decay class 8.**
+
 # Introduction
 
 The loss of suitable trees for birds that nest in cavities of decaying trees (cavity-nesters) may be relevant for the Site C offset accounting framework. Data on decaying trees were collected at select locations as part of habitat data collection for the Breeding Bird Follow-up Monitoring program. Decaying trees are often referred to as "wildlife trees" in BC and that term is used to refer to the data that were collected. The wildlife tree data were used to estimate the density of decaying trees by habitat type and then extrapolated to the entire project footprint using ecosystem mapping data.
@@ -83,6 +85,10 @@ tree_dat <-
          Stand_Composition = factor(Stand_Composition),
          SMR = factor(SMR, levels = c("dry", "mesic", "moist", "wet"))
          )
+
+tree_dat <- tree_dat %>% 
+  filter(!Decay_Class %in% c("Class8"))
+
 ```
 
 ## Basic Summary
@@ -237,7 +243,7 @@ The highest estimated densities are in mesic sites and in young forest. It is in
 
 ### Number of Decaying Deciduous Trees
 
-The section is the same analysis as completed, except fir decaying deciduous trees only.
+The section is the same analysis as completed, except for decaying deciduous trees only.
 
 ```{r}
 # Using the summary data instead on this round.
@@ -257,6 +263,9 @@ tree_dat_sum <-
          Stand_Composition = factor(Stand_Composition),
          SMR = factor(SMR, levels = c("dry", "mesic", "moist", "wet"))
          )
+
+tree_dat_sum <- tree_dat_sum %>% 
+  mutate(Decid_Tot = Decid_Tot - Decid_C6 - Decid_C7 - Decid_C8)
 ```
 
 ```{r message=FALSE, warning=FALSE, paged.print=TRUE}
@@ -277,12 +286,12 @@ model_nb_full <- glm.nb(count_total ~ Structural_Stage + SMR + Stand_Composition
 dredge(model_nb_full)
 ```
 
-The model with the lowest AICc is the full model with SMR, stand composition and structural stage. Models with interactions were attempted but could not be fit as there are not enough samples in the various combinations of variables to model interactions.
+The model with the lowest AICc is the full model with SMR and stand composition . Models with interactions were attempted but could not be fit as there are not enough samples in the various combinations of variables to model interactions.
 
 Model summary, analysis of residuals and quick look at effects are shown below.
 
 ```{r paged.print=TRUE}
-model_nb <- glm.nb(count_total ~ Structural_Stage + Stand_Composition + SMR, 
+model_nb <- glm.nb(count_total ~ Stand_Composition + SMR, 
                         data = tree_decid)
 summary(model_nb)
 
@@ -301,34 +310,23 @@ Decaying deciduous tree density was estimated for each combination of SMR, struc
 As before, combinations that have not been measured AND are not in the footprint (n=6) have been removed and do not show up in the plots.
 
 ```{r}
-means_total_decid <- emmeans(model_nb, specs = c( "SMR", "Structural_Stage", "Stand_Composition"), type = "response")
+means_total_decid <- emmeans(model_nb, specs = c( "SMR", "Stand_Composition"), type = "response")
 means_total_decid <- tidy(summary(means_total_decid)) %>%  
   arrange(SMR) %>% 
-  mutate(SMR = factor(SMR, levels = c("dry", "mesic", "moist", "wet")),
-         Structural_Stage = factor(Structural_Stage, levels = c("Shrub", "P-S", "Young", "Mature", "Old"))
-         ) %>% 
-  rename(total_trees = response) %>% 
-  mutate(removal_flag = case_when(
-    SMR == "wet" & Structural_Stage %in% c("Mature", "Old") ~ "not mapped in footprint",
-    SMR == "dry" & Structural_Stage == "Old" ~ "not mapped in footprint",
-    TRUE ~ "keep")
-    ) %>% 
-  filter(removal_flag == "keep")
+  mutate(SMR = factor(SMR, levels = c("dry", "mesic", "moist", "wet"))) %>% 
+  rename(total_trees = response)
 
 # Table not displayed. Uncomment below to 
 # means_total_decid
 ```
 
-It is hard to visualize the effect of three variables in a two-dimensional plot. The plot is shown twice, once for deciduous stands and the second for coniferous stands.
-
 ```{r}
-decid_snags_plot1 <- means_total_decid %>%
-  filter(Stand_Composition == "decid") %>% 
-  ggplot(aes(x = Structural_Stage, y = total_trees, fill = SMR))+
+decid_snags_plot <- means_total_decid %>%
+  ggplot(aes(x = Stand_Composition, y = total_trees, fill = SMR))+
   geom_bar(stat = "identity", width = 0.5, position = position_dodge())+
-  labs(subtitle = "Deciduous Decaying Trees in\n Deciduous Stands")+
-  coord_cartesian(ylim=c(0,5)) +
-  xlab(label = "Structural Stage") +
+  labs(subtitle = "Estimated Number of Deciduous Decaying Trees")+
+  coord_cartesian(ylim=c(0,3.5)) +
+  xlab(label = "Stand Composition") +
   ylab(label = "Density (# / 400m2) with 95% CI")+
   geom_errorbar(aes(ymin = asymp.LCL, ymax = asymp.UCL), 
                 width = 0.05,
@@ -336,30 +334,8 @@ decid_snags_plot1 <- means_total_decid %>%
                 ) +
   theme_bw() +
   theme(axis.title=element_text(size=10))
+decid_snags_plot
 
-decid_snags_plot2 <- means_total_decid %>%
-  filter(Stand_Composition == "conif") %>% 
-  ggplot(aes(x = Structural_Stage, y = total_trees, fill = SMR))+
-  geom_bar(stat = "identity", width = 0.5, position = position_dodge())+
-  labs(subtitle = "Deciduous Decaying Trees in\n Coniferous Stands")+
-  coord_cartesian(ylim=c(0,5)) +
-  xlab(label = "Structural Stage") +
-  ylab(label = "Density (# / 400m2) with 95% CI")+
-  geom_errorbar(aes(ymin = asymp.LCL, ymax = asymp.UCL), 
-                width = 0.05,
-                position = position_dodge(.5)
-                ) +
-  theme_bw() +
-  theme(axis.title=element_text(size=10))
-
-# Make 1 plot of both
-pdf(NULL)
-decid_snags_plot_both <- 
-  ggarrange(decid_snags_plot1, decid_snags_plot2,
-            legend = "bottom",
-            common.legend = TRUE)
-x = dev.off()
-decid_snags_plot_both
 ```
 
 ## Extrapolation to Entire Footprint
@@ -412,14 +388,14 @@ tree_total_detail %>%
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 decid_total_detail <- footprint_eco_sum %>% 
-  group_by(SMR, Stand_Composition, Structural_Stage) %>% 
+  group_by(SMR, Stand_Composition) %>% 
   summarize(Area_Total = sum(Area_Total)) %>% 
   left_join(means_total_decid) %>% 
   mutate(trees_per_ha = total_trees / 400 * 10000,
          footprint_trees = Area_Total * trees_per_ha,
          LCL = asymp.LCL / 400 * 10000 * Area_Total,
          UCL = asymp.UCL / 400 * 10000 * Area_Total) %>% 
-  dplyr::select(SMR, Structural_Stage, trees_per_ha, Area_Total, footprint_trees, LCL, UCL)
+  dplyr::select(SMR, Stand_Composition, trees_per_ha, Area_Total, footprint_trees, LCL, UCL)
 decid_total_detail  %>% 
   kable(caption = "<strong>Table 4. Estimated number of deciduous decaying trees in footprint</strong>", digits = 1) %>% 
   kable_styling(full_width = FALSE,
