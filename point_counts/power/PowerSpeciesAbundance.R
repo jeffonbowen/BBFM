@@ -157,7 +157,7 @@ summary(m)
 
 library(simr)
 
-# Extend to 10 yearts of monitoring
+# Extend to 10 years of monitoring
 # alpha set at p=0.05.  
 # Effect set at 50% negative change per year which is equal to about -6.7% per year.
 

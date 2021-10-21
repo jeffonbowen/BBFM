@@ -6,3 +6,7 @@
 archive/
 
 *.html
+
+point_counts/data_raw/
+point_counts/data_processed/
+

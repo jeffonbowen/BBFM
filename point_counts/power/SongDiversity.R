@@ -264,7 +264,7 @@ ps <- powerSim(pois6, nsim = 20)
 ps  
 
 
-# Extend to 20 yearts of monitoring
+# Extend to 20 years of monitoring
 # alpha set at 0.1 to make test more liberal. Would rather have false positive over false negative. 
 # Effect set at 20% negative change per year. This arbitrary but would suggest realtively low, 
 

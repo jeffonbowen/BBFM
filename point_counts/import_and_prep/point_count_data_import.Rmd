@@ -14,7 +14,7 @@ That way the visits can be properly renumbered (although that really only matter
 
 # Setup
 
-```{r message=FALSE}
+```{r message=FALSE, include=FALSE}
 # Packages
 library(tidyverse)
 library(readxl)
@@ -22,7 +22,6 @@ library(lubridate)
 library(skimr)
 library(here)
 library(kableExtra)
-
 ```
 
 ```{r global_options, include=FALSE}
@@ -37,7 +36,9 @@ The data imported below is a copy of the master data file that is located in the
 Set some nicer names for variables regularly used. Get rid of variables that will not be used in any analysis, just for cleaner tables.
 
 ```{r message=FALSE, warning=FALSE}
-stations <- read_excel(here("point_counts", "data_raw", "Songto2020data.xlsx"), "Stations") %>% 
+fname <- "Songto2021data.xlsx"
+
+stations <- read_excel(here("point_counts", "data_raw", paste0(fname)), "Stations") %>% 
   rename(StationID = 'Sample Station Label',
          Easting = `Easting Sample Station`,
          Northing = `Northing Sample Station`) %>%
@@ -46,42 +47,46 @@ stations <- read_excel(here("point_counts", "data_raw", "Songto2020data.xlsx"), 
          -c(`Sample Station Photos`, `Sample Station Comments`,
             `UTM Zone Sample Station`, `Survey Name`, Station))
 
-surveys <- read_excel(here("point_counts", "data_raw", "Songto2020data.xlsx"), 
+surveys <- read_excel(here("point_counts", "data_raw", paste0(fname)), 
                       "Surveys") %>% 
-  rename(StationID = 'Sample Station Label') %>% 
-  select(StationID, Visit, Date, Time, SurveyDuration) %>% 
+  rename(StationID = 'Sample Station Label') %>%  +
+  select(StationID, Visit, Date, Time, `Survey Duration`, `Inventory Type`) %>% 
   mutate(Date = as_date(Date), 
          Time = as_datetime(Time)) 
-# Update the date in `Time` with correct date from `Date` 
+# Update the date in "Time" with correct date from `Date` 
 date(surveys$Time) <- date(surveys$Date)
+
 # Most analysis of the songbird data must account for temporal survey-level effects
 # These variables can be created now and to be used later.
 # Year, TSSR, YDAY, DSLS
 
-obs <- read_excel(here("point_counts", "data_raw", "Songto2020data.xlsx"), 
+obs <- read_excel(here("point_counts", "data_raw", paste0(fname)), 
                   "Observations",
-                  col_types = c("text", "numeric", "text", "numeric", "text", "numeric",
+                  col_types = c("text", "numeric", "text", "numeric", "text", 
                                 "numeric", "numeric", "numeric", "numeric", 
-                                "text", "text", "text", "text", "numeric", 
-                                "numeric", "text", "guess", "guess", "guess", 
+                                "numeric", "text", "text", "text", "text", 
+                                "numeric", "numeric", "text", "guess", "guess",
                                 "guess", "guess"),
                   na = "NA") %>% 
   rename(StationID = 'Sample Station Label', SpCode = Species) %>% 
   select(StationID, Visit, SpCode, `Count 5 min`, `Count 0-3 min`, `Count 3-5 min`, 
          `Count 5-10 min`, Count, `Distance Category`, Flyovers) %>% 
   filter(str_detect(SpCode, "B-U", negate = TRUE)) # Clear out the unknowns
+```
 
 # Bring in the BC Bird list from BC Species and Ecosystem Explorer
-BCbirds <- read_excel(here("point_counts", "data_raw", "Songto2019data.xlsx"), 
-                      "BC_Bird_List") %>% 
-  select(ID, `English Name`, `Scientific Name`, `Species Code`, Order, 
-         `BC List`, COSEWIC, SARA) %>% 
-  rename(SpCode = "Species Code") %>% 
+```{r}
+BCbirds <- read_excel(here("point_counts", "data_reference", 
+                           "summaryExport_bcsee_2021-10-21.xlsx")) %>% 
+  select(`English Name`, `Scientific Name`, `Species Code`, Order, 
+         `BC List`, COSEWIC, `SARA Status`) %>% 
+  rename(SpCode = "Species Code") %>%
   mutate(IsSongbird = ifelse(Order %in% c("Columbiformes", "Caprimulgiformes", 
                                           "Piciformes", "Passeriformes"), 
                              TRUE, 
-                             FALSE))
-
+                             FALSE),
+         sort = row_number()) %>% 
+  filter(!is.na(SpCode))
 ```
 
 # Check for errors
@@ -120,7 +125,7 @@ Now check for match for StationID between 'surveys' and 'obs'. Note that station
 
 For the second "test", surveys that had no observations will also be listed.
 
-```{r}
+```{r paged.print=TRUE}
 StationID_match <- surveys %>% 
   full_join(obs, by = c("StationID", "Visit"))
 # Filter to check for `StationID $ Visit` in `obs` but not in `surveys`.
@@ -203,7 +208,7 @@ table(obs$`Distance Category`)
 
     -   Total count (regardless of survey duration), for use with QPAD or other analyses that can account for differing durations among surveys.
 
-    -   Count in 5 minutes. This standardizes to 5 mins for analyses when accounting for durations is difficult.
+    -   Count in 5 minutes. This standardizes to 5 mins for analyses when accounting for different durations is difficult.
 
 -   Since some survey years were fixed radius and some unlimited, must select only the obs =\< 100 when using data for all years. If using the 2016 onward data, can use unlimited (data not produced in this script).
 
@@ -246,7 +251,7 @@ song_wide <- obs %>%
   replace(is.na(.), 0) %>% 
   arrange(StationID)
 
-write_csv(song_wide, here("point_counts", "data_processed", "song_wide.csv"))
+write_csv(song_wide, here("point_counts", "data_processed", "song_wide_100m.csv"))
 ```
 
 For the 5-min counts:
@@ -276,7 +281,7 @@ song_wide_5min <- obs %>%
   replace(is.na(.), 0) %>% 
   arrange(StationID)
 
-write_csv(song_wide, here("point_counts", "data_processed", "song_wide_5min.csv"))
+write_csv(song_wide, here("point_counts", "data_processed", "song_wide_5min_100m.csv"))
     
 ```
 

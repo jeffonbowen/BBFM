@@ -1,0 +1,30 @@
+---
+title: "Summary of 2020 Data"
+output: html_notebook
+---
+
+A bit of summary of the 2020 data for the annual report.
+
+# Load Packages
+
+```{r}
+library(tidyverse)
+library(here)
+library(readxl)
+library(lubridate)
+```
+
+# Load Data
+
+
+```{r}
+
+rich <- obs %>% 
+  left_join(stations, by = "StationID") %>% 
+  filter(Year == "2020") %>% 
+  group_by(StationID, Visit) %>% 
+  summarise(rich = n_distinct(SpCode))
+
+summary(rich$rich)
+
+```
