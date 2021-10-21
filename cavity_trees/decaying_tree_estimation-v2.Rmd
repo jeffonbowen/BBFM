@@ -227,7 +227,7 @@ write_csv(means_total_trees, here("cavity_trees", "out", "total_trees_estimates.
 total_trees_plot <- means_total_trees %>% 
   ggplot(aes(x = Structural_Stage, y = total_trees, fill = SMR))+
   geom_bar(stat = "identity", width = 0.5, position = position_dodge())+
-  labs(subtitle = "Estimated Number of Decaying Trees")+
+# labs(subtitle = "Estimated Number of Decaying Trees")+
   xlab(label = "Structural Stage") +
   ylab(label = "Decaying Tree Density (# / 400m2) with 95% CI")+
   geom_errorbar(aes(ymin = asymp.LCL, ymax = asymp.UCL), 
@@ -324,8 +324,8 @@ means_total_decid <- tidy(summary(means_total_decid)) %>%
 decid_snags_plot <- means_total_decid %>%
   ggplot(aes(x = Stand_Composition, y = total_trees, fill = SMR))+
   geom_bar(stat = "identity", width = 0.5, position = position_dodge())+
-  labs(subtitle = "Estimated Number of Deciduous Decaying Trees")+
-  coord_cartesian(ylim=c(0,3.5)) +
+# labs(subtitle = "Estimated Number of Deciduous Decaying Trees")+
+  coord_cartesian(ylim=c(0,3)) +
   xlab(label = "Stand Composition") +
   ylab(label = "Density (# / 400m2) with 95% CI")+
   geom_errorbar(aes(ymin = asymp.LCL, ymax = asymp.UCL), 
