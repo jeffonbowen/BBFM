@@ -1,0 +1,27 @@
+---
+title: "Summary for Annual Report"
+output: html_notebook
+---
+
+Summary of the 2020 data for the annual report.
+
+# Load Packages
+
+```{r}
+library(tidyverse)
+library(here)
+library(readxl)
+library(lubridate)
+```
+
+# Load Data
+Use the import data script to bring the data in. 
+Then run the rest.
+
+# Survey Summary
+
+Number of songbird point count stations and surveys conducted in 2021 by bird habitat class.
+```{r}
+
+
+```

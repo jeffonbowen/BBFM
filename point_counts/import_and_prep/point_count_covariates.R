@@ -71,7 +71,7 @@ rm(sunrise)
 # QPAD requires 
 #   (1) tree cover from MODIS VCF 
 #   (2) NALCMS for vegetation type (two covariates)
-# Best not to wrangle with the spatial data toomuch. Get the RS layers
+# Best not to wrangle with the spatial data too much. Get the RS layers
 # clipped and in the right projection from GIS and then develop script for extracting.
 # Do this later when needed.
 
@@ -81,8 +81,8 @@ rm(sunrise)
 # The BHC assignment has to have human validation. Master table outside of R.
 
 # For now, will use the previously generated habitat variables from the 2019 analyses.
-# Need to move to progrmatic generation of variables from the spatial layers. 
-# The exception is BHC, whcih is generated from a combination of CEM and field data. 
+# Need to move to programmatic generation of variables from the spatial layers. 
+# The exception is BHC, which is generated from a combination of CEM and field data. 
 # Wonder if the BHC assignment should be attached to `station` data since it must be 
 # assigned and not generated.
 
