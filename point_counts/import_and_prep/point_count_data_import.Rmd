@@ -49,7 +49,7 @@ stations <- read_excel(here("point_counts", "data_raw", paste0(fname)), "Station
 
 surveys <- read_excel(here("point_counts", "data_raw", paste0(fname)), 
                       "Surveys") %>% 
-  rename(StationID = 'Sample Station Label') %>%  +
+  rename(StationID = 'Sample Station Label') %>%
   select(StationID, Visit, Date, Time, `Survey Duration`, `Inventory Type`) %>% 
   mutate(Date = as_date(Date), 
          Time = as_datetime(Time)) 
@@ -75,6 +75,7 @@ obs <- read_excel(here("point_counts", "data_raw", paste0(fname)),
 ```
 
 # Bring in the BC Bird list from BC Species and Ecosystem Explorer
+
 ```{r}
 BCbirds <- read_excel(here("point_counts", "data_reference", 
                            "summaryExport_bcsee_2021-10-21.xlsx")) %>% 
@@ -204,13 +205,29 @@ table(obs$`Distance Category`)
 
 # Create wide format
 
--   Need to create two versions:
+-   We have two types of point count surveys:
 
-    -   Total count (regardless of survey duration), for use with QPAD or other analyses that can account for differing durations among surveys.
+    -   5-min fixed radius
 
-    -   Count in 5 minutes. This standardizes to 5 mins for analyses when accounting for different durations is difficult.
+    -   10-min unlimited radius
 
--   Since some survey years were fixed radius and some unlimited, must select only the obs =\< 100 when using data for all years. If using the 2016 onward data, can use unlimited (data not produced in this script).
+There are various possible data sets that can be generated, depending on the analysis needed. However there are three basic datasets that can be subset if something different needed.
+
+1.  All data:
+
+    -   Both 5- and 10-min surveys and observations at all distances.
+
+    -   Good for total richness.
+
+    -   Can be used with QPAD since QPAD can accommodate the different durations and survey distances.
+
+    -   Not good for average station richness or for rarefaction.
+
+2.  Fixed 100m / 5-min surveys.
+
+    -   Good for analysis over max number of years.
+
+    -   Good for analyses that cannot accommodate varying survey distance and duration. For example rarefaction.
 
 -   Filter for songbirds only.
 
@@ -227,14 +244,14 @@ song_list <-song_list$SpCode
 
 ```
 
-Create the filtered list of obs. Files written to 'data\_processed' so that subsequent analyses can load the data without running the scripts here.
+Create the filtered list of obs. Files written to 'data_processed' so that subsequent analyses can load the data without running the scripts here.
 
-For all duration data:
+For all duration all distance data:
 
 ```{r message=FALSE}
-song_wide <- obs %>% 
+song_wide_all <- obs %>% 
   left_join(surveys, by = c("StationID", "Visit")) %>% 
-  filter(`Distance Category` != ">100") %>%
+#  filter(`Distance Category` != ">100") %>%
   filter(SpCode %in% song_list) %>% 
   filter(is.na(Flyovers)) %>% 
   group_by(StationID, Visit, SpCode) %>% 
@@ -247,17 +264,17 @@ song_wide <- obs %>%
   select(StationID, Visit, Year, Footprint, `Mitigation Property`, Valley,
          ValleyUpstPine, ValleyUpstDam, BBFM_ID, 
          Easting, Northing, Longitude, Latitude, BHC20, Date, Time,
-         SurveyDuration, `B-ALFL`:`B-YRWA`) %>% 
+         `Survey Duration`, `B-ALFL`:`B-YRWA`) %>% 
   replace(is.na(.), 0) %>% 
   arrange(StationID)
 
-write_csv(song_wide, here("point_counts", "data_processed", "song_wide_100m.csv"))
+write_csv(song_wide_all, here("point_counts", "data_processed", "song_wide_all.csv"))
 ```
 
-For the 5-min counts:
+For the 5-min, fixed 100m counts:
 
 ```{r message=FALSE}
-song_wide_5min <- obs %>% 
+song_wide_5min_100m <- obs %>% 
   left_join(surveys, by = c("StationID", "Visit")) %>% 
   rowwise() %>% 
   mutate(count5 = 
@@ -277,11 +294,11 @@ song_wide_5min <- obs %>%
   select(StationID, Visit, Year, Footprint, `Mitigation Property`, Valley,
          ValleyUpstPine, ValleyUpstDam, BBFM_ID, 
          Easting, Northing, Longitude, Latitude, BHC20, Date, Time, 
-         SurveyDuration, `B-ALFL`:`B-YRWA`) %>% 
+         `Survey Duration`, `B-ALFL`:`B-YRWA`) %>% 
   replace(is.na(.), 0) %>% 
   arrange(StationID)
 
-write_csv(song_wide, here("point_counts", "data_processed", "song_wide_5min_100m.csv"))
+write_csv(song_wide_5min_100m, here("point_counts", "data_processed", "song_wide_5min_100m.csv"))
     
 ```
 
