@@ -64,10 +64,11 @@ Questions:
 Load the 5-min count data. Note for later: May need to create a surveyID (single variable identifier).
 
 ```{r Import, message=FALSE}
-song_wide_5min <- read_csv(here("point_counts", "data_processed", "song_wide_5min.csv"))
+dat <- read_csv(here("point_counts", "data_processed", "song_wide_5min_100m.csv"))
 
 # Survey covariats
-survey_cov <- read_csv(here("point_counts", "data_processed", "survey_cov.csv")) %>% 
+survey_cov <- read_csv(here("point_counts", "data_processed", 
+                            "survey_cov.csv")) %>% 
   mutate(Year = as_factor(Year))
   
 ```
@@ -75,15 +76,15 @@ survey_cov <- read_csv(here("point_counts", "data_processed", "survey_cov.csv"))
 Create the sp matrices for use in vegan.
 
 ```{r}
-sp <- song_wide_5min %>% 
+sp <- dat %>% 
   select(`B-ALFL`:`B-YRWA`)
 ```
 
 Prepare env data and create lumped BHC variables.
 
 ```{r}
-env <- song_wide_5min %>% 
-  select(`StationID`:`SurveyDuration`) %>%
+env <- dat %>% 
+  select(`StationID`:`Survey Duration`) %>%
   mutate(Year = as_factor(Year)) %>% 
   mutate(BHC17 = case_when(
     BHC20 == "FBT" ~ "FBS/FBT",
@@ -122,10 +123,17 @@ env <- song_wide_5min %>%
   mutate(BHC8 = factor(BHC8, levels = c("Conif", "Decid", 'RipForest', 
                                             "Wetland", "Dry slopes", "Cultiv", 
                                             "Non-veg", "Anthropogenic")
-                       )
-         ) %>% 
-  left_join(survey_cov, by = c("StationID", "Visit", "Year", "Date", "Time", 
-                               "SurveyDuration"))
+                       )) %>% 
+  mutate(ForestOpen = case_when(
+           BHC8 == "Conif" ~ "Forest",
+           BHC8 == "Decid" ~ "Forest",
+           BHC8 == "RipForest" ~ "Forest",
+           BHC8 == "Wetland" ~ "Open",
+           BHC8 == "Dry Slopes" ~ "Open",
+           BHC8 == "Cultiv" ~ "Open",
+           BHC8 == "Non-veg" ~ "Open",
+           BHC8 == "Anthropogenic" ~ "Open")) %>%
+  left_join(survey_cov, by = c("StationID", "Visit", "Year", "Date", "Time"))
 ```
 
 # Patterns of species richness
@@ -174,10 +182,25 @@ summary(fit_nbinom)
 
 ```
 
+Should be working with the valley upstream of dam only.
+```{r}
+divdat <- divdat %>% 
+  filter(ValleyUpstDam == "Yes")
+
+```
+
+
+```{r}
+divdat %>% 
+  ggplot(aes(Year, richness)) +
+  geom_boxplot()
+
+```
+
 ## Model
 
 ```{r paged.print=TRUE}
-model_full <- glmmTMB(richness ~ Year + BHC8 + EastWest + TSSR + JDAY + 
+model_full <- glmmTMB(richness ~ Year + ForestOpen + EastWest + TSSR + JDAY + 
                         (1|StationID),
                    data = divdat,
                    family = (poisson("log"))
@@ -210,7 +233,7 @@ plot(ae, residuals="TRUE")
 ## A test with Year as continuous
 
 ```{r paged.print=TRUE}
-model_sel <- glmmTMB(richness ~ MonYear + BHC8 + EastWest + JDAY + 
+model_sel <- glmmTMB(richness ~ MonYear + ForestOpen + EastWest + JDAY + 
                         (1|StationID),
                    data = divdat,
                    family = (poisson("log"))
@@ -220,6 +243,31 @@ summary(model_sel)
 
 ae <- allEffects(model_sel)
 plot(ae, residuals="TRUE")
+```
+
+# Generalized Additive Model
+```{r}
+library(mgcv)
+library(gamm)
+
+divdat$MonYear <- divdat$MonYear + 2006
+divdat$Easting <- divdat$Easting / 1000
+divdat$Northing <- divdat$Northing / 1000
+
+gam1 <- gam(richness ~ s(MonYear, k = 9) + s(Easting, Northing, k = 100) + s(JDAY)
+            + s(TSSR) + s(BHC8, bs = 're'),
+                   data = divdat,
+                   family = (poisson("log")),
+             method = 'REML'
+                   )
+
+gam.check(gam1)
+appraise(gam1, method = "simulate")
+
+plot.gam(gam1)
+
+vis.gam(gam1)
+
 ```
 
 ## Follow-up

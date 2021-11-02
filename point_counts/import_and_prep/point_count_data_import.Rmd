@@ -268,7 +268,7 @@ song_wide_all <- obs %>%
   replace(is.na(.), 0) %>% 
   arrange(StationID)
 
-write_csv(song_wide_all, here("point_counts", "data_processed", "song_wide_all.csv"))
+# write_csv(song_wide_all, here("point_counts", "data_processed", "song_wide_all.csv"))
 ```
 
 For the 5-min, fixed 100m counts:
@@ -298,7 +298,7 @@ song_wide_5min_100m <- obs %>%
   replace(is.na(.), 0) %>% 
   arrange(StationID)
 
-write_csv(song_wide_5min_100m, here("point_counts", "data_processed", "song_wide_5min_100m.csv"))
+# write_csv(song_wide_5min_100m, here("point_counts", "data_processed", "song_wide_5min_100m.csv"))
     
 ```
 

@@ -30,14 +30,14 @@ library(here)
 # https://nrc.canada.ca/en/research-development/products-services/software-applications/sun-calculator/
 # The NRC data is specific to 2020. Can join data using day of the year (yday) to 
 # allow for matches for other years.
-sunrise <- read_csv("point_counts/data_raw/sunrisesunsetFSJ.csv", skip = 1) %>% 
+sunrise <- read_csv("point_counts/data_reference/sunrisesunsetFSJ.csv", skip = 1) %>% 
   select(SunDate = Date, `Sun rise`) %>% 
   mutate(SunDate = mdy(SunDate), YDAY = yday(SunDate), 
          `Sun rise` = as_hms(`Sun rise`))
 
 # Create a table for survey timing covariates
 survey_cov <- surveys %>% 
-  select(StationID, Visit, Date, Time, SurveyDuration) %>%
+  select(StationID, Visit, Date, Time, `Survey Duration`) %>%
 # Year variable. Integer right now. Create factor later when needed.
   mutate(Year = year(Time)) %>%
 # For linear effects of year, use monitoring year to avoid scaling problems. 
@@ -88,7 +88,7 @@ rm(sunrise)
 
 ## Tree Cover ----
 
-TreeCover <- read_excel("point_counts/data_raw/TREEto2019.xlsx", "Tree") %>% 
+TreeCover <- read_excel("point_counts/data_raw/TREEto2021.xlsx", "Tree") %>% 
   select(StationID, TREE)
 survey_cov <- survey_cov %>% 
   left_join(TreeCover, by = "StationID")
@@ -99,6 +99,7 @@ filter(survey_cov, is.na(TREE))
 ## LCC ---- 
 LCC <- read_excel("point_counts/data_raw/BHCto2019.xlsx", "Habitat") %>%
   select(StationID, NALCMS100m)
+
 survey_cov <- survey_cov %>% 
   left_join(LCC, by = "StationID")
 
@@ -109,4 +110,3 @@ survey_cov <- survey_cov %>%
 rm(LCC, TreeCover)
 
 write_csv(survey_cov, here("point_counts", "data_processed", "survey_cov.csv"))
-
