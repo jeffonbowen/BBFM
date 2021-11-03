@@ -24,21 +24,20 @@ What do I want to do?\
 
 # Setup
 
-```{r message=FALSE}
+```{r message=FALSE, include=FALSE}
 # Packages
 library(tidyverse)
 library(here)
 library(vegan)
 library(BiodiversityR)
 library(vcd)
-library(indicspecies)         # Indicator species analysis
 library(lme4)
 library(glmmTMB)
 library(MuMIn)
 library(emmeans)
 library(effects)
 library(DHARMa)
-library(doParallel)
+library(mgcv)
 
 ```
 
@@ -246,27 +245,37 @@ plot(ae, residuals="TRUE")
 ```
 
 # Generalized Additive Model
-```{r}
+
+Notes from https://noamross.github.io/gams-in-r-course:
+The number of basis functions (k) and the smoothing parameters (sp) interact to control the wiggliness of a smooth function. 
+
+```{r paged.print=TRUE}
 library(mgcv)
-library(gamm)
 
 divdat$MonYear <- divdat$MonYear + 2006
-divdat$Easting <- divdat$Easting / 1000
-divdat$Northing <- divdat$Northing / 1000
+divdat$Easting <- divdat$Easting / 100000
+divdat$Northing <- divdat$Northing / 100000
 
-gam1 <- gam(richness ~ s(MonYear, k = 9) + s(Easting, Northing, k = 100) + s(JDAY)
-            + s(TSSR) + s(BHC8, bs = 're'),
-                   data = divdat,
-                   family = (poisson("log")),
-             method = 'REML'
+gam1 <- gam(richness ~ 
+              s(MonYear, k = 9, sp = 0.03) + 
+              s(Easting, Northing, k = 100) + 
+              s(JDAY) +
+              s(TSSR) + 
+              s(BHC8, bs = 're'),
+            data = divdat,
+            family = (poisson("log")),
+            method = 'REML'
                    )
 
+gam1$sp
+
+coef(gam1)
+
 gam.check(gam1)
-appraise(gam1, method = "simulate")
 
-plot.gam(gam1)
+plot(gam1, residuals = FALSE, select = 1, se = TRUE, shade=FALSE)
 
-vis.gam(gam1)
+
 
 ```
 

@@ -109,4 +109,4 @@ survey_cov <- survey_cov %>%
 # Clean up intermediate tables.  
 rm(LCC, TreeCover)
 
-write_csv(survey_cov, here("point_counts", "data_processed", "survey_cov.csv"))
+write.csv(survey_cov, here("point_counts", "data_processed", "survey_cov.csv"))
