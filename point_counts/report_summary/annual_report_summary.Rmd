@@ -78,13 +78,13 @@ species_tally <-
 ```{r}
 station_tally <- stations %>% 
   left_join(surveys, "StationID") %>% 
-  filter(Year == "2021") %>% 
+  dplyr::filter(Year == "2021") %>% 
   mutate(Time = format(Time, "%H:%M")) %>% 
   pivot_wider(StationID, names_from = Visit, values_from = c(Date, Time)) %>% 
   left_join(stations, "StationID") %>% 
   mutate(`UTM Zone` = "10") %>% 
   left_join(BHC_lookup, "BHC20") %>% 
-  select(StationID, "UTM Zone", "UTM Easting" = Easting, "UTM Northing" = Northing,
+  dplyr::select(StationID, "UTM Zone", "UTM Easting" = Easting, "UTM Northing" = Northing,
          "Survey 1 Date" = Date_1, "Survey 1 Time" = Time_1, 
          "Survey 2 Date" = Date_2, "Survey 2 Time" = Time_2,
          `Bird Habitat Class`)
@@ -104,6 +104,35 @@ survey_richness <-
 
 summary(survey_richness)
 ```
+# Species Tally by Year for Valluet Upstream of Dam
+```{r}
+species_tally_all <- 
+  obs %>% 
+  dplyr::left_join(stations, "StationID") %>% 
+  filter(SpCode %in% song_list$SpCode,
+         ValleyUpstDam == "Yes") %>% 
+  group_by(SpCode, Year) %>% 
+  summarize(`Survey Detections` = sum(Count)) %>% 
+  left_join(BCbirds, "SpCode") %>% 
+  mutate(Songbird = if_else(IsSongbird == TRUE, "Yes", "")) %>% 
+  dplyr::select(sort, Year, Songbird, `English Name`, `Scientific Name`, 
+                `BC List`, COSEWIC, `SARA Status`, `Breeding Bird`, 
+                `Survey Detections`) %>% 
+  arrange(sort) %>% 
+  dplyr::select(!sort) %>% 
+  pivot_wider(SpCode:`Breeding Bird`, names_from = "Year", 
+              values_from = `Survey Detections`)
 
+write_csv(species_tally_all, here("point_counts", "out", "species_tally_all.csv"))
+```
+
+```{r}
+surveys %>% 
+  left_join(stations, "StationID") %>% 
+  dplyr::filter(ValleyUpstDam == "Yes") %>% 
+  group_by(Year) %>% 
+  summarize(n = n())
+
+```
 
 
